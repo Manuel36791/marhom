@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "طلب محظور. حاول مرة أخرى لاحقًا"),
         "internal_server_error": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ ما , حاول مرة أخرى لاحقًا"),
+        "marhomUser": MessageLookupByLibrary.simpleMessage("مرحوم (مُستخدم)"),
         "method_not_allowed_error": MessageLookupByLibrary.simpleMessage(
             "غير مدعوم، يرجى المحاولة مرة أخرى لاحقًا"),
         "moved_permanently":
@@ -63,6 +64,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "unauthorized_error": MessageLookupByLibrary.simpleMessage(
             "المستخدم غير مصرح له، جرب مرة أخرى في وقت لاحق"),
         "unknown_error": MessageLookupByLibrary.simpleMessage(
-            "حدث خطأ ما , حاول مرة أخرى لاحقًا")
+            "حدث خطأ ما , حاول مرة أخرى لاحقًا"),
+        "yourComsSupervisor":
+            MessageLookupByLibrary.simpleMessage("تواصلك (مُشرف)")
       };
 }

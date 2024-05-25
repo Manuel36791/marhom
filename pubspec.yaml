@@ -44,10 +44,10 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  build_runner: ^2.4.10 # A build system for Dart code generation and modular compilation.
+  build_runner: ^2.4.9 # A build system for Dart code generation and modular compilation.
   envied_generator: ^0.5.4+1 # Generates .env files / Generator for the Envied package.
   flutter_lints: ^4.0.0 # Recommended lints for Flutter apps, packages, and plugins to encourage good coding practices.
-  freezed: ^2.5.3 # Code generation for immutable classes that has a simple syntax/API without compromising on the features.
+  freezed: ^2.5.2 # Code generation for immutable classes that has a simple syntax/API without compromising on the features.
   json_serializable: ^6.8.0 #Automatically generate code for converting to and from JSON by annotating Dart classes.
 
 flutter_intl:

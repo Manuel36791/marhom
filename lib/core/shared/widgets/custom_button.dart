@@ -46,8 +46,8 @@ class CustomBtn extends StatelessWidget {
               borderRadius ?? Dimensions.r12,
             ),
           ),
-          backgroundColor: bgColor ?? AppColors.secondaryWhite,
-          foregroundColor: fgColor ?? AppColors.primaryGold,
+          backgroundColor: bgColor ?? AppColors.primaryGold,
+          foregroundColor: fgColor ?? AppColors.secondaryWhite,
         ),
         child: Text(
           isUpperCase
