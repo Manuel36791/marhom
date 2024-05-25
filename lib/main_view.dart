@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'core/shared/cubits/internet_checker_cubit.dart';
 import 'core/shared/widgets/no_internet_widget.dart';
+import 'features/onboarding/presentation/pages/onboarding_view.dart';
 
 class MainView extends StatefulWidget {
   const MainView({super.key});
@@ -21,7 +22,7 @@ class _MainViewState extends State<MainView> {
         builder: (context, state) {
           return state == InternetStates.lost
               ? const NoInternetWidget()
-              : const SizedBox.shrink();
+              : const OnBoardingView();
         },
       ),
     );

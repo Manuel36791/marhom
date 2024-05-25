@@ -279,6 +279,26 @@ class S {
       args: [errCode, err],
     );
   }
+
+  /// `Marhom (User)`
+  String get marhomUser {
+    return Intl.message(
+      'Marhom (User)',
+      name: 'marhomUser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your Coms (Supervisor)`
+  String get yourComsSupervisor {
+    return Intl.message(
+      'Your Coms (Supervisor)',
+      name: 'yourComsSupervisor',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

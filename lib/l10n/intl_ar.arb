@@ -36,5 +36,9 @@
         "type": "String"
       }
     }
-  }
+  },
+
+  "@_Onboarding": {},
+  "marhomUser": "مرحوم (مُستخدم)",
+  "yourComsSupervisor": "تواصلك (مُشرف)"
 }

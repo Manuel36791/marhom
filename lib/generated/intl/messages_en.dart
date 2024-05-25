@@ -41,6 +41,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "forbidden request. try again later"),
         "internal_server_error": MessageLookupByLibrary.simpleMessage(
             "some thing went wrong, try again later"),
+        "marhomUser": MessageLookupByLibrary.simpleMessage("Marhom (User)"),
         "method_not_allowed_error": MessageLookupByLibrary.simpleMessage(
             "Unsupported, please try Again later"),
         "moved_permanently": MessageLookupByLibrary.simpleMessage(
@@ -67,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "unknown_error": MessageLookupByLibrary.simpleMessage(
             "some thing went wrong, try again later"),
         "unprocessable_content_error": MessageLookupByLibrary.simpleMessage(
-            "unprocessable data, check it and try again")
+            "unprocessable data, check it and try again"),
+        "yourComsSupervisor":
+            MessageLookupByLibrary.simpleMessage("Your Coms (Supervisor)")
       };
 }

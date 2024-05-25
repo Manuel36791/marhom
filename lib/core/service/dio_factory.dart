@@ -2,9 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-// import '../../env/env.dart';
-import '../helpers/cache_helper.dart';
-import '../shared/models/user_data_model.dart';
 import '../utils/app_constants.dart';
 
 class DioFactory {
