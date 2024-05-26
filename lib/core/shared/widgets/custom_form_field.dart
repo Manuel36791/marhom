@@ -19,6 +19,7 @@ class CustomFormField extends StatefulWidget {
   final String? helperText;
   final Color color;
   final bool floatingLabel;
+  final String? initValue;
 
   const CustomFormField({
     super.key,
@@ -36,6 +37,7 @@ class CustomFormField extends StatefulWidget {
     this.helperText,
     this.color = const Color(0xFF000000),
     this.floatingLabel = false,
+    this.initValue,
   });
 
   @override
@@ -49,6 +51,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
       stream: widget.stream,
       builder: (ctx, snapShot) {
         return TextFormField(
+          initialValue: widget.initValue,
           onChanged: widget.onChanged,
           obscureText: widget.isPassword,
           obscuringCharacter: "*",
@@ -56,6 +59,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
           textInputAction: widget.nextAction,
           maxLength: widget.maxLength,
           maxLines: widget.maxLines,
+          style: CustomTextStyle.kFormFieldTextStyle,
           decoration: InputDecoration(
             prefixIcon: widget.preIcon,
             suffix: widget.postIcon,
@@ -71,13 +75,15 @@ class _CustomFormFieldState extends State<CustomFormField> {
             isDense: true,
             counter: const Offstage(),
             labelText: widget.label!,
-            labelStyle: CustomTextStyle.kTextStyleF16,
+            labelStyle: CustomTextStyle.kFormFieldTextStyle.copyWith(
+              color: AppColors.blackText,
+            ),
             floatingLabelBehavior: widget.floatingLabel
                 ? FloatingLabelBehavior.always
                 : FloatingLabelBehavior.auto,
             helperText: widget.helperText,
             hintText: widget.hint,
-            hintStyle: CustomTextStyle.kTextStyleF16,
+            hintStyle: CustomTextStyle.kFormFieldTextStyle,
             errorText: snapShot.hasError ? snapShot.error.toString() : null,
             errorStyle: CustomTextStyle.kTextStyleF12.copyWith(
               color: AppColors.errorRed,

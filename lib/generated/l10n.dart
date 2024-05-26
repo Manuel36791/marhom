@@ -280,6 +280,76 @@ class S {
     );
   }
 
+  /// `First Name`
+  String get firstName {
+    return Intl.message(
+      'First Name',
+      name: 'firstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last Name`
+  String get lastName {
+    return Intl.message(
+      'Last Name',
+      name: 'lastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone`
+  String get phone {
+    return Intl.message(
+      'Phone',
+      name: 'phone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email`
+  String get email {
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password`
+  String get password {
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password Confirmation`
+  String get passwordConfirmation {
+    return Intl.message(
+      'Password Confirmation',
+      name: 'passwordConfirmation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Snap Chat ID`
+  String get snapChatId {
+    return Intl.message(
+      'Snap Chat ID',
+      name: 'snapChatId',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Marhom (User)`
   String get marhomUser {
     return Intl.message(
@@ -295,6 +365,276 @@ class S {
     return Intl.message(
       'Your Coms (Supervisor)',
       name: 'yourComsSupervisor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Welcome to your communications`
+  String get welcomeToYourCommunications {
+    return Intl.message(
+      'Welcome to your communications',
+      name: 'welcomeToYourCommunications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create New Account`
+  String get createNewAccount {
+    return Intl.message(
+      'Create New Account',
+      name: 'createNewAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `(Supervisor)`
+  String get supervisor {
+    return Intl.message(
+      '(Supervisor)',
+      name: 'supervisor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get continueBtn {
+    return Intl.message(
+      'Continue',
+      name: 'continueBtn',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go Back`
+  String get goBack {
+    return Intl.message(
+      'Go Back',
+      name: 'goBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Marhom`
+  String get marhom {
+    return Intl.message(
+      'Marhom',
+      name: 'marhom',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm your phone number`
+  String get confirmYourPhoneNumber {
+    return Intl.message(
+      'Confirm your phone number',
+      name: 'confirmYourPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter the OTP sent to {dialCode}{phoneNumber}`
+  String enterOtp(String dialCode, String phoneNumber) {
+    return Intl.message(
+      'Enter the OTP sent to $dialCode$phoneNumber',
+      name: 'enterOtp',
+      desc: '',
+      args: [dialCode, phoneNumber],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Didn't receive the OTP?`
+  String get didntReceiveTheOtp {
+    return Intl.message(
+      'Didn\'t receive the OTP?',
+      name: 'didntReceiveTheOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Resend OTP`
+  String get resendOtp {
+    return Intl.message(
+      'Resend OTP',
+      name: 'resendOtp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have an account?`
+  String get alreadyHaveAnAccount {
+    return Intl.message(
+      'Already have an account?',
+      name: 'alreadyHaveAnAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login`
+  String get login {
+    return Intl.message(
+      'Login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your first name`
+  String get pleaseEnterYourFirstName {
+    return Intl.message(
+      'Please enter your first name',
+      name: 'pleaseEnterYourFirstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your last name`
+  String get pleaseEnterYourLastName {
+    return Intl.message(
+      'Please enter your last name',
+      name: 'pleaseEnterYourLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your phone number`
+  String get pleaseEnterYourPhoneNumber {
+    return Intl.message(
+      'Please enter your phone number',
+      name: 'pleaseEnterYourPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid phone number`
+  String get pleaseEnterAValidPhoneNumber {
+    return Intl.message(
+      'Please enter a valid phone number',
+      name: 'pleaseEnterAValidPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please choose a unique username`
+  String get pleaseChooseAUniqueUsername {
+    return Intl.message(
+      'Please choose a unique username',
+      name: 'pleaseChooseAUniqueUsername',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid user name`
+  String get pleaseEnterAValidUserName {
+    return Intl.message(
+      'Please enter a valid user name',
+      name: 'pleaseEnterAValidUserName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your email address`
+  String get pleaseEnterYourEmailAddress {
+    return Intl.message(
+      'Please enter your email address',
+      name: 'pleaseEnterYourEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid email address`
+  String get pleaseEnterAValidEmailAddress {
+    return Intl.message(
+      'Please enter a valid email address',
+      name: 'pleaseEnterAValidEmailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your password`
+  String get pleaseEnterYourPassword {
+    return Intl.message(
+      'Please enter your password',
+      name: 'pleaseEnterYourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your password is too short. It must be at least 8 characters long`
+  String get passwordIsTooShort {
+    return Intl.message(
+      'Your password is too short. It must be at least 8 characters long',
+      name: 'passwordIsTooShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please confirm your password`
+  String get pleaseConfirmYourPassword {
+    return Intl.message(
+      'Please confirm your password',
+      name: 'pleaseConfirmYourPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match. Please try again`
+  String get passwordsDoNotMatchPleaseTryAgain {
+    return Intl.message(
+      'Passwords do not match. Please try again',
+      name: 'passwordsDoNotMatchPleaseTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter your SnapChat Id`
+  String get pleaseEnterYourSnapchatId {
+    return Intl.message(
+      'Please enter your SnapChat Id',
+      name: 'pleaseEnterYourSnapchatId',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter a valid SnapChat Id`
+  String get pleaseEnterAValidSnapchatId {
+    return Intl.message(
+      'Please enter a valid SnapChat Id',
+      name: 'pleaseEnterAValidSnapchatId',
       desc: '',
       args: [],
     );

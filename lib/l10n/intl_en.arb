@@ -38,8 +38,55 @@
       }
     }
   },
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "phone": "Phone",
+  "email": "Email",
+  "password": "Password",
+  "passwordConfirmation": "Password Confirmation",
+  "snapChatId": "Snap Chat ID",
 
   "@_Onboarding": {},
   "marhomUser": "Marhom (User)",
-  "yourComsSupervisor": "Your Coms (Supervisor)"
+  "yourComsSupervisor": "Your Coms (Supervisor)",
+
+
+  "@_SupervisorRegister": {},
+  "welcomeToYourCommunications": "Welcome to your communications",
+  "createNewAccount": "Create New Account",
+  "supervisor": "(Supervisor)",
+  "continueBtn": "Continue",
+  "goBack": "Go Back",
+  "marhom": "Marhom",
+  "confirmYourPhoneNumber": "Confirm your phone number",
+  "enterOtp": "Enter the OTP sent to {dialCode}{phoneNumber}",
+  "@enterOtp": {
+    "placeholders": {
+      "dialCode": {
+        "type": "String"
+      },
+      "phoneNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "confirm": "Confirm",
+  "didntReceiveTheOtp": "Didn't receive the OTP?",
+  "resendOtp": "Resend OTP",
+  "alreadyHaveAnAccount": "Already have an account?",
+  "login": "Login",
+  "pleaseEnterYourFirstName": "Please enter your first name",
+  "pleaseEnterYourLastName": "Please enter your last name",
+  "pleaseEnterYourPhoneNumber": "Please enter your phone number",
+  "pleaseEnterAValidPhoneNumber": "Please enter a valid phone number",
+  "pleaseChooseAUniqueUsername": "Please choose a unique username",
+  "pleaseEnterAValidUserName": "Please enter a valid user name",
+  "pleaseEnterYourEmailAddress": "Please enter your email address",
+  "pleaseEnterAValidEmailAddress": "Please enter a valid email address",
+  "pleaseEnterYourPassword": "Please enter your password",
+  "passwordIsTooShort": "Your password is too short. It must be at least 8 characters long",
+  "pleaseConfirmYourPassword": "Please confirm your password",
+  "passwordsDoNotMatchPleaseTryAgain": "Passwords do not match. Please try again",
+  "pleaseEnterYourSnapchatId": "Please enter your SnapChat Id",
+  "pleaseEnterAValidSnapchatId": "Please enter a valid SnapChat Id"
 }

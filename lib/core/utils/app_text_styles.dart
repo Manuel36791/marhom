@@ -84,9 +84,16 @@ class CustomTextStyle {
 
   static TextStyle kFormFieldTextStyle = TextStyle(
     fontSize: Dimensions.f16,
-    fontWeight: FontWeight.w400, //? Regular
+    fontWeight: FontWeight.w300, //? Regular
     fontFamily: AppConstants.mainFontFamily,
-    color: Colors.grey,
+    color: AppColors.greyText,
+  );
+
+  static TextStyle kPinTextStyle = TextStyle(
+    fontSize: Dimensions.f16,
+    fontWeight: FontWeight.w300, //? Regular
+    fontFamily: AppConstants.mainFontFamily,
+    color: AppColors.greyText,
   );
 
   static TextStyle kBtnTextStyle = TextStyle(

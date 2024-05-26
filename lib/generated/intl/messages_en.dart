@@ -20,10 +20,15 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(errCode, err) => "Error: ${errCode}, ${err}";
+  static String m0(dialCode, phoneNumber) =>
+      "Enter the OTP sent to ${dialCode}${phoneNumber}";
+
+  static String m1(errCode, err) => "Error: ${errCode}, ${err}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "alreadyHaveAnAccount":
+            MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "bad_gateway": MessageLookupByLibrary.simpleMessage(
             "Invalid data, please try again"),
         "bad_request_error": MessageLookupByLibrary.simpleMessage(
@@ -32,15 +37,30 @@ class MessageLookup extends MessageLookupByLibrary {
             "cache error, try again later"),
         "checkInternetConnection": MessageLookupByLibrary.simpleMessage(
             "Make sure your phone is connected to the Internet"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "confirmYourPhoneNumber":
+            MessageLookupByLibrary.simpleMessage("Confirm your phone number"),
         "conflict_error": MessageLookupByLibrary.simpleMessage(
             "conflict found, try again later"),
+        "continueBtn": MessageLookupByLibrary.simpleMessage("Continue"),
+        "createNewAccount":
+            MessageLookupByLibrary.simpleMessage("Create New Account"),
         "default_error": MessageLookupByLibrary.simpleMessage(
             "some thing went wrong, try again later"),
-        "error": m0,
+        "didntReceiveTheOtp":
+            MessageLookupByLibrary.simpleMessage("Didn\'t receive the OTP?"),
+        "email": MessageLookupByLibrary.simpleMessage("Email"),
+        "enterOtp": m0,
+        "error": m1,
+        "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "forbidden_error": MessageLookupByLibrary.simpleMessage(
             "forbidden request. try again later"),
+        "goBack": MessageLookupByLibrary.simpleMessage("Go Back"),
         "internal_server_error": MessageLookupByLibrary.simpleMessage(
             "some thing went wrong, try again later"),
+        "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
+        "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "marhom": MessageLookupByLibrary.simpleMessage("Marhom"),
         "marhomUser": MessageLookupByLibrary.simpleMessage("Marhom (User)"),
         "method_not_allowed_error": MessageLookupByLibrary.simpleMessage(
             "Unsupported, please try Again later"),
@@ -56,11 +76,47 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please check your internet connection"),
         "not_found_error": MessageLookupByLibrary.simpleMessage(
             "url not found, try again later"),
+        "password": MessageLookupByLibrary.simpleMessage("Password"),
+        "passwordConfirmation":
+            MessageLookupByLibrary.simpleMessage("Password Confirmation"),
+        "passwordIsTooShort": MessageLookupByLibrary.simpleMessage(
+            "Your password is too short. It must be at least 8 characters long"),
+        "passwordsDoNotMatchPleaseTryAgain":
+            MessageLookupByLibrary.simpleMessage(
+                "Passwords do not match. Please try again"),
         "payment_required":
             MessageLookupByLibrary.simpleMessage("Payment Required"),
+        "phone": MessageLookupByLibrary.simpleMessage("Phone"),
+        "pleaseChooseAUniqueUsername": MessageLookupByLibrary.simpleMessage(
+            "Please choose a unique username"),
+        "pleaseConfirmYourPassword": MessageLookupByLibrary.simpleMessage(
+            "Please confirm your password"),
+        "pleaseEnterAValidEmailAddress": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid email address"),
+        "pleaseEnterAValidPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid phone number"),
+        "pleaseEnterAValidSnapchatId": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid SnapChat Id"),
+        "pleaseEnterAValidUserName": MessageLookupByLibrary.simpleMessage(
+            "Please enter a valid user name"),
+        "pleaseEnterYourEmailAddress": MessageLookupByLibrary.simpleMessage(
+            "Please enter your email address"),
+        "pleaseEnterYourFirstName": MessageLookupByLibrary.simpleMessage(
+            "Please enter your first name"),
+        "pleaseEnterYourLastName":
+            MessageLookupByLibrary.simpleMessage("Please enter your last name"),
+        "pleaseEnterYourPassword":
+            MessageLookupByLibrary.simpleMessage("Please enter your password"),
+        "pleaseEnterYourPhoneNumber": MessageLookupByLibrary.simpleMessage(
+            "Please enter your phone number"),
+        "pleaseEnterYourSnapchatId": MessageLookupByLibrary.simpleMessage(
+            "Please enter your SnapChat Id"),
+        "resendOtp": MessageLookupByLibrary.simpleMessage("Resend OTP"),
         "service_unavailable":
             MessageLookupByLibrary.simpleMessage("Server is under maintenance"),
+        "snapChatId": MessageLookupByLibrary.simpleMessage("Snap Chat ID"),
         "success": MessageLookupByLibrary.simpleMessage("success"),
+        "supervisor": MessageLookupByLibrary.simpleMessage("(Supervisor)"),
         "timeout_error":
             MessageLookupByLibrary.simpleMessage("time out, try again late"),
         "unauthorized_error": MessageLookupByLibrary.simpleMessage(
@@ -69,6 +125,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "some thing went wrong, try again later"),
         "unprocessable_content_error": MessageLookupByLibrary.simpleMessage(
             "unprocessable data, check it and try again"),
+        "welcomeToYourCommunications": MessageLookupByLibrary.simpleMessage(
+            "Welcome to your communications"),
         "yourComsSupervisor":
             MessageLookupByLibrary.simpleMessage("Your Coms (Supervisor)")
       };
