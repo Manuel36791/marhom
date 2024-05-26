@@ -12,6 +12,8 @@ class AppImages {
 
   //? SVG Paths
   static String wifiSvg = "$svgPath/wifi.svg";
+  static String leafSvg = "$svgPath/leaf.svg";
+  static String snapchatLogoSvg = "$svgPath/snapchat_logo.svg";
 }
 
 Future<void> svgPreloader() async {

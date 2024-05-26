@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:marhom/core/router/router.dart';
+import 'package:marhom/core/utils/extensions.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../../core/shared/widgets/custom_button.dart';
@@ -46,7 +48,7 @@ class OnBoardingView extends StatelessWidget {
                                 value: "en",
                                 child: Row(
                                   children: [
-                                    Text("English"),
+                                    const Text("English"),
                                     Gap(5.w),
                                   ],
                                 ),
@@ -55,7 +57,7 @@ class OnBoardingView extends StatelessWidget {
                                 value: "ar",
                                 child: Row(
                                   children: [
-                                    Text("عربي"),
+                                    const Text("عربي"),
                                     Gap(5.w),
                                   ],
                                 ),
@@ -93,7 +95,8 @@ class OnBoardingView extends StatelessWidget {
                             ),
                             CustomBtn(
                               label: S.of(context).yourComsSupervisor,
-                              onPressed: () {},
+                              onPressed: () => context
+                                  .pushNamed(supervisorPhoneRegisterView),
                             ),
                           ],
                         )

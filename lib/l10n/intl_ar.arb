@@ -37,8 +37,54 @@
       }
     }
   },
+  "marhom": "مرحوم",
+  "firstName": "الاسم الأول",
+  "lastName": "الاسم الأخير",
+  "phone": "رقم الهاتف",
+  "email": "البريد الإلكتروني",
+  "password": "كلمة المرور",
+  "passwordConfirmation": "تأكيد كلمة المرور",
+  "snapChatId": "معرف سناب شات",
 
   "@_Onboarding": {},
   "marhomUser": "مرحوم (مُستخدم)",
-  "yourComsSupervisor": "تواصلك (مُشرف)"
+  "yourComsSupervisor": "تواصلك (مُشرف)",
+
+  "@_SupervisorRegister": {},
+  "welcomeToYourCommunications": "مرحبًا بك في تواصلك",
+  "createNewAccount": "إنشاء حساب جديد",
+  "supervisor": "(مشرف)",
+  "continueBtn": "متابعة",
+  "goBack": "الرجوع",
+  "confirmYourPhoneNumber": "تأكيد رقم هاتفك",
+  "enterOtp": "أدخل رمز OTP المرسل إلى {dialCode}{phoneNumber}",
+  "@enterOtp": {
+    "placeholders": {
+      "dialCode": {
+        "type": "String"
+      },
+      "phoneNumber": {
+        "type": "String"
+      }
+    }
+  },
+  "confirm": "تأكيد",
+  "didntReceiveTheOtp": "لم تستلم رمز OTP؟",
+  "resendOtp": "إعادة إرسال رمز OTP",
+  "alreadyHaveAnAccount": "هل لديك حساب بالفعل؟",
+  "login": "تسجيل الدخول",
+  "pleaseEnterYourFirstName": "يرجى إدخال اسمك الأول",
+  "pleaseEnterYourLastName": "يرجى إدخال اسمك الأخير",
+  "pleaseEnterYourPhoneNumber": "يرجى إدخال رقم هاتفك",
+  "pleaseEnterAValidPhoneNumber": "يرجى إدخال رقم هاتف صالح",
+  "pleaseChooseAUniqueUsername": "يرجى اختيار اسم مستخدم فريد",
+  "pleaseEnterAValidUserName": "يرجى إدخال اسم مستخدم صالح",
+  "pleaseEnterYourEmailAddress": "يرجى إدخال عنوان بريدك الإلكتروني",
+  "pleaseEnterAValidEmailAddress": "يرجى إدخال عنوان بريد إلكتروني صالح",
+  "pleaseEnterYourPassword": "يرجى إدخال كلمة المرور",
+  "passwordIsTooShort": "كلمة المرور قصيرة جدًا. يجب أن تكون على الأقل 8 أحرف",
+  "pleaseConfirmYourPassword": "يرجى تأكيد كلمة المرور",
+  "passwordsDoNotMatchPleaseTryAgain": "كلمات المرور غير متطابقة. يرجى المحاولة مرة أخرى",
+  "pleaseEnterYourSnapchatId": "يرجى إدخال معرف سناب شات الخاص بك",
+  "pleaseEnterAValidSnapchatId": "يرجى إدخال معرف سناب شات صالح"
 }
