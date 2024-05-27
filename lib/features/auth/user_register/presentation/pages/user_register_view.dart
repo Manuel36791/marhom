@@ -3,9 +3,8 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../../../core/dependency_injection/di.dart' as di;
 import '../../../../../core/shared/widgets/custom_button.dart';
@@ -15,42 +14,24 @@ import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
 import '../../../../../generated/l10n.dart';
-import '../manager/supervisor_register_cubit.dart';
+import '../manager/user_register_cubit.dart';
 
-class SupervisorRegisterView extends StatefulWidget {
-  final String firstName;
-  final String lastName;
-  final String phoneNumber;
-  final String dialCode;
-  final String countryCode;
-
-  const SupervisorRegisterView(
-      {super.key,
-      required this.firstName,
-      required this.lastName,
-      required this.phoneNumber,
-      required this.dialCode,
-      required this.countryCode});
+class UserRegisterView extends StatefulWidget {
+  const UserRegisterView({super.key});
 
   @override
-  State<SupervisorRegisterView> createState() => _SupervisorRegisterViewState();
+  State<UserRegisterView> createState() => _UserRegisterViewState();
 }
 
-class _SupervisorRegisterViewState extends State<SupervisorRegisterView> {
-  bool isPassword = true;
-  bool isPassConf = true;
-
+class _UserRegisterViewState extends State<UserRegisterView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => di.di<SupervisorRegisterCubit>()
-        ..ctrlInitValues(widget.firstName, widget.lastName, widget.dialCode,
-            widget.phoneNumber),
-      child: BlocConsumer<SupervisorRegisterCubit, SupervisorRegisterStates>(
+      create: (context) => di.di<UserRegisterCubit>(),
+      child: BlocConsumer<UserRegisterCubit, UserRegisterStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          SupervisorRegisterCubit registerCubit =
-              SupervisorRegisterCubit.get(context);
+          UserRegisterCubit registerCubit = UserRegisterCubit.get(context);
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -84,7 +65,7 @@ class _SupervisorRegisterViewState extends State<SupervisorRegisterView> {
                             ),
                             const TextSpan(text: " "),
                             TextSpan(
-                              text: S.of(context).supervisor,
+                              text: S.of(context).user,
                               style: CustomTextStyle.kTextStyleF16.copyWith(
                                 color: AppColors.redText,
                               ),
@@ -99,10 +80,8 @@ class _SupervisorRegisterViewState extends State<SupervisorRegisterView> {
                             child: CustomFormField(
                               stream: registerCubit.firstNameStream,
                               onChanged: (firstName) {
-                                firstName = widget.firstName;
                                 registerCubit.validateFirstName(firstName);
                               },
-                              initValue: widget.firstName,
                               label: S.of(context).firstName,
                               keyboardType: TextInputType.text,
                               nextAction: TextInputAction.next,
@@ -115,7 +94,6 @@ class _SupervisorRegisterViewState extends State<SupervisorRegisterView> {
                               onChanged: (lastName) {
                                 registerCubit.validateLastName(lastName);
                               },
-                              initValue: widget.lastName,
                               label: S.of(context).lastName,
                               keyboardType: TextInputType.text,
                               nextAction: TextInputAction.next,
@@ -129,8 +107,8 @@ class _SupervisorRegisterViewState extends State<SupervisorRegisterView> {
                         children: [
                           CountryCodePicker(
                             padding: EdgeInsets.zero,
-                            initialSelection: widget.countryCode,
-                            favorite: [widget.dialCode, widget.countryCode],
+                            initialSelection: "SA",
+                            favorite: const ["+966", "SA"],
                             onChanged: (code) {
                               // registerCubit.countryDialCode = code.dialCode!;
                             },
@@ -138,81 +116,24 @@ class _SupervisorRegisterViewState extends State<SupervisorRegisterView> {
                           ),
                           Expanded(
                             child: CustomFormField(
-                              stream: registerCubit.phoneStream,
-                              onChanged: (phone) {
-                                registerCubit.validatePhone(phone);
+                              stream: registerCubit.whatsappStream,
+                              onChanged: (waNumber) {
+                                registerCubit.validateWaNumber(waNumber);
                               },
-                              initValue: widget.phoneNumber,
-                              label: S.of(context).phone,
+                              label: S.of(context).whatsappNumber,
                               keyboardType: TextInputType.phone,
                               nextAction: TextInputAction.next,
+                              preIcon: Padding(
+                                padding: const EdgeInsets.all(Dimensions.p8),
+                                child: SvgPicture.asset(
+                                  AppImages.whatsappLogoSvg,
+                                  height: 16.h,
+                                  width: 16.w,
+                                ),
+                              ),
                             ),
                           ),
                         ],
-                      ),
-                      Gap(10.h),
-                      CustomFormField(
-                        stream: registerCubit.userNameStream,
-                        onChanged: (userName) {
-                          registerCubit.validateUserName(userName);
-                        },
-                        label: "User Name",
-                        keyboardType: TextInputType.text,
-                        nextAction: TextInputAction.next,
-                      ),
-                      Gap(10.h),
-                      CustomFormField(
-                        stream: registerCubit.emailStream,
-                        onChanged: (email) {
-                          registerCubit.validateEmail(email);
-                        },
-                        label: S.of(context).email,
-                        keyboardType: TextInputType.emailAddress,
-                        nextAction: TextInputAction.next,
-                      ),
-                      Gap(10.h),
-                      CustomFormField(
-                        stream: registerCubit.passStream,
-                        onChanged: (pass) {
-                          registerCubit.validatePass(pass);
-                        },
-                        label: S.of(context).password,
-                        keyboardType: TextInputType.text,
-                        nextAction: TextInputAction.next,
-                        isPassword: isPassword,
-                        postIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isPassword = !isPassword;
-                            });
-                          },
-                          child: Icon(
-                            isPassword ? MdiIcons.eye : MdiIcons.eyeOff,
-                            color: AppColors.primaryGold,
-                          ),
-                        ),
-                      ),
-                      Gap(10.h),
-                      CustomFormField(
-                        stream: registerCubit.passConfStream,
-                        onChanged: (passConf) {
-                          registerCubit.validatePassConfirm(passConf);
-                        },
-                        label: S.of(context).passwordConfirmation,
-                        keyboardType: TextInputType.text,
-                        nextAction: TextInputAction.next,
-                        isPassword: isPassConf,
-                        postIcon: GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              isPassConf = !isPassConf;
-                            });
-                          },
-                          child: Icon(
-                            isPassConf ? MdiIcons.eye : MdiIcons.eyeOff,
-                            color: AppColors.primaryGold,
-                          ),
-                        ),
                       ),
                       Gap(10.h),
                       CustomFormField(
