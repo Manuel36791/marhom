@@ -45,6 +45,7 @@
   "password": "Password",
   "passwordConfirmation": "Password Confirmation",
   "snapChatId": "Snap Chat ID",
+  "noImageAvailable": "No image available",
 
   "@_Onboarding": {},
   "marhomUser": "Marhom (User)",
@@ -91,4 +92,5 @@
   "pleaseEnterAValidSnapchatId": "Please enter a valid SnapChat Id",
   "user": "(User)",
   "whatsappNumber": "Whatsapp Number"
+
 }

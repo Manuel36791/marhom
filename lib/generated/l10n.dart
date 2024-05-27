@@ -659,6 +659,16 @@ class S {
       args: [],
     );
   }
+
+  /// `No image available`
+  String get noImageAvailable {
+    return Intl.message(
+      'No image available',
+      name: 'noImageAvailable',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -68,6 +68,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "This URL is no longer available"),
         "multiple_choices": MessageLookupByLibrary.simpleMessage(
             "Choose an option to continue"),
+        "noImageAvailable":
+            MessageLookupByLibrary.simpleMessage("No image available"),
         "noInternetConnection":
             MessageLookupByLibrary.simpleMessage("No Internet Connection"),
         "no_content":
