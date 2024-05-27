@@ -51,7 +51,7 @@
   "yourComsSupervisor": "Your Coms (Supervisor)",
 
 
-  "@_SupervisorRegister": {},
+  "@_Register": {},
   "welcomeToYourCommunications": "Welcome to your communications",
   "createNewAccount": "Create New Account",
   "supervisor": "(Supervisor)",
@@ -88,5 +88,7 @@
   "pleaseConfirmYourPassword": "Please confirm your password",
   "passwordsDoNotMatchPleaseTryAgain": "Passwords do not match. Please try again",
   "pleaseEnterYourSnapchatId": "Please enter your SnapChat Id",
-  "pleaseEnterAValidSnapchatId": "Please enter a valid SnapChat Id"
+  "pleaseEnterAValidSnapchatId": "Please enter a valid SnapChat Id",
+  "user": "(User)",
+  "whatsappNumber": "Whatsapp Number"
 }

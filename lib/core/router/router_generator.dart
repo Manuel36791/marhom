@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:marhom/features/auth/supervisor_register/presentation/pages/supervisor_phone_confirmation_view.dart';
-import 'package:marhom/features/auth/supervisor_register/presentation/pages/supervisor_phone_register_view.dart';
-import 'package:marhom/features/auth/supervisor_register/presentation/pages/supervisor_register_view.dart';
-import 'package:marhom/features/onboarding/presentation/pages/onboarding_view.dart';
 
+import '../../features/auth/supervisor_register/presentation/pages/supervisor_phone_confirmation_view.dart';
+import '../../features/auth/supervisor_register/presentation/pages/supervisor_phone_register_view.dart';
+import '../../features/auth/supervisor_register/presentation/pages/supervisor_register_view.dart';
+import '../../features/auth/user_register/presentation/pages/user_register_view.dart';
+import '../../features/onboarding/presentation/pages/onboarding_view.dart';
 import '../../main_view.dart';
 import '../shared/arguments.dart';
 import 'router.dart';
@@ -41,6 +42,10 @@ class AppRouters {
             phoneNumber: args.phoneNumber,
             countryCode: args.countryCode,
           ),
+        );
+        case userRegisterView:
+        return MaterialPageRoute(
+          builder: (BuildContext context) => const UserRegisterView()
         );
 
       default:

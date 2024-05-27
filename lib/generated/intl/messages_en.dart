@@ -125,8 +125,11 @@ class MessageLookup extends MessageLookupByLibrary {
             "some thing went wrong, try again later"),
         "unprocessable_content_error": MessageLookupByLibrary.simpleMessage(
             "unprocessable data, check it and try again"),
+        "user": MessageLookupByLibrary.simpleMessage("(User)"),
         "welcomeToYourCommunications": MessageLookupByLibrary.simpleMessage(
             "Welcome to your communications"),
+        "whatsappNumber":
+            MessageLookupByLibrary.simpleMessage("Whatsapp Number"),
         "yourComsSupervisor":
             MessageLookupByLibrary.simpleMessage("Your Coms (Supervisor)")
       };

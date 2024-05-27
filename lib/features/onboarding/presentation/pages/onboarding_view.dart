@@ -91,7 +91,7 @@ class OnBoardingView extends StatelessWidget {
                           children: [
                             CustomBtn(
                               label: S.of(context).marhomUser,
-                              onPressed: () {},
+                              onPressed: () => context.pushNamed(userRegisterView),
                             ),
                             CustomBtn(
                               label: S.of(context).yourComsSupervisor,

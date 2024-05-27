@@ -6,6 +6,7 @@ const String svgPath = "assets/svg";
 class AppImages {
   //? PNG Paths
   static String placeholderImg = "https://picsum.photos/200";
+
   // static String placeholder200 = "https://placehold.co/200";
   static String placeholder = "https://via.placeholder.com/";
   static String bgImg = "$imagePath/background.jpg";
@@ -14,11 +15,15 @@ class AppImages {
   static String wifiSvg = "$svgPath/wifi.svg";
   static String leafSvg = "$svgPath/leaf.svg";
   static String snapchatLogoSvg = "$svgPath/snapchat_logo.svg";
+  static String whatsappLogoSvg = "$svgPath/whatsapp_logo.svg";
 }
 
 Future<void> svgPreloader() async {
   await preloadSVGs([
     AppImages.wifiSvg,
+    AppImages.leafSvg,
+    AppImages.snapchatLogoSvg,
+    AppImages.whatsappLogoSvg,
   ]);
 }
 
@@ -31,4 +36,3 @@ Future<void> preloadSVGs(List<String> assetPaths) async {
     );
   }
 }
-

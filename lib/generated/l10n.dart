@@ -639,6 +639,26 @@ class S {
       args: [],
     );
   }
+
+  /// `(User)`
+  String get user {
+    return Intl.message(
+      '(User)',
+      name: 'user',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Whatsapp Number`
+  String get whatsappNumber {
+    return Intl.message(
+      'Whatsapp Number',
+      name: 'whatsappNumber',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
