@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:marhom/features/profile/presentation/pages/profile_view.dart';
 
 import '../../core/utils/app_images.dart';
 
@@ -25,11 +26,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
       label: "Profile",
     ),
   ];
+
   _changeTab(int index) {
     setState(() {
       _currentIndex = index;
     });
   }
+
   _animatedTab(index) {
     _pageController.animateToPage(
       index,
@@ -37,13 +40,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
       curve: Curves.easeIn,
     );
   }
+
   final _views = [
     Container(
       color: Colors.red,
     ),
-    Container(
-      color: Colors.green,
-    ),
+    const ProfileView(),
   ];
 
   @override

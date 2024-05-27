@@ -45,6 +45,7 @@
   "password": "كلمة المرور",
   "passwordConfirmation": "تأكيد كلمة المرور",
   "snapChatId": "معرف سناب شات",
+  "noImageAvailable": "لا توجد صورة متاحة",
 
   "@_Onboarding": {},
   "marhomUser": "مرحوم (مُستخدم)",
