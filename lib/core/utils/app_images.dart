@@ -16,6 +16,10 @@ class AppImages {
   static String leafSvg = "$svgPath/leaf.svg";
   static String snapchatLogoSvg = "$svgPath/snapchat_logo.svg";
   static String whatsappLogoSvg = "$svgPath/whatsapp_logo.svg";
+  static String homeActiveSvg = "$svgPath/home_active.svg";
+  static String homeInactiveSvg = "$svgPath/home_inactive.svg";
+  static String profileActiveSvg = "$svgPath/profile_active.svg";
+  static String profileInactiveSvg = "$svgPath/profile_inactive.svg";
 }
 
 Future<void> svgPreloader() async {
@@ -24,6 +28,10 @@ Future<void> svgPreloader() async {
     AppImages.leafSvg,
     AppImages.snapchatLogoSvg,
     AppImages.whatsappLogoSvg,
+    AppImages.homeActiveSvg,
+    AppImages.homeInactiveSvg,
+    AppImages.profileActiveSvg,
+    AppImages.profileInactiveSvg,
   ]);
 }
 
