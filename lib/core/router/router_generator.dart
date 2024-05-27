@@ -4,6 +4,7 @@ import '../../features/auth/supervisor_register/presentation/pages/supervisor_ph
 import '../../features/auth/supervisor_register/presentation/pages/supervisor_phone_register_view.dart';
 import '../../features/auth/supervisor_register/presentation/pages/supervisor_register_view.dart';
 import '../../features/auth/user_register/presentation/pages/user_register_view.dart';
+import '../../features/bottom_nav_bar/bottom_nav_bar.dart';
 import '../../features/onboarding/presentation/pages/onboarding_view.dart';
 import '../../main_view.dart';
 import '../shared/arguments.dart';
@@ -43,10 +44,12 @@ class AppRouters {
             countryCode: args.countryCode,
           ),
         );
-        case userRegisterView:
+      case userRegisterView:
         return MaterialPageRoute(
-          builder: (BuildContext context) => const UserRegisterView()
-        );
+            builder: (BuildContext context) => const UserRegisterView());
+      case bottomNavbar:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const BottomNavBar());
 
       default:
         return MaterialPageRoute(

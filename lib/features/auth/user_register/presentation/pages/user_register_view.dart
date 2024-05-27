@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:marhom/core/router/router.dart';
+import 'package:marhom/core/utils/extensions.dart';
 
 import '../../../../../core/dependency_injection/di.dart' as di;
 import '../../../../../core/shared/widgets/custom_button.dart';
@@ -163,7 +165,7 @@ class _UserRegisterViewState extends State<UserRegisterView> {
                                   padding: const EdgeInsets.all(Dimensions.p16),
                                   child: CustomBtn(
                                     label: S.of(context).createNewAccount,
-                                    onPressed: snapshot.hasError ? null : () {},
+                                    onPressed: snapshot.hasError ? null : () => context.pushNamed(bottomNavbar),
                                   ),
                                 );
                               },

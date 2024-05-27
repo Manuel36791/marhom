@@ -5,9 +5,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:marhom/core/utils/extensions.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../../../core/dependency_injection/di.dart' as di;
+import '../../../../../core/router/router.dart';
 import '../../../../../core/shared/widgets/custom_button.dart';
 import '../../../../../core/shared/widgets/custom_form_field.dart';
 import '../../../../../core/utils/app_colors.dart';
@@ -242,7 +244,9 @@ class _SupervisorRegisterViewState extends State<SupervisorRegisterView> {
                                   padding: const EdgeInsets.all(Dimensions.p16),
                                   child: CustomBtn(
                                     label: S.of(context).createNewAccount,
-                                    onPressed: snapshot.hasError ? null : () {},
+                                    onPressed: snapshot.hasError
+                                        ? null
+                                        : () => context.pushNamed(bottomNavbar),
                                   ),
                                 );
                               },
