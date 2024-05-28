@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
-import 'package:marhom/core/router/router.dart';
 import 'package:marhom/core/utils/extensions.dart';
 
 import '../../../../../core/dependency_injection/di.dart' as di;
@@ -16,6 +15,7 @@ import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
 import '../../../../../generated/l10n.dart';
+import '../../data/models/user_register_model.dart';
 import '../manager/user_register_cubit.dart';
 
 class UserRegisterView extends StatefulWidget {
@@ -31,7 +31,29 @@ class _UserRegisterViewState extends State<UserRegisterView> {
     return BlocProvider(
       create: (context) => di.di<UserRegisterCubit>(),
       child: BlocConsumer<UserRegisterCubit, UserRegisterStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          state.maybeWhen(
+            success: (state) {
+              UserRegisterCubit registerCubit = UserRegisterCubit.get(context);
+              if (state.status == 200) {
+                context.defaultSnackBar(
+                  "${state.phone} registered successfully, now redirecting you to the app",
+                  color: AppColors.successGreen,
+                  textColor: AppColors.blackText,
+                );
+              } else if (state.status == 400 || state.status == 422) {
+                registerCubit.displayErrors(state.error!, context);
+              }
+            },
+            error: (failure) {
+              context.defaultSnackBar(
+                S.of(context).error(failure.code.toString(), failure.message),
+                color: AppColors.errorRed,
+              );
+            },
+            orElse: () {},
+          );
+        },
         builder: (context, state) {
           UserRegisterCubit registerCubit = UserRegisterCubit.get(context);
           return Scaffold(
@@ -112,7 +134,7 @@ class _UserRegisterViewState extends State<UserRegisterView> {
                             initialSelection: "SA",
                             favorite: const ["+966", "SA"],
                             onChanged: (code) {
-                              // registerCubit.countryDialCode = code.dialCode!;
+                              registerCubit.dialCode = code.dialCode!;
                             },
                             textStyle: CustomTextStyle.kTextStyleF12,
                           ),
@@ -159,13 +181,28 @@ class _UserRegisterViewState extends State<UserRegisterView> {
                           stream: registerCubit.registerBtnStream,
                           builder: (context, snapshot) {
                             return ConditionalBuilder(
-                              condition: true,
+                              condition: state is! Loading,
                               builder: (BuildContext context) {
                                 return Padding(
                                   padding: const EdgeInsets.all(Dimensions.p16),
                                   child: CustomBtn(
                                     label: S.of(context).createNewAccount,
-                                    onPressed: snapshot.hasError ? null : () => context.pushNamed(bottomNavbar),
+                                    onPressed: snapshot.hasError
+                                        ? null
+                                        : () {
+                                            registerCubit.userRegister(
+                                              UserRegisterModel(
+                                                firstName: registerCubit
+                                                    .firstNameCtrl.value,
+                                                lastName: registerCubit
+                                                    .lastNameCtrl.value,
+                                                phone: "${registerCubit.dialCode}${registerCubit.whatsappCtrl.value}",
+                                                snapChatId: registerCubit
+                                                    .snapChatCtrl.value,
+
+                                              ),
+                                            );
+                                          },
                                   ),
                                 );
                               },

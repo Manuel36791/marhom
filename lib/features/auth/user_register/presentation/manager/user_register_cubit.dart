@@ -1,18 +1,45 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:marhom/core/utils/extensions.dart';
+import 'package:marhom/features/auth/user_register/domain/entities/user_register_entity.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../../../core/resources/api/failure_class.dart';
+import '../../../../../core/utils/app_colors.dart';
 import '../../../../../generated/l10n.dart';
+import '../../data/models/user_register_model.dart';
+import '../../domain/use_cases/user_register_use_case.dart';
 
 part 'user_register_states.dart';
 
 part 'user_register_cubit.freezed.dart';
 
 class UserRegisterCubit extends Cubit<UserRegisterStates> {
-  UserRegisterCubit() : super(const UserRegisterStates.initial());
+  UserRegisterCubit({required this.userRegisterUseCase}) : super(const UserRegisterStates.initial());
 
   static UserRegisterCubit get(context) => BlocProvider.of(context);
+
+  final UserRegisterUseCase userRegisterUseCase;
+
+  userRegister(UserRegisterModel userRegisterModel) async {
+    emit(const UserRegisterStates.loading());
+
+    final result = await userRegisterUseCase(userRegisterModel);
+
+    result.fold((l) => emit(UserRegisterStates.error(l)),
+            (r) => emit(UserRegisterStates.success(r)));
+  }
+
+  void displayErrors(Map<String, dynamic> errors, BuildContext context) {
+    errors.forEach((key, value) {
+      String errorMessage = value.join("\n");
+      context.defaultSnackBar(
+        S.current.error(key, errorMessage),
+        color: AppColors.errorRed,
+      );
+    });
+  }
 
   final firstNameCtrl = BehaviorSubject<String>();
   final lastNameCtrl = BehaviorSubject<String>();
@@ -43,13 +70,15 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
     }
   }
 
-  validateWaNumber(String phone) async {
-    if (phone.isEmpty) {
+  var dialCode = "+966";
+
+  validateWaNumber(String waNumber) async {
+    if (waNumber.isEmpty) {
       whatsappCtrl.sink.addError(S.current.pleaseEnterYourPhoneNumber);
-    } else if (!phone.isPhone()) {
+    } else if (!waNumber.isPhone()) {
       whatsappCtrl.sink.addError(S.current.pleaseEnterAValidPhoneNumber);
     } else {
-      whatsappCtrl.sink.add(phone);
+      whatsappCtrl.sink.add(waNumber);
     }
   }
 
@@ -72,4 +101,6 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
         snapChatStream,
         (a, b, c, d) => true,
       );
+
+
 }

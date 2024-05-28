@@ -42,6 +42,7 @@ dependencies:
   shared_preferences: ^2.2.3 # Flutter plugin for reading and writing simple key-value pairs.
   location: ^6.0.2
   prayers_times: ^0.0.6
+  retrofit: ^4.1.0 # retrofit.dart is an dio client generator using source_gen and inspired by Chopper and Retrofit.
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +52,7 @@ dev_dependencies:
   flutter_lints: ^4.0.0 # Recommended lints for Flutter apps, packages, and plugins to encourage good coding practices.
   freezed: ^2.5.2 # Code generation for immutable classes that has a simple syntax/API without compromising on the features.
   json_serializable: ^6.8.0 #Automatically generate code for converting to and from JSON by annotating Dart classes.
+  retrofit_generator: ^8.1.0 # retrofit generator is an dio client generator using source_gen and inspired by Chopper and Retrofit
 
 flutter_intl:
   enabled: true
