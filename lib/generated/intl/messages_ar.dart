@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("هل لديك حساب بالفعل؟"),
+        "asrt": MessageLookupByLibrary.simpleMessage("العصر"),
         "bad_gateway": MessageLookupByLibrary.simpleMessage(
             "بيانات غير صالحة، يرجى المحاولة مرة أخرى"),
         "bad_request_error": MessageLookupByLibrary.simpleMessage(
@@ -47,19 +48,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("إنشاء حساب جديد"),
         "default_error": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ ما , حاول مرة أخرى لاحقًا"),
+        "dhuhrt": MessageLookupByLibrary.simpleMessage("الظهر"),
         "didntReceiveTheOtp":
             MessageLookupByLibrary.simpleMessage("لم تستلم رمز OTP؟"),
         "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
         "enterOtp": m0,
         "error": m1,
+        "fajr": MessageLookupByLibrary.simpleMessage("الفجر"),
         "firstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
         "forbidden_error": MessageLookupByLibrary.simpleMessage(
             "طلب محظور. حاول مرة أخرى لاحقًا"),
         "goBack": MessageLookupByLibrary.simpleMessage("الرجوع"),
+        "home": MessageLookupByLibrary.simpleMessage("الصفحة الرئيسية"),
         "internal_server_error": MessageLookupByLibrary.simpleMessage(
             "حدث خطأ ما , حاول مرة أخرى لاحقًا"),
+        "ishat": MessageLookupByLibrary.simpleMessage("العشاء"),
         "lastName": MessageLookupByLibrary.simpleMessage("الاسم الأخير"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+        "maghribt": MessageLookupByLibrary.simpleMessage("المغرب"),
         "marhom": MessageLookupByLibrary.simpleMessage("مرحوم"),
         "marhomUser": MessageLookupByLibrary.simpleMessage("مرحوم (مُستخدم)"),
         "method_not_allowed_error": MessageLookupByLibrary.simpleMessage(
@@ -68,6 +74,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("هذا الرابط لم يعد متاحًا"),
         "multiple_choices":
             MessageLookupByLibrary.simpleMessage("اختر خيارًا للمتابعة"),
+        "noImageAvailable":
+            MessageLookupByLibrary.simpleMessage("لا توجد صورة متاحة"),
         "noInternetConnection":
             MessageLookupByLibrary.simpleMessage("لا يوجد اتصال بالإنترنت"),
         "no_content": MessageLookupByLibrary.simpleMessage("نجاح بدون محتوى"),
@@ -109,13 +117,17 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("يرجى إدخال رقم هاتفك"),
         "pleaseEnterYourSnapchatId": MessageLookupByLibrary.simpleMessage(
             "يرجى إدخال معرف سناب شات الخاص بك"),
+        "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "resendOtp":
             MessageLookupByLibrary.simpleMessage("إعادة إرسال رمز OTP"),
+        "sehrit": MessageLookupByLibrary.simpleMessage("السحور"),
         "service_unavailable":
             MessageLookupByLibrary.simpleMessage("الخادم قيد الصيانة"),
         "snapChatId": MessageLookupByLibrary.simpleMessage("معرف سناب شات"),
         "success": MessageLookupByLibrary.simpleMessage("تم بنجاح"),
+        "sunriset": MessageLookupByLibrary.simpleMessage("الشروق"),
         "supervisor": MessageLookupByLibrary.simpleMessage("(مشرف)"),
+        "tahajjudt": MessageLookupByLibrary.simpleMessage("التهجد"),
         "timeout_error": MessageLookupByLibrary.simpleMessage(
             "انتهت المهلة , حاول مرة أخرى لاحقًا"),
         "unauthorized_error": MessageLookupByLibrary.simpleMessage(

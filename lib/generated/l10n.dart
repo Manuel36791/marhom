@@ -350,6 +350,16 @@ class S {
     );
   }
 
+  /// `No image available`
+  String get noImageAvailable {
+    return Intl.message(
+      'No image available',
+      name: 'noImageAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Marhom (User)`
   String get marhomUser {
     return Intl.message(
@@ -660,11 +670,101 @@ class S {
     );
   }
 
-  /// `No image available`
-  String get noImageAvailable {
+  /// `Home`
+  String get home {
     return Intl.message(
-      'No image available',
-      name: 'noImageAvailable',
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fajr`
+  String get fajr {
+    return Intl.message(
+      'Fajr',
+      name: 'fajr',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sunrise`
+  String get sunriset {
+    return Intl.message(
+      'Sunrise',
+      name: 'sunriset',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dhuhr`
+  String get dhuhrt {
+    return Intl.message(
+      'Dhuhr',
+      name: 'dhuhrt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Asr`
+  String get asrt {
+    return Intl.message(
+      'Asr',
+      name: 'asrt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maghrib`
+  String get maghribt {
+    return Intl.message(
+      'Maghrib',
+      name: 'maghribt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Isha`
+  String get ishat {
+    return Intl.message(
+      'Isha',
+      name: 'ishat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tahajjud`
+  String get tahajjudt {
+    return Intl.message(
+      'Tahajjud',
+      name: 'tahajjudt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sehri`
+  String get sehrit {
+    return Intl.message(
+      'Sehri',
+      name: 'sehrit',
       desc: '',
       args: [],
     );

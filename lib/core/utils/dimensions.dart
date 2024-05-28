@@ -53,6 +53,7 @@ class Dimensions {
   static double r25 = 25.0.r;
   static double r35 = 35.0.r;
   static double r50 = 50.0.r;
+  static double r60 = 60.0.r;
 
   static double phoneMaxWidth = 600.w;
   static double tabletMaxWidth = 770.w;
