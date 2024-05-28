@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:marhom/features/profile/presentation/pages/profile_view.dart';
+import 'package:marhom/features/main/profile/presentation/pages/profile_view.dart';
 
 import '../../core/utils/app_images.dart';
+import '../../generated/l10n.dart';
+import '../main/home/presentation/pages/home_view.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -18,12 +20,12 @@ class _BottomNavBarState extends State<BottomNavBar> {
     BottomNavigationBarItem(
       icon: SvgPicture.asset(AppImages.homeInactiveSvg),
       activeIcon: SvgPicture.asset(AppImages.homeActiveSvg),
-      label: "Home",
+      label: S.current.home,
     ),
     BottomNavigationBarItem(
       icon: SvgPicture.asset(AppImages.profileInactiveSvg),
       activeIcon: SvgPicture.asset(AppImages.profileActiveSvg),
-      label: "Profile",
+      label: S.current.profile,
     ),
   ];
 
@@ -42,9 +44,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   }
 
   final _views = [
-    Container(
-      color: Colors.red,
-    ),
+    const HomeView(),
     const ProfileView(),
   ];
 

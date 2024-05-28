@@ -29,6 +29,7 @@ class MessageLookup extends MessageLookupByLibrary {
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
+        "asrt": MessageLookupByLibrary.simpleMessage("Asr"),
         "bad_gateway": MessageLookupByLibrary.simpleMessage(
             "Invalid data, please try again"),
         "bad_request_error": MessageLookupByLibrary.simpleMessage(
@@ -47,19 +48,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create New Account"),
         "default_error": MessageLookupByLibrary.simpleMessage(
             "some thing went wrong, try again later"),
+        "dhuhrt": MessageLookupByLibrary.simpleMessage("Dhuhr"),
         "didntReceiveTheOtp":
             MessageLookupByLibrary.simpleMessage("Didn\'t receive the OTP?"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "enterOtp": m0,
         "error": m1,
+        "fajr": MessageLookupByLibrary.simpleMessage("Fajr"),
         "firstName": MessageLookupByLibrary.simpleMessage("First Name"),
         "forbidden_error": MessageLookupByLibrary.simpleMessage(
             "forbidden request. try again later"),
         "goBack": MessageLookupByLibrary.simpleMessage("Go Back"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "internal_server_error": MessageLookupByLibrary.simpleMessage(
             "some thing went wrong, try again later"),
+        "ishat": MessageLookupByLibrary.simpleMessage("Isha"),
         "lastName": MessageLookupByLibrary.simpleMessage("Last Name"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "maghribt": MessageLookupByLibrary.simpleMessage("Maghrib"),
         "marhom": MessageLookupByLibrary.simpleMessage("Marhom"),
         "marhomUser": MessageLookupByLibrary.simpleMessage("Marhom (User)"),
         "method_not_allowed_error": MessageLookupByLibrary.simpleMessage(
@@ -113,12 +119,16 @@ class MessageLookup extends MessageLookupByLibrary {
             "Please enter your phone number"),
         "pleaseEnterYourSnapchatId": MessageLookupByLibrary.simpleMessage(
             "Please enter your SnapChat Id"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "resendOtp": MessageLookupByLibrary.simpleMessage("Resend OTP"),
+        "sehrit": MessageLookupByLibrary.simpleMessage("Sehri"),
         "service_unavailable":
             MessageLookupByLibrary.simpleMessage("Server is under maintenance"),
         "snapChatId": MessageLookupByLibrary.simpleMessage("Snap Chat ID"),
         "success": MessageLookupByLibrary.simpleMessage("success"),
+        "sunriset": MessageLookupByLibrary.simpleMessage("Sunrise"),
         "supervisor": MessageLookupByLibrary.simpleMessage("(Supervisor)"),
+        "tahajjudt": MessageLookupByLibrary.simpleMessage("Tahajjud"),
         "timeout_error":
             MessageLookupByLibrary.simpleMessage("time out, try again late"),
         "unauthorized_error": MessageLookupByLibrary.simpleMessage(

@@ -91,6 +91,18 @@
   "pleaseEnterYourSnapchatId": "Please enter your SnapChat Id",
   "pleaseEnterAValidSnapchatId": "Please enter a valid SnapChat Id",
   "user": "(User)",
-  "whatsappNumber": "Whatsapp Number"
+  "whatsappNumber": "Whatsapp Number",
 
+  "@_BottomNavBar": {},
+  "home": "Home",
+  "profile": "Profile",
+
+  "@_Home": {},"fajr": "Fajr",
+  "sunriset": "Sunrise",
+  "dhuhrt": "Dhuhr",
+  "asrt": "Asr",
+  "maghribt": "Maghrib",
+  "ishat": "Isha",
+  "tahajjudt": "Tahajjud",
+  "sehrit": "Sehri"
 }

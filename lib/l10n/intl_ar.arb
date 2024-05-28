@@ -87,5 +87,19 @@
   "pleaseConfirmYourPassword": "يرجى تأكيد كلمة المرور",
   "passwordsDoNotMatchPleaseTryAgain": "كلمات المرور غير متطابقة. يرجى المحاولة مرة أخرى",
   "pleaseEnterYourSnapchatId": "يرجى إدخال معرف سناب شات الخاص بك",
-  "pleaseEnterAValidSnapchatId": "يرجى إدخال معرف سناب شات صالح"
+  "pleaseEnterAValidSnapchatId": "يرجى إدخال معرف سناب شات صالح",
+
+  "@_BottomNavBar": {},
+  "home": "الصفحة الرئيسية",
+  "profile": "الملف الشخصي",
+
+  "@_Home": {},
+  "fajr": "الفجر",
+  "sunriset": "الشروق",
+  "dhuhrt": "الظهر",
+  "asrt": "العصر",
+  "maghribt": "المغرب",
+  "ishat": "العشاء",
+  "tahajjudt": "التهجد",
+  "sehrit": "السحور"
 }

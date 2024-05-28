@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -14,7 +15,8 @@ class StateLoadingWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Gap(30.h),
-        Center(
+        Align(
+          alignment: Alignment.center,
           child: SizedBox(
             height: 100.h,
             width: 100.w,

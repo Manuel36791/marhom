@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-import '../../../../core/utils/app_colors.dart';
-import '../../../../core/utils/app_text_styles.dart';
-import '../../../../core/utils/dimensions.dart';
+import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_text_styles.dart';
+import '../../../../../core/utils/dimensions.dart';
 
 class MenuTile extends StatefulWidget {
   final String title;

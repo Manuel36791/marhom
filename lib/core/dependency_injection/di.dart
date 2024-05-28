@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../features/auth/supervisor_register/presentation/manager/supervisor_register_cubit.dart';
 import '../../features/auth/user_register/presentation/manager/user_register_cubit.dart';
+import '../../features/main/home/presentation/manager/home_cubit.dart';
 
 final di = GetIt.instance;
 
@@ -12,8 +13,11 @@ Future<void> init() async {
   /// <!------ SUPERVISOR REGISTER ------->
   di.registerFactory(() => SupervisorRegisterCubit());
 
-  /// <!------ SUPERVISOR REGISTER ------->
+  /// <!------ USER REGISTER ------->
   di.registerFactory(() => UserRegisterCubit());
+
+  /// <!------ HOME ------->
+  di.registerFactory(() => HomeCubit());
 
   // di.registerFactory(() => LoginCubit(loginUseCase: di()));
   // di.registerLazySingleton(() => LoginUseCase(loginRepo: di()));
