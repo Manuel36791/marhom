@@ -244,9 +244,7 @@ class _SupervisorRegisterViewState extends State<SupervisorRegisterView> {
                                   padding: const EdgeInsets.all(Dimensions.p16),
                                   child: CustomBtn(
                                     label: S.of(context).createNewAccount,
-                                    onPressed: snapshot.hasError
-                                        ? null
-                                        : () => context.pushNamed(bottomNavbar),
+                                    onPressed: () => context.pushNamed(bottomNavbar),
                                   ),
                                 );
                               },

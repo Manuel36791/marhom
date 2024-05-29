@@ -5,3 +5,4 @@ const String supervisorPhoneConfView = '/supervisorPhoneConfView';
 const String supervisorRegisterView = '/supervisorRegisterView';
 const String userRegisterView = '/userRegisterView';
 const String bottomNavbar = '/bottomNavbar';
+const String sendMessageView = '/sendMessageView';

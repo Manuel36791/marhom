@@ -6,6 +6,7 @@ import '../../features/auth/supervisor_register/presentation/pages/supervisor_re
 import '../../features/auth/user_register/presentation/pages/user_register_view.dart';
 import '../../features/bottom_nav_bar/bottom_nav_bar.dart';
 import '../../features/onboarding/presentation/pages/onboarding_view.dart';
+import '../../features/profile/send_message/presentation/pages/send_message_view.dart';
 import '../../main_view.dart';
 import '../shared/arguments.dart';
 import 'router.dart';
@@ -50,6 +51,9 @@ class AppRouters {
       case bottomNavbar:
         return MaterialPageRoute(
             builder: (BuildContext context) => const BottomNavBar());
+      case sendMessageView:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const SendMessageView());
 
       default:
         return MaterialPageRoute(

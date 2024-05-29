@@ -10,6 +10,9 @@ import '../../features/auth/user_register/presentation/manager/user_register_cub
 import '../../features/main/home/presentation/manager/home_cubit.dart';
 import '../service/api_client.dart';
 import '../service/dio_factory.dart';
+import '../shared/api/data/repositories/check_phone_repo_impl.dart';
+import '../shared/api/domain/repositories/check_phone_repo.dart';
+import '../shared/api/domain/use_cases/check_phone_use_case.dart';
 
 final di = GetIt.instance;
 
@@ -19,8 +22,13 @@ Future<void> init() async {
   /// <!------ SUPERVISOR REGISTER ------->
   di.registerFactory(() => SupervisorRegisterCubit());
 
+  /// <!------ CHECK PHONE ------->
+  di.registerLazySingleton(() => CheckPhoneUseCase(checkPhoneRepo: di()));
+  di.registerLazySingleton<CheckPhoneRepo>(
+      () => CheckPhoneRepoImpl(checkPhoneService: di()));
+
   /// <!------ USER REGISTER ------->
-  di.registerFactory(() => UserRegisterCubit(userRegisterUseCase: di()));
+  di.registerFactory(() => UserRegisterCubit(userRegisterUseCase: di(), checkPhoneUseCase: di()));
   di.registerLazySingleton(() => UserRegisterUseCase(userRegisterRepo: di()));
   di.registerLazySingleton<UserRegisterRepo>(
       () => UserRegisterRepoImpl(userRegisterService: di()));
