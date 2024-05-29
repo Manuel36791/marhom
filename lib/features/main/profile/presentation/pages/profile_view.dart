@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:marhom/core/router/router.dart';
 import 'package:marhom/core/utils/extensions.dart';
 
 import '../../../../../core/shared/widgets/network_image_error.dart';
@@ -11,6 +12,7 @@ import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
 import '../widgets/language_buttom_sheet.dart';
+import '../widgets/menu_container.dart';
 import '../widgets/menu_tile.dart';
 
 class ProfileView extends StatelessWidget {
@@ -83,9 +85,9 @@ class ProfileView extends StatelessWidget {
                   children: [],
                 ),
                 Gap(15.h),
-                const MenuTile(
+                ClickableMenuTile(
+                  onClick: () => context.pushNamed(sendMessageView),
                   title: "Message to supervisor",
-                  children: [],
                 ),
                 Gap(15.h),
                 const MenuTile(
