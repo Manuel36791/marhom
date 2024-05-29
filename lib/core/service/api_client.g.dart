@@ -21,6 +21,35 @@ class _ApiClient implements ApiClient {
   String? baseUrl;
 
   @override
+  Future<CheckPhoneModel> checkPhoneExist(
+      CheckPhoneModel checkPhoneModel) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(checkPhoneModel.toJson());
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<CheckPhoneModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'auth/check-phone-exist',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = CheckPhoneModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
   Future<UserRegisterModel> userRegister(
       UserRegisterModel userRegisterModel) async {
     final _extra = <String, dynamic>{};

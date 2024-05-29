@@ -1,5 +1,8 @@
+// ignore_for_file: overridden_fields, annotate_overrides
+
 import 'package:json_annotation/json_annotation.dart';
-import 'package:marhom/features/auth/user_register/domain/entities/user_register_entity.dart';
+
+import '../../domain/entities/user_register_entity.dart';
 
 part 'user_register_model.g.dart';
 
@@ -36,14 +39,14 @@ class UserRegisterModel extends UserRegisterEntity {
     this.success,
     this.error,
   }) : super(
-    firstName: firstName,
-    lastName: lastName,
-    phone: phone,
-    snapChatId: snapChatId,
-    status: status,
-    success: success,
-    error: error,
-  );
+          firstName: firstName,
+          lastName: lastName,
+          phone: phone,
+          snapChatId: snapChatId,
+          status: status,
+          success: success,
+          error: error,
+        );
 
   factory UserRegisterModel.fromJson(Map<String, dynamic> json) =>
       _$UserRegisterModelFromJson(json);

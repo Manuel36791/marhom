@@ -32,6 +32,7 @@ class _UserRegisterViewState extends State<UserRegisterView> {
       create: (context) => di.di<UserRegisterCubit>(),
       child: BlocConsumer<UserRegisterCubit, UserRegisterStates>(
         listener: (context, state) {
+          UserRegisterCubit registerCubit = UserRegisterCubit.get(context);
           state.maybeWhen(
             success: (state) {
               UserRegisterCubit registerCubit = UserRegisterCubit.get(context);
@@ -50,6 +51,23 @@ class _UserRegisterViewState extends State<UserRegisterView> {
                 S.of(context).error(failure.code.toString(), failure.message),
                 color: AppColors.errorRed,
               );
+            },
+            checkFailed: (failure) {
+              context.defaultSnackBar(
+                S.of(context).error(failure.code.toString(), failure.message),
+                color: AppColors.errorRed,
+              );
+            },
+            checkSuccess: (state) {
+              if (state.status == 1) {
+                registerCubit.whatsappCtrl.sink
+                    .addError("This number is already registered");
+                registerCubit.isRegistered = true;
+              } else if (state.status == 0) {
+                registerCubit.whatsappCtrl.sink
+                    .add(registerCubit.whatsappCtrl.value);
+                registerCubit.isRegistered = false;
+              }
             },
             orElse: () {},
           );
@@ -178,62 +196,65 @@ class _UserRegisterViewState extends State<UserRegisterView> {
                         ),
                       ),
                       StreamBuilder(
-                          stream: registerCubit.registerBtnStream,
-                          builder: (context, snapshot) {
-                            return ConditionalBuilder(
-                              condition: state is! Loading,
-                              builder: (BuildContext context) {
-                                return Padding(
-                                  padding: const EdgeInsets.all(Dimensions.p16),
-                                  child: CustomBtn(
-                                    label: S.of(context).createNewAccount,
-                                    onPressed: snapshot.hasError
-                                        ? null
-                                        : () {
-                                            registerCubit.userRegister(
-                                              UserRegisterModel(
-                                                firstName: registerCubit
-                                                    .firstNameCtrl.value,
-                                                lastName: registerCubit
-                                                    .lastNameCtrl.value,
-                                                phone: "${registerCubit.dialCode}${registerCubit.whatsappCtrl.value}",
-                                                snapChatId: registerCubit
-                                                    .snapChatCtrl.value,
-
-                                              ),
-                                            );
-                                          },
-                                  ),
-                                );
-                              },
-                              fallback: (BuildContext context) {
-                                return const Center(
-                                  child: CircularProgressIndicator(
-                                    color: AppColors.primaryGold,
-                                  ),
-                                );
-                              },
-                            );
-                          }),
-                      Row(
-                        children: [
-                          Text(
-                            S.of(context).alreadyHaveAnAccount,
-                            style: CustomTextStyle.kTextStyleF16.copyWith(
-                              fontWeight: FontWeight.w300,
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: Text(
-                              S.of(context).login,
-                              style: CustomTextStyle.kTextStyleF16.copyWith(
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          )
-                        ],
-                      )
+                        stream: registerCubit.registerBtnStream,
+                        builder: (context, snapshot) {
+                          return ConditionalBuilder(
+                            condition: state is! Loading,
+                            builder: (BuildContext context) {
+                              return Padding(
+                                padding: const EdgeInsets.all(Dimensions.p16),
+                                child: CustomBtn(
+                                  label: S.of(context).createNewAccount,
+                                  onPressed: snapshot.hasError
+                                      ? null
+                                      : () {
+                                          registerCubit.isRegistered
+                                              ? null
+                                              : registerCubit.userRegister(
+                                                  UserRegisterModel(
+                                                    firstName: registerCubit
+                                                        .firstNameCtrl.value,
+                                                    lastName: registerCubit
+                                                        .lastNameCtrl.value,
+                                                    phone:
+                                                        "${registerCubit.dialCode}${registerCubit.whatsappCtrl.value}",
+                                                    snapChatId: registerCubit
+                                                        .snapChatCtrl.value,
+                                                  ),
+                                                );
+                                        },
+                                ),
+                              );
+                            },
+                            fallback: (BuildContext context) {
+                              return const Center(
+                                child: CircularProgressIndicator(
+                                  color: AppColors.primaryGold,
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      ),
+                      // Row(
+                      //   children: [
+                      //     Text(
+                      //       S.of(context).alreadyHaveAnAccount,
+                      //       style: CustomTextStyle.kTextStyleF16.copyWith(
+                      //         fontWeight: FontWeight.w300,
+                      //       ),
+                      //     ),
+                      //     TextButton(
+                      //       onPressed: () {},
+                      //       child: Text(
+                      //         S.of(context).login,
+                      //         style: CustomTextStyle.kTextStyleF16.copyWith(
+                      //           fontWeight: FontWeight.w700,
+                      //         ),
+                      //       ),
+                      //     )
+                      //   ],
+                      // )
                     ],
                   ),
                 ),

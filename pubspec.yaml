@@ -29,20 +29,20 @@ dependencies:
   freezed_annotation: ^2.4.1 # Annotations for the freezed code-generator. This package does nothing without freezed too.
   gap: ^3.0.1 # Better SizedBoxes
   get_it: ^7.7.0 # Simple direct Service Locator
-  flutter_localizations:
-    sdk: flutter
-  intl: ^0.18.0 # internationalized/localized code formatting
   json_annotation: ^4.9.0 # Classes and helper functions that support JSON code generation via the `json_serializable` package.
+  location: ^6.0.2
   logger: ^2.3.0
   material_design_icons_flutter: ^7.0.7296 # Material icons made by community
   permission_handler: ^11.3.1
   pinput: ^4.0.0 # Adding verification code fields
+  prayers_times: ^0.0.6
   pretty_dio_logger: ^1.3.1 #  Better visualization for API response
+  retrofit: ^4.1.0 # retrofit.dart is an dio client generator using source_gen and inspired by Chopper and Retrofit.
   rxdart: ^0.27.7
   shared_preferences: ^2.2.3 # Flutter plugin for reading and writing simple key-value pairs.
-  location: ^6.0.2
-  prayers_times: ^0.0.6
-  retrofit: ^4.1.0 # retrofit.dart is an dio client generator using source_gen and inspired by Chopper and Retrofit.
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.18.0 # internationalized/localized code formatting
 
 dev_dependencies:
   flutter_test:

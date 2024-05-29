@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:marhom/core/shared/api/domain/entities/check_phone_entity.dart';
+import 'package:marhom/core/shared/api/domain/use_cases/check_phone_use_case.dart';
 import 'package:marhom/core/utils/extensions.dart';
 import 'package:marhom/features/auth/user_register/domain/entities/user_register_entity.dart';
 import 'package:rxdart/rxdart.dart';
 
+import '../../../../../core/resources/api/debouncer.dart';
 import '../../../../../core/resources/api/failure_class.dart';
+import '../../../../../core/shared/api/data/models/check_phone_model.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../generated/l10n.dart';
 import '../../data/models/user_register_model.dart';
@@ -16,7 +20,8 @@ part 'user_register_states.dart';
 part 'user_register_cubit.freezed.dart';
 
 class UserRegisterCubit extends Cubit<UserRegisterStates> {
-  UserRegisterCubit({required this.userRegisterUseCase}) : super(const UserRegisterStates.initial());
+  UserRegisterCubit({required this.userRegisterUseCase, required this.checkPhoneUseCase})
+      : super(const UserRegisterStates.initial());
 
   static UserRegisterCubit get(context) => BlocProvider.of(context);
 
@@ -28,7 +33,7 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
     final result = await userRegisterUseCase(userRegisterModel);
 
     result.fold((l) => emit(UserRegisterStates.error(l)),
-            (r) => emit(UserRegisterStates.success(r)));
+        (r) => emit(UserRegisterStates.success(r)));
   }
 
   void displayErrors(Map<String, dynamic> errors, BuildContext context) {
@@ -40,6 +45,19 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
       );
     });
   }
+
+  final CheckPhoneUseCase checkPhoneUseCase;
+
+  checkUserPhone(CheckPhoneModel checkPhoneModel) async {
+    // emit(const UserRegisterStates.loading());
+    final result = await checkPhoneUseCase(checkPhoneModel);
+    result.fold(
+      (l) => emit(UserRegisterStates.checkFailed(l)),
+      (r) => emit(UserRegisterStates.checkSuccess(r)),
+    );
+  }
+
+  bool isRegistered = false;
 
   final firstNameCtrl = BehaviorSubject<String>();
   final lastNameCtrl = BehaviorSubject<String>();
@@ -71,6 +89,9 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
   }
 
   var dialCode = "+966";
+  var debouncer = Debouncer(
+    const Duration(milliseconds: 1000),
+  );
 
   validateWaNumber(String waNumber) async {
     if (waNumber.isEmpty) {
@@ -78,7 +99,13 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
     } else if (!waNumber.isPhone()) {
       whatsappCtrl.sink.addError(S.current.pleaseEnterAValidPhoneNumber);
     } else {
-      whatsappCtrl.sink.add(waNumber);
+      debouncer.call(() {
+        checkUserPhone(
+          CheckPhoneModel(
+            phone: waNumber,
+          ),
+        );
+      });
     }
   }
 
@@ -101,6 +128,4 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
         snapChatStream,
         (a, b, c, d) => true,
       );
-
-
 }
