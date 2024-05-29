@@ -8,14 +8,17 @@ import 'package:gap/gap.dart';
 import 'package:marhom/core/utils/extensions.dart';
 
 import '../../../../../core/dependency_injection/di.dart' as di;
+import '../../../../../core/router/router.dart';
+import '../../../../../core/shared/models/user_data_model_utils.dart';
 import '../../../../../core/shared/widgets/custom_button.dart';
 import '../../../../../core/shared/widgets/custom_form_field.dart';
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_constants.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
 import '../../../../../generated/l10n.dart';
-import '../../data/models/user_register_model.dart';
+import '../../data/models/user_register_or_login_model.dart';
 import '../manager/user_register_cubit.dart';
 
 class UserRegisterView extends StatefulWidget {
@@ -34,7 +37,20 @@ class _UserRegisterViewState extends State<UserRegisterView> {
         listener: (context, state) {
           UserRegisterCubit registerCubit = UserRegisterCubit.get(context);
           state.maybeWhen(
-            success: (state) {
+            checkSuccess: (state) {
+              if (state.status == 1) {
+                registerCubit.isRegistered = true;
+              } else if (state.status == 0) {
+                registerCubit.isRegistered = false;
+              }
+            },
+            checkFailed: (failure) {
+              context.defaultSnackBar(
+                S.of(context).error(failure.code.toString(), failure.message),
+                color: AppColors.errorRed,
+              );
+            },
+            registerSuccess: (state) {
               UserRegisterCubit registerCubit = UserRegisterCubit.get(context);
               if (state.status == 200) {
                 context.defaultSnackBar(
@@ -46,28 +62,53 @@ class _UserRegisterViewState extends State<UserRegisterView> {
                 registerCubit.displayErrors(state.error!, context);
               }
             },
-            error: (failure) {
+            registerFailure: (failure) {
               context.defaultSnackBar(
                 S.of(context).error(failure.code.toString(), failure.message),
                 color: AppColors.errorRed,
               );
             },
-            checkFailed: (failure) {
-              context.defaultSnackBar(
-                S.of(context).error(failure.code.toString(), failure.message),
-                color: AppColors.errorRed,
-              );
-            },
-            checkSuccess: (state) {
-              if (state.status == 1) {
-                registerCubit.whatsappCtrl.sink
-                    .addError("This number is already registered");
-                registerCubit.isRegistered = true;
-              } else if (state.status == 0) {
-                registerCubit.whatsappCtrl.sink
-                    .add(registerCubit.whatsappCtrl.value);
-                registerCubit.isRegistered = false;
+            loginSuccess: (state) {
+              if (state.status == 200) {
+                context.defaultSnackBar(
+                  "Logged in successfully, Welcome again ${UserDataUtils.instance!.firstName!}",
+                    color: AppColors.successGreen,
+                    textColor: AppColors.blackText);
+                AppConstants.userToken = state.token!;
+                // if (rememberMe == true) {
+                //   CacheHelper.setData("email", loginCubit.emailCtrl.value);
+                //   CacheHelper.setData("pass", loginCubit.passCtrl.value);
+                // }
+                context.pushNamed(bottomNavbar);
+              } else if (state.status == 409) {
+                context.defaultSnackBar(
+                  "Your account is not yet activated. Please check your email for the activation code or try again later",
+                  color: AppColors.warningYellow,
+                  textColor: AppColors.blackText,
+                );
+                // loginCubit.resendCode(
+                //   ResendCodeModel(
+                //     email: loginCubit.emailCtrl.value,
+                //   ),
+                // );
+                // context.pushNamed(
+                //   verifyAccountPageRoute,
+                //   arguments: AuthArgs(
+                //     email: loginCubit.emailCtrl.value,
+                //   ),
+                // );
+              } else {
+                context.defaultSnackBar(
+                  "Invalid email or password. Please check your credentials and try again",
+                  color: AppColors.errorRed,
+                );
               }
+            },
+            loginFailure: (failure) {
+              context.defaultSnackBar(
+                S.of(context).error(failure.code.toString(), failure.message),
+                color: AppColors.errorRed,
+              );
             },
             orElse: () {},
           );
@@ -209,15 +250,26 @@ class _UserRegisterViewState extends State<UserRegisterView> {
                                       ? null
                                       : () {
                                           registerCubit.isRegistered
-                                              ? null
-                                              : registerCubit.userRegister(
-                                                  UserRegisterModel(
+                                              ? registerCubit.userLogin(
+                                                  UserRegisterOrLoginModel(
                                                     firstName: registerCubit
                                                         .firstNameCtrl.value,
                                                     lastName: registerCubit
                                                         .lastNameCtrl.value,
-                                                    phone:
-                                                        "${registerCubit.dialCode}${registerCubit.whatsappCtrl.value}",
+                                                    phone: registerCubit
+                                                        .whatsappCtrl.value,
+                                                    snapChatId: registerCubit
+                                                        .snapChatCtrl.value,
+                                                  ),
+                                                )
+                                              : registerCubit.userRegister(
+                                                  UserRegisterOrLoginModel(
+                                                    firstName: registerCubit
+                                                        .firstNameCtrl.value,
+                                                    lastName: registerCubit
+                                                        .lastNameCtrl.value,
+                                                    phone: registerCubit
+                                                        .whatsappCtrl.value,
                                                     snapChatId: registerCubit
                                                         .snapChatCtrl.value,
                                                   ),

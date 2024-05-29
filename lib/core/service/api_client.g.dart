@@ -50,15 +50,15 @@ class _ApiClient implements ApiClient {
   }
 
   @override
-  Future<UserRegisterModel> userRegister(
-      UserRegisterModel userRegisterModel) async {
+  Future<UserRegisterOrLoginModel> userRegister(
+      UserRegisterOrLoginModel userRegisterModel) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(userRegisterModel.toJson());
-    final _result = await _dio
-        .fetch<Map<String, dynamic>>(_setStreamType<UserRegisterModel>(Options(
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<UserRegisterOrLoginModel>(Options(
       method: 'POST',
       headers: _headers,
       extra: _extra,
@@ -74,7 +74,36 @@ class _ApiClient implements ApiClient {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = UserRegisterModel.fromJson(_result.data!);
+    final value = UserRegisterOrLoginModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<UserRegisterOrLoginModel> userLogin(
+      UserRegisterOrLoginModel userLoginModel) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(userLoginModel.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<UserRegisterOrLoginModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'auth/users/login',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = UserRegisterOrLoginModel.fromJson(_result.data!);
     return value;
   }
 

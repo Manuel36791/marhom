@@ -4,7 +4,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:marhom/core/shared/api/domain/entities/check_phone_entity.dart';
 import 'package:marhom/core/shared/api/domain/use_cases/check_phone_use_case.dart';
 import 'package:marhom/core/utils/extensions.dart';
-import 'package:marhom/features/auth/user_register/domain/entities/user_register_entity.dart';
+import 'package:marhom/features/auth/user_register/domain/entities/user_register_or_login_entity.dart';
+import 'package:marhom/features/auth/user_register/domain/use_cases/user_login_use_case.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../../../core/resources/api/debouncer.dart';
@@ -12,7 +13,7 @@ import '../../../../../core/resources/api/failure_class.dart';
 import '../../../../../core/shared/api/data/models/check_phone_model.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../generated/l10n.dart';
-import '../../data/models/user_register_model.dart';
+import '../../data/models/user_register_or_login_model.dart';
 import '../../domain/use_cases/user_register_use_case.dart';
 
 part 'user_register_states.dart';
@@ -20,20 +21,36 @@ part 'user_register_states.dart';
 part 'user_register_cubit.freezed.dart';
 
 class UserRegisterCubit extends Cubit<UserRegisterStates> {
-  UserRegisterCubit({required this.userRegisterUseCase, required this.checkPhoneUseCase})
+  UserRegisterCubit(
+      {required this.userRegisterUseCase, required this.checkPhoneUseCase, required this.userLoginUseCase})
       : super(const UserRegisterStates.initial());
 
   static UserRegisterCubit get(context) => BlocProvider.of(context);
 
   final UserRegisterUseCase userRegisterUseCase;
 
-  userRegister(UserRegisterModel userRegisterModel) async {
+  userRegister(UserRegisterOrLoginModel userRegisterModel) async {
     emit(const UserRegisterStates.loading());
 
     final result = await userRegisterUseCase(userRegisterModel);
 
-    result.fold((l) => emit(UserRegisterStates.error(l)),
-        (r) => emit(UserRegisterStates.success(r)));
+    result.fold(
+      (l) => emit(UserRegisterStates.registerFailure(l)),
+      (r) => emit(UserRegisterStates.registerSuccess(r)),
+    );
+  }
+
+  final UserLoginUseCase userLoginUseCase;
+
+  userLogin(UserRegisterOrLoginModel userLoginModel) async {
+    emit(const UserRegisterStates.loading());
+
+    final result = await userLoginUseCase(userLoginModel);
+
+    result.fold(
+      (l) => emit(UserRegisterStates.loginFailure(l)),
+      (r) => emit(UserRegisterStates.loginSuccess(r)),
+    );
   }
 
   void displayErrors(Map<String, dynamic> errors, BuildContext context) {

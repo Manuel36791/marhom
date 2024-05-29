@@ -8,7 +8,7 @@ import '../../utils/app_colors.dart';
 import '../../utils/app_images.dart';
 import '../../utils/app_text_styles.dart';
 import '../../utils/dimensions.dart';
-import '../models/user_data_model.dart';
+import '../models/user_data_model_utils.dart';
 import 'network_image_error.dart';
 import 'network_image_progressor.dart';
 
@@ -53,7 +53,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                         ),
                       ),
                       Text(
-                        UserData.name!,
+                        UserDataUtils.instance!.firstName!,
                         style: CustomTextStyle.kTextStyleF14.copyWith(
                           fontWeight: FontWeight.w300,
                         ),
