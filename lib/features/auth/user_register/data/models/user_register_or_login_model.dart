@@ -2,35 +2,33 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-import '../../domain/entities/user_register_entity.dart';
+import '../../../../../core/shared/models/user_data_model.dart';
+import '../../domain/entities/user_register_or_login_entity.dart';
 
-part 'user_register_model.g.dart';
+part 'user_register_or_login_model.g.dart';
 
 @JsonSerializable()
-class UserRegisterModel extends UserRegisterEntity {
-  @override
+class UserRegisterOrLoginModel extends UserRegisterOrLoginEntity {
   @JsonKey(name: "first_name", includeToJson: true, includeFromJson: false)
   final String? firstName;
-  @override
   @JsonKey(name: "last_name", includeToJson: true, includeFromJson: false)
   final String? lastName;
-  @override
   @JsonKey(includeToJson: true, includeFromJson: false)
   final String? phone;
-  @override
   @JsonKey(name: "snapchat_id", includeToJson: true, includeFromJson: false)
   final String? snapChatId;
-  @override
   @JsonKey(includeToJson: false, includeFromJson: true)
   final num? status;
-  @override
   @JsonKey(includeToJson: false, includeFromJson: true)
   final String? success;
-  @override
   @JsonKey(includeToJson: false, includeFromJson: true)
   final Map<String, dynamic>? error;
+  @JsonKey(includeToJson: false, includeFromJson: true)
+  final String? token;
+  @JsonKey(name: "user", includeToJson: false, includeFromJson: true)
+  final UserData? userData;
 
-  const UserRegisterModel({
+  const UserRegisterOrLoginModel({
     this.firstName,
     this.lastName,
     this.phone,
@@ -38,6 +36,8 @@ class UserRegisterModel extends UserRegisterEntity {
     this.status,
     this.success,
     this.error,
+    this.token,
+    this.userData,
   }) : super(
           firstName: firstName,
           lastName: lastName,
@@ -46,12 +46,14 @@ class UserRegisterModel extends UserRegisterEntity {
           status: status,
           success: success,
           error: error,
+          token: token,
+          userData: userData,
         );
 
-  factory UserRegisterModel.fromJson(Map<String, dynamic> json) =>
-      _$UserRegisterModelFromJson(json);
+  factory UserRegisterOrLoginModel.fromJson(Map<String, dynamic> json) =>
+      _$UserRegisterOrLoginModelFromJson(json);
 
-  Map<String, dynamic> toJson() => _$UserRegisterModelToJson(this);
+  Map<String, dynamic> toJson() => _$UserRegisterOrLoginModelToJson(this);
 
   @override
   List<Object?> get props => [
@@ -62,5 +64,7 @@ class UserRegisterModel extends UserRegisterEntity {
         status,
         success,
         error,
+        token,
+        userData,
       ];
 }
