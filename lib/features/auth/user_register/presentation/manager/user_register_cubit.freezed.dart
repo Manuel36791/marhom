@@ -22,6 +22,8 @@ mixin _$UserRegisterStates {
     required TResult Function() loading,
     required TResult Function(UserRegisterEntity register) success,
     required TResult Function(Failure failure) error,
+    required TResult Function(CheckPhoneEntity checkPhone) checkSuccess,
+    required TResult Function(Failure failure) checkFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +32,8 @@ mixin _$UserRegisterStates {
     TResult? Function()? loading,
     TResult? Function(UserRegisterEntity register)? success,
     TResult? Function(Failure failure)? error,
+    TResult? Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult? Function(Failure failure)? checkFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +42,8 @@ mixin _$UserRegisterStates {
     TResult Function()? loading,
     TResult Function(UserRegisterEntity register)? success,
     TResult Function(Failure failure)? error,
+    TResult Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult Function(Failure failure)? checkFailed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +53,8 @@ mixin _$UserRegisterStates {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Error value) error,
+    required TResult Function(CheckSuccess value) checkSuccess,
+    required TResult Function(CheckFailed value) checkFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +63,8 @@ mixin _$UserRegisterStates {
     TResult? Function(Loading value)? loading,
     TResult? Function(Success value)? success,
     TResult? Function(Error value)? error,
+    TResult? Function(CheckSuccess value)? checkSuccess,
+    TResult? Function(CheckFailed value)? checkFailed,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +73,8 @@ mixin _$UserRegisterStates {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Error value)? error,
+    TResult Function(CheckSuccess value)? checkSuccess,
+    TResult Function(CheckFailed value)? checkFailed,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,6 +140,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function() loading,
     required TResult Function(UserRegisterEntity register) success,
     required TResult Function(Failure failure) error,
+    required TResult Function(CheckPhoneEntity checkPhone) checkSuccess,
+    required TResult Function(Failure failure) checkFailed,
   }) {
     return initial();
   }
@@ -139,6 +153,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function()? loading,
     TResult? Function(UserRegisterEntity register)? success,
     TResult? Function(Failure failure)? error,
+    TResult? Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult? Function(Failure failure)? checkFailed,
   }) {
     return initial?.call();
   }
@@ -150,6 +166,8 @@ class _$InitialImpl implements _Initial {
     TResult Function()? loading,
     TResult Function(UserRegisterEntity register)? success,
     TResult Function(Failure failure)? error,
+    TResult Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult Function(Failure failure)? checkFailed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -165,6 +183,8 @@ class _$InitialImpl implements _Initial {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Error value) error,
+    required TResult Function(CheckSuccess value) checkSuccess,
+    required TResult Function(CheckFailed value) checkFailed,
   }) {
     return initial(this);
   }
@@ -176,6 +196,8 @@ class _$InitialImpl implements _Initial {
     TResult? Function(Loading value)? loading,
     TResult? Function(Success value)? success,
     TResult? Function(Error value)? error,
+    TResult? Function(CheckSuccess value)? checkSuccess,
+    TResult? Function(CheckFailed value)? checkFailed,
   }) {
     return initial?.call(this);
   }
@@ -187,6 +209,8 @@ class _$InitialImpl implements _Initial {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Error value)? error,
+    TResult Function(CheckSuccess value)? checkSuccess,
+    TResult Function(CheckFailed value)? checkFailed,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -242,6 +266,8 @@ class _$LoadingImpl implements Loading {
     required TResult Function() loading,
     required TResult Function(UserRegisterEntity register) success,
     required TResult Function(Failure failure) error,
+    required TResult Function(CheckPhoneEntity checkPhone) checkSuccess,
+    required TResult Function(Failure failure) checkFailed,
   }) {
     return loading();
   }
@@ -253,6 +279,8 @@ class _$LoadingImpl implements Loading {
     TResult? Function()? loading,
     TResult? Function(UserRegisterEntity register)? success,
     TResult? Function(Failure failure)? error,
+    TResult? Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult? Function(Failure failure)? checkFailed,
   }) {
     return loading?.call();
   }
@@ -264,6 +292,8 @@ class _$LoadingImpl implements Loading {
     TResult Function()? loading,
     TResult Function(UserRegisterEntity register)? success,
     TResult Function(Failure failure)? error,
+    TResult Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult Function(Failure failure)? checkFailed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -279,6 +309,8 @@ class _$LoadingImpl implements Loading {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Error value) error,
+    required TResult Function(CheckSuccess value) checkSuccess,
+    required TResult Function(CheckFailed value) checkFailed,
   }) {
     return loading(this);
   }
@@ -290,6 +322,8 @@ class _$LoadingImpl implements Loading {
     TResult? Function(Loading value)? loading,
     TResult? Function(Success value)? success,
     TResult? Function(Error value)? error,
+    TResult? Function(CheckSuccess value)? checkSuccess,
+    TResult? Function(CheckFailed value)? checkFailed,
   }) {
     return loading?.call(this);
   }
@@ -301,6 +335,8 @@ class _$LoadingImpl implements Loading {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Error value)? error,
+    TResult Function(CheckSuccess value)? checkSuccess,
+    TResult Function(CheckFailed value)? checkFailed,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -383,6 +419,8 @@ class _$SuccessImpl implements Success {
     required TResult Function() loading,
     required TResult Function(UserRegisterEntity register) success,
     required TResult Function(Failure failure) error,
+    required TResult Function(CheckPhoneEntity checkPhone) checkSuccess,
+    required TResult Function(Failure failure) checkFailed,
   }) {
     return success(register);
   }
@@ -394,6 +432,8 @@ class _$SuccessImpl implements Success {
     TResult? Function()? loading,
     TResult? Function(UserRegisterEntity register)? success,
     TResult? Function(Failure failure)? error,
+    TResult? Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult? Function(Failure failure)? checkFailed,
   }) {
     return success?.call(register);
   }
@@ -405,6 +445,8 @@ class _$SuccessImpl implements Success {
     TResult Function()? loading,
     TResult Function(UserRegisterEntity register)? success,
     TResult Function(Failure failure)? error,
+    TResult Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult Function(Failure failure)? checkFailed,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -420,6 +462,8 @@ class _$SuccessImpl implements Success {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Error value) error,
+    required TResult Function(CheckSuccess value) checkSuccess,
+    required TResult Function(CheckFailed value) checkFailed,
   }) {
     return success(this);
   }
@@ -431,6 +475,8 @@ class _$SuccessImpl implements Success {
     TResult? Function(Loading value)? loading,
     TResult? Function(Success value)? success,
     TResult? Function(Error value)? error,
+    TResult? Function(CheckSuccess value)? checkSuccess,
+    TResult? Function(CheckFailed value)? checkFailed,
   }) {
     return success?.call(this);
   }
@@ -442,6 +488,8 @@ class _$SuccessImpl implements Success {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Error value)? error,
+    TResult Function(CheckSuccess value)? checkSuccess,
+    TResult Function(CheckFailed value)? checkFailed,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -528,6 +576,8 @@ class _$ErrorImpl implements Error {
     required TResult Function() loading,
     required TResult Function(UserRegisterEntity register) success,
     required TResult Function(Failure failure) error,
+    required TResult Function(CheckPhoneEntity checkPhone) checkSuccess,
+    required TResult Function(Failure failure) checkFailed,
   }) {
     return error(failure);
   }
@@ -539,6 +589,8 @@ class _$ErrorImpl implements Error {
     TResult? Function()? loading,
     TResult? Function(UserRegisterEntity register)? success,
     TResult? Function(Failure failure)? error,
+    TResult? Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult? Function(Failure failure)? checkFailed,
   }) {
     return error?.call(failure);
   }
@@ -550,6 +602,8 @@ class _$ErrorImpl implements Error {
     TResult Function()? loading,
     TResult Function(UserRegisterEntity register)? success,
     TResult Function(Failure failure)? error,
+    TResult Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult Function(Failure failure)? checkFailed,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -565,6 +619,8 @@ class _$ErrorImpl implements Error {
     required TResult Function(Loading value) loading,
     required TResult Function(Success value) success,
     required TResult Function(Error value) error,
+    required TResult Function(CheckSuccess value) checkSuccess,
+    required TResult Function(CheckFailed value) checkFailed,
   }) {
     return error(this);
   }
@@ -576,6 +632,8 @@ class _$ErrorImpl implements Error {
     TResult? Function(Loading value)? loading,
     TResult? Function(Success value)? success,
     TResult? Function(Error value)? error,
+    TResult? Function(CheckSuccess value)? checkSuccess,
+    TResult? Function(CheckFailed value)? checkFailed,
   }) {
     return error?.call(this);
   }
@@ -587,6 +645,8 @@ class _$ErrorImpl implements Error {
     TResult Function(Loading value)? loading,
     TResult Function(Success value)? success,
     TResult Function(Error value)? error,
+    TResult Function(CheckSuccess value)? checkSuccess,
+    TResult Function(CheckFailed value)? checkFailed,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -602,5 +662,321 @@ abstract class Error implements UserRegisterStates {
   Failure get failure;
   @JsonKey(ignore: true)
   _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CheckSuccessImplCopyWith<$Res> {
+  factory _$$CheckSuccessImplCopyWith(
+          _$CheckSuccessImpl value, $Res Function(_$CheckSuccessImpl) then) =
+      __$$CheckSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({CheckPhoneEntity checkPhone});
+}
+
+/// @nodoc
+class __$$CheckSuccessImplCopyWithImpl<$Res>
+    extends _$UserRegisterStatesCopyWithImpl<$Res, _$CheckSuccessImpl>
+    implements _$$CheckSuccessImplCopyWith<$Res> {
+  __$$CheckSuccessImplCopyWithImpl(
+      _$CheckSuccessImpl _value, $Res Function(_$CheckSuccessImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? checkPhone = null,
+  }) {
+    return _then(_$CheckSuccessImpl(
+      null == checkPhone
+          ? _value.checkPhone
+          : checkPhone // ignore: cast_nullable_to_non_nullable
+              as CheckPhoneEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CheckSuccessImpl implements CheckSuccess {
+  const _$CheckSuccessImpl(this.checkPhone);
+
+  @override
+  final CheckPhoneEntity checkPhone;
+
+  @override
+  String toString() {
+    return 'UserRegisterStates.checkSuccess(checkPhone: $checkPhone)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CheckSuccessImpl &&
+            (identical(other.checkPhone, checkPhone) ||
+                other.checkPhone == checkPhone));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, checkPhone);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CheckSuccessImplCopyWith<_$CheckSuccessImpl> get copyWith =>
+      __$$CheckSuccessImplCopyWithImpl<_$CheckSuccessImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UserRegisterEntity register) success,
+    required TResult Function(Failure failure) error,
+    required TResult Function(CheckPhoneEntity checkPhone) checkSuccess,
+    required TResult Function(Failure failure) checkFailed,
+  }) {
+    return checkSuccess(checkPhone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserRegisterEntity register)? success,
+    TResult? Function(Failure failure)? error,
+    TResult? Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult? Function(Failure failure)? checkFailed,
+  }) {
+    return checkSuccess?.call(checkPhone);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UserRegisterEntity register)? success,
+    TResult Function(Failure failure)? error,
+    TResult Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult Function(Failure failure)? checkFailed,
+    required TResult orElse(),
+  }) {
+    if (checkSuccess != null) {
+      return checkSuccess(checkPhone);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Error value) error,
+    required TResult Function(CheckSuccess value) checkSuccess,
+    required TResult Function(CheckFailed value) checkFailed,
+  }) {
+    return checkSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
+    TResult? Function(CheckSuccess value)? checkSuccess,
+    TResult? Function(CheckFailed value)? checkFailed,
+  }) {
+    return checkSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Error value)? error,
+    TResult Function(CheckSuccess value)? checkSuccess,
+    TResult Function(CheckFailed value)? checkFailed,
+    required TResult orElse(),
+  }) {
+    if (checkSuccess != null) {
+      return checkSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CheckSuccess implements UserRegisterStates {
+  const factory CheckSuccess(final CheckPhoneEntity checkPhone) =
+      _$CheckSuccessImpl;
+
+  CheckPhoneEntity get checkPhone;
+  @JsonKey(ignore: true)
+  _$$CheckSuccessImplCopyWith<_$CheckSuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CheckFailedImplCopyWith<$Res> {
+  factory _$$CheckFailedImplCopyWith(
+          _$CheckFailedImpl value, $Res Function(_$CheckFailedImpl) then) =
+      __$$CheckFailedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Failure failure});
+}
+
+/// @nodoc
+class __$$CheckFailedImplCopyWithImpl<$Res>
+    extends _$UserRegisterStatesCopyWithImpl<$Res, _$CheckFailedImpl>
+    implements _$$CheckFailedImplCopyWith<$Res> {
+  __$$CheckFailedImplCopyWithImpl(
+      _$CheckFailedImpl _value, $Res Function(_$CheckFailedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failure = null,
+  }) {
+    return _then(_$CheckFailedImpl(
+      null == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$CheckFailedImpl implements CheckFailed {
+  const _$CheckFailedImpl(this.failure);
+
+  @override
+  final Failure failure;
+
+  @override
+  String toString() {
+    return 'UserRegisterStates.checkFailed(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$CheckFailedImpl &&
+            (identical(other.failure, failure) || other.failure == failure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$CheckFailedImplCopyWith<_$CheckFailedImpl> get copyWith =>
+      __$$CheckFailedImplCopyWithImpl<_$CheckFailedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(UserRegisterEntity register) success,
+    required TResult Function(Failure failure) error,
+    required TResult Function(CheckPhoneEntity checkPhone) checkSuccess,
+    required TResult Function(Failure failure) checkFailed,
+  }) {
+    return checkFailed(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(UserRegisterEntity register)? success,
+    TResult? Function(Failure failure)? error,
+    TResult? Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult? Function(Failure failure)? checkFailed,
+  }) {
+    return checkFailed?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(UserRegisterEntity register)? success,
+    TResult Function(Failure failure)? error,
+    TResult Function(CheckPhoneEntity checkPhone)? checkSuccess,
+    TResult Function(Failure failure)? checkFailed,
+    required TResult orElse(),
+  }) {
+    if (checkFailed != null) {
+      return checkFailed(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) success,
+    required TResult Function(Error value) error,
+    required TResult Function(CheckSuccess value) checkSuccess,
+    required TResult Function(CheckFailed value) checkFailed,
+  }) {
+    return checkFailed(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? success,
+    TResult? Function(Error value)? error,
+    TResult? Function(CheckSuccess value)? checkSuccess,
+    TResult? Function(CheckFailed value)? checkFailed,
+  }) {
+    return checkFailed?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? success,
+    TResult Function(Error value)? error,
+    TResult Function(CheckSuccess value)? checkSuccess,
+    TResult Function(CheckFailed value)? checkFailed,
+    required TResult orElse(),
+  }) {
+    if (checkFailed != null) {
+      return checkFailed(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class CheckFailed implements UserRegisterStates {
+  const factory CheckFailed(final Failure failure) = _$CheckFailedImpl;
+
+  Failure get failure;
+  @JsonKey(ignore: true)
+  _$$CheckFailedImplCopyWith<_$CheckFailedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
