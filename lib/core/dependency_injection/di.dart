@@ -2,6 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/auth/supervisor_register/data/repositories/supervisor_register_repo_impl.dart';
+import '../../features/auth/supervisor_register/domain/repositories/supervisor_register_repo.dart';
+import '../../features/auth/supervisor_register/domain/use_cases/supervisor_register_step_one_use_case.dart';
+import '../../features/auth/supervisor_register/domain/use_cases/supervisor_register_step_two_use_case.dart';
 import '../../features/auth/supervisor_register/presentation/manager/supervisor_register_cubit.dart';
 import '../../features/auth/user_register/data/repositories/user_register_repo_impl.dart';
 import '../../features/auth/user_register/domain/repositories/user_register_or_login_repo.dart';
@@ -21,7 +25,11 @@ Future<void> init() async {
   /// Cubits -> useCases -> Repos -> Services
 
   /// <!------ SUPERVISOR REGISTER ------->
-  di.registerFactory(() => SupervisorRegisterCubit());
+  di.registerFactory(() => SupervisorRegisterCubit(registerStepOneUseCase: di(), registerStepTwoUseCase: di(), checkPhoneUseCase: di()));
+  di.registerLazySingleton(() => SupervisorRegisterStepOneUseCase(supervisorRegisterRepo: di()));
+  di.registerLazySingleton(() => SupervisorRegisterStepTwoUseCase(supervisorRegisterRepo: di()));
+  di.registerLazySingleton<SupervisorRegisterRepo>(
+          () => SupervisorRegisterRepoImpl(supervisorRegisterService: di()));
 
   /// <!------ CHECK PHONE ------->
   di.registerLazySingleton(() => CheckPhoneUseCase(checkPhoneRepo: di()));

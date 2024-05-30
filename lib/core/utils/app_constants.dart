@@ -28,5 +28,7 @@ class AppConstants {
   static const checkPhoneUri = "auth/check-phone-exist";
   static const userRegisterUri = "auth/users/register";
   static const userLoginUri = "auth/users/login";
+  static const supervisorRegisterStepOneUri = "auth/supervisors/register/step1";
+  static const supervisorRegisterStepTwoUri = "auth/supervisors/register/step2";
 
 }

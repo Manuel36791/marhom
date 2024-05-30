@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,6 +15,7 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
 import '../../../../../generated/l10n.dart';
+import '../../data/models/supervisor_register_step_one_model.dart';
 import '../manager/supervisor_register_cubit.dart';
 
 class SupervisorPhoneRegisterView extends StatefulWidget {
@@ -31,7 +33,46 @@ class _SupervisorPhoneRegisterViewState
     return BlocProvider(
       create: (context) => di.di<SupervisorRegisterCubit>(),
       child: BlocConsumer<SupervisorRegisterCubit, SupervisorRegisterStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          SupervisorRegisterCubit registerCubit =
+              SupervisorRegisterCubit.get(context);
+          state.maybeWhen(
+            checkSuccess: (state) {
+              if (state.status == 200) {
+                registerCubit.isRegistered = true;
+              } else if (state.status == 404) {
+                registerCubit.isRegistered = false;
+              }
+            },
+            checkFailed: (failure) {
+              context.defaultSnackBar(
+                S.of(context).error(failure.code.toString(), failure.message),
+                color: AppColors.errorRed,
+              );
+            },
+            stepOneSuccess: (state) {
+              if (state.status == 200) {
+                context.pushNamed(
+                  supervisorPhoneConfView,
+                  arguments: SupervisorRegisterArguments(
+                    firstName: state.user!.firstName!,
+                    lastName: state.user!.firstName!,
+                    dialCode: registerCubit.dialCode,
+                    phoneNumber: state.user!.phone!,
+                    countryCode: registerCubit.countryCode,
+                  ),
+                );
+              }
+            },
+            stepOneFailure: (failure) {
+              context.defaultSnackBar(
+                S.of(context).error(failure.code.toString(), failure.message),
+                color: AppColors.errorRed,
+              );
+            },
+            orElse: () {},
+          );
+        },
         builder: (context, state) {
           SupervisorRegisterCubit registerCubit =
               SupervisorRegisterCubit.get(context);
@@ -121,18 +162,29 @@ class _SupervisorPhoneRegisterViewState
                         ],
                       ),
                       Gap(10.h),
-                      CustomBtn(
-                        label: S.of(context).continueBtn,
-                        onPressed: () => context.pushNamed(
-                          supervisorPhoneConfView,
-                          arguments: SupervisorRegisterArguments(
-                            firstName: registerCubit.firstNameCtrl.value,
-                            lastName: registerCubit.lastNameCtrl.value,
-                            dialCode: registerCubit.dialCode,
-                            phoneNumber: registerCubit.phoneCtrl.value,
-                            countryCode: registerCubit.countryCode,
-                          ),
-                        ),
+                      ConditionalBuilder(
+                        condition: state is! StepOneLoading,
+                        builder: (context) {
+                          return CustomBtn(
+                              label: S.of(context).continueBtn,
+                              onPressed: () {
+                                registerCubit.supervisorRegisterStepOne(
+                                  SupervisorRegisterStepOneModel(
+                                    firstName:
+                                        registerCubit.firstNameCtrl.value,
+                                    lastName: registerCubit.lastNameCtrl.value,
+                                    phone: registerCubit.phoneCtrl.value,
+                                  ),
+                                );
+                              });
+                        },
+                        fallback: (context) {
+                          return const Center(
+                            child: CircularProgressIndicator(
+                              color: AppColors.primaryGold,
+                            ),
+                          );
+                        },
                       ),
                       CustomBtn(
                         label: S.of(context).goBack,
