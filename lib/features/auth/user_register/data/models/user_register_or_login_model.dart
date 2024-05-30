@@ -20,7 +20,7 @@ class UserRegisterOrLoginModel extends UserRegisterOrLoginEntity {
   @JsonKey(includeToJson: false, includeFromJson: true)
   final num? status;
   @JsonKey(includeToJson: false, includeFromJson: true)
-  final String? success;
+  final String? message;
   @JsonKey(includeToJson: false, includeFromJson: true)
   final Map<String, dynamic>? error;
   @JsonKey(includeToJson: false, includeFromJson: true)
@@ -34,7 +34,7 @@ class UserRegisterOrLoginModel extends UserRegisterOrLoginEntity {
     this.phone,
     this.snapChatId,
     this.status,
-    this.success,
+    this.message,
     this.error,
     this.token,
     this.userData,
@@ -44,7 +44,7 @@ class UserRegisterOrLoginModel extends UserRegisterOrLoginEntity {
           phone: phone,
           snapChatId: snapChatId,
           status: status,
-          success: success,
+          message: message,
           error: error,
           token: token,
           userData: userData,
@@ -62,7 +62,7 @@ class UserRegisterOrLoginModel extends UserRegisterOrLoginEntity {
         phone,
         snapChatId,
         status,
-        success,
+        message,
         error,
         token,
         userData,

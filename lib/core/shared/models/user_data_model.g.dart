@@ -13,6 +13,11 @@ UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
       avatar: json['avatar'] as String? ?? 'UNKNOWN STRING VALUE',
       email: json['email'] as String? ?? 'UNKNOWN STRING VALUE',
       phone: json['phone'] as String? ?? 'UNKNOWN STRING VALUE',
+      userName: json['user_name'] as String? ?? 'UNKNOWN STRING VALUE',
+      gender: json['gender'] as String? ?? 'UNKNOWN STRING VALUE',
+      snapChatId: json['snapchat_id'] as String? ?? 'UNKNOWN STRING VALUE',
+      type: json['type'] as num? ?? 2077,
+      supervisorId: json['supervisor_id'] as num? ?? 2077,
       otp: json['otp'] as num? ?? 2077,
       status: json['status'] as num? ?? 2077,
     );
@@ -24,6 +29,11 @@ Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
       'avatar': instance.avatar,
       'email': instance.email,
       'phone': instance.phone,
+      'user_name': instance.userName,
+      'gender': instance.gender,
+      'snapchat_id': instance.snapChatId,
+      'type': instance.type,
+      'supervisor_id': instance.supervisorId,
       'otp': instance.otp,
       'status': instance.status,
     };

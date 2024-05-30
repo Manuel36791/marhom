@@ -22,7 +22,9 @@ part 'user_register_cubit.freezed.dart';
 
 class UserRegisterCubit extends Cubit<UserRegisterStates> {
   UserRegisterCubit(
-      {required this.userRegisterUseCase, required this.checkPhoneUseCase, required this.userLoginUseCase})
+      {required this.userRegisterUseCase,
+      required this.checkPhoneUseCase,
+      required this.userLoginUseCase})
       : super(const UserRegisterStates.initial());
 
   static UserRegisterCubit get(context) => BlocProvider.of(context);
@@ -70,7 +72,12 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
     final result = await checkPhoneUseCase(checkPhoneModel);
     result.fold(
       (l) => emit(UserRegisterStates.checkFailed(l)),
-      (r) => emit(UserRegisterStates.checkSuccess(r)),
+      (r) {
+        emit(
+          UserRegisterStates.checkSuccess(r),
+        );
+
+      },
     );
   }
 
@@ -116,12 +123,14 @@ class UserRegisterCubit extends Cubit<UserRegisterStates> {
     } else if (!waNumber.isPhone()) {
       whatsappCtrl.sink.addError(S.current.pleaseEnterAValidPhoneNumber);
     } else {
+      whatsappCtrl.sink.add(waNumber);
       debouncer.call(() {
         checkUserPhone(
           CheckPhoneModel(
             phone: waNumber,
           ),
         );
+
       });
     }
   }

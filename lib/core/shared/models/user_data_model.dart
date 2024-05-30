@@ -19,6 +19,16 @@ class UserData extends Equatable {
   final String? email;
   @JsonKey(defaultValue: AppConstants.unknownStringValue)
   final String? phone;
+  @JsonKey(name: "user_name",defaultValue: AppConstants.unknownStringValue)
+  final String? userName;
+  @JsonKey(defaultValue: AppConstants.unknownStringValue)
+  final String? gender;
+  @JsonKey(name: "snapchat_id", defaultValue: AppConstants.unknownStringValue)
+  final String? snapChatId;
+  @JsonKey(defaultValue: AppConstants.unknownNumValue)
+  final num? type;
+  @JsonKey(name: "supervisor_id", defaultValue: AppConstants.unknownNumValue)
+  final num? supervisorId;
   @JsonKey(defaultValue: AppConstants.unknownNumValue)
   final num? otp;
   @JsonKey(defaultValue: AppConstants.unknownNumValue)
@@ -31,6 +41,11 @@ class UserData extends Equatable {
     this.avatar,
     this.email,
     this.phone,
+    this.userName,
+    this.gender,
+    this.snapChatId,
+    this.type,
+    this.supervisorId,
     this.otp,
     this.status,
   });
@@ -49,6 +64,11 @@ class UserData extends Equatable {
         avatar,
         email,
         phone,
+        userName,
+        gender,
+        snapChatId,
+        type,
+        supervisorId,
         otp,
         status,
       ];
