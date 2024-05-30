@@ -17,6 +17,7 @@ import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
 import '../../../../../generated/l10n.dart';
+import '../../data/models/supervisor_register_step_two_model.dart';
 import '../manager/supervisor_register_cubit.dart';
 
 class SupervisorRegisterView extends StatefulWidget {
@@ -49,7 +50,26 @@ class _SupervisorRegisterViewState extends State<SupervisorRegisterView> {
         ..ctrlInitValues(widget.firstName, widget.lastName, widget.dialCode,
             widget.phoneNumber),
       child: BlocConsumer<SupervisorRegisterCubit, SupervisorRegisterStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          SupervisorRegisterCubit registerCubit =
+          SupervisorRegisterCubit.get(context);
+          state.maybeWhen(
+            stepTwoSuccess: (state) {
+              if (state.status == 200) {
+                context.pushNamed(bottomNavbar);
+              } else {
+                registerCubit.displayErrors(state.error!, context);
+              }
+            },
+            stepTwoFailure: (failure) {
+              context.defaultSnackBar(
+                S.of(context).error(failure.code.toString(), failure.message),
+                color: AppColors.errorRed,
+              );
+            },
+            orElse: () {},
+          );
+        },
         builder: (context, state) {
           SupervisorRegisterCubit registerCubit =
               SupervisorRegisterCubit.get(context);
@@ -238,13 +258,29 @@ class _SupervisorRegisterViewState extends State<SupervisorRegisterView> {
                           stream: registerCubit.registerBtnStream,
                           builder: (context, snapshot) {
                             return ConditionalBuilder(
-                              condition: true,
+                              condition: state is! StepTwoLoading,
                               builder: (BuildContext context) {
                                 return Padding(
                                   padding: const EdgeInsets.all(Dimensions.p16),
                                   child: CustomBtn(
                                     label: S.of(context).createNewAccount,
-                                    onPressed: () => context.pushNamed(bottomNavbar),
+                                    onPressed: () {
+                                      registerCubit.supervisorRegisterStepTwo(
+                                        SupervisorRegisterStepTwoModel(
+                                          firstName: widget.firstName,
+                                          lastName: widget.lastName,
+                                          phone: widget.phoneNumber,
+                                          userName:
+                                              registerCubit.userNameCtrl.value,
+                                          email: registerCubit.emailCtrl.value,
+                                          pass: registerCubit.passCtrl.value,
+                                          passConf:
+                                              registerCubit.passConfCtrl.value,
+                                          snapChatId:
+                                              registerCubit.snapChatCtrl.value,
+                                        ),
+                                      );
+                                    },
                                   ),
                                 );
                               },
