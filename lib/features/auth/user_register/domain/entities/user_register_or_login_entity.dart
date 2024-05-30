@@ -10,7 +10,7 @@ class UserRegisterOrLoginEntity extends Equatable {
   final String? phone;
   final String? snapChatId;
   final num? status;
-  final String? success;
+  final String? message;
   final Map<String, dynamic>? error;
   final String? token;
   final UserData? userData;
@@ -21,13 +21,22 @@ class UserRegisterOrLoginEntity extends Equatable {
     this.phone,
     this.snapChatId,
     this.status,
-    this.success,
+    this.message,
     this.error,
     this.token,
     this.userData,
   });
 
   @override
-  List<Object?> get props =>
-      [firstName, lastName, phone, snapChatId, status, success, error, token, userData,];
+  List<Object?> get props => [
+        firstName,
+        lastName,
+        phone,
+        snapChatId,
+        status,
+        message,
+        error,
+        token,
+        userData,
+      ];
 }

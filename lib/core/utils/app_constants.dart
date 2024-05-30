@@ -23,8 +23,8 @@ class AppConstants {
   static String? userToken = "";
 
   // * API URIs
-  static const apiBaseUrl = "https://example.example.com/api/";
-  static const imageUrl = "https://example.example.com/";
+  static const apiBaseUrl = "https://crm.coddiv.com/api/";
+  static const imageUrl = "https://crm.coddiv.com/";
   static const checkPhoneUri = "auth/check-phone-exist";
   static const userRegisterUri = "auth/users/register";
   static const userLoginUri = "auth/users/login";

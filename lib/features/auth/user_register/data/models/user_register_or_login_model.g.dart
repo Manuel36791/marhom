@@ -10,7 +10,7 @@ UserRegisterOrLoginModel _$UserRegisterOrLoginModelFromJson(
         Map<String, dynamic> json) =>
     UserRegisterOrLoginModel(
       status: json['status'] as num?,
-      success: json['success'] as String?,
+      message: json['message'] as String?,
       error: json['error'] as Map<String, dynamic>?,
       token: json['token'] as String?,
       userData: json['user'] == null

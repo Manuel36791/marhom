@@ -17,6 +17,7 @@ import '../../../../../core/utils/app_constants.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
+import '../../../../../core/utils/logger.dart';
 import '../../../../../generated/l10n.dart';
 import '../../data/models/user_register_or_login_model.dart';
 import '../manager/user_register_cubit.dart';
@@ -38,9 +39,9 @@ class _UserRegisterViewState extends State<UserRegisterView> {
           UserRegisterCubit registerCubit = UserRegisterCubit.get(context);
           state.maybeWhen(
             checkSuccess: (state) {
-              if (state.status == 1) {
+              if (state.status == 200) {
                 registerCubit.isRegistered = true;
-              } else if (state.status == 0) {
+              } else if (state.status == 404) {
                 registerCubit.isRegistered = false;
               }
             },
@@ -54,12 +55,13 @@ class _UserRegisterViewState extends State<UserRegisterView> {
               UserRegisterCubit registerCubit = UserRegisterCubit.get(context);
               if (state.status == 200) {
                 context.defaultSnackBar(
-                  "${state.phone} registered successfully, now redirecting you to the app",
+                  "${state.userData!.phone} registered successfully, now redirecting you to the app",
                   color: AppColors.successGreen,
                   textColor: AppColors.blackText,
                 );
               } else if (state.status == 400 || state.status == 422) {
                 registerCubit.displayErrors(state.error!, context);
+                registerCubit.isRegistered = true;
               }
             },
             registerFailure: (failure) {
@@ -247,7 +249,9 @@ class _UserRegisterViewState extends State<UserRegisterView> {
                                 child: CustomBtn(
                                   label: S.of(context).createNewAccount,
                                   onPressed: snapshot.hasError
-                                      ? null
+                                      ? () {
+                                    logger.e(snapshot.error);
+                                  }
                                       : () {
                                           registerCubit.isRegistered
                                               ? registerCubit.userLogin(
