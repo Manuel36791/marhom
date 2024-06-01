@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../features/auth/supervisor_basic_info/data/models/supervisor_basic_info_model.dart';
 import '../../features/auth/supervisor_register/data/models/supervisor_register_step_one_model.dart';
 import '../../features/auth/supervisor_register/data/models/supervisor_register_step_two_model.dart';
 import '../../features/auth/user_register/data/models/user_register_or_login_model.dart';
@@ -15,17 +16,26 @@ abstract class ApiClient {
   factory ApiClient(Dio dio, {String baseUrl}) = _ApiClient;
 
   @POST(AppConstants.checkPhoneUri)
-  Future<CheckPhoneModel> checkPhoneExist(@Body() CheckPhoneModel checkPhoneModel);
+  Future<CheckPhoneModel> checkPhoneExist(
+      @Body() CheckPhoneModel checkPhoneModel);
 
   @POST(AppConstants.userRegisterUri)
-  Future<UserRegisterOrLoginModel> userRegister(@Body() UserRegisterOrLoginModel userRegisterModel);
+  Future<UserRegisterOrLoginModel> userRegister(
+      @Body() UserRegisterOrLoginModel userRegisterModel);
 
   @POST(AppConstants.userLoginUri)
-  Future<UserRegisterOrLoginModel> userLogin(@Body() UserRegisterOrLoginModel userLoginModel);
+  Future<UserRegisterOrLoginModel> userLogin(
+      @Body() UserRegisterOrLoginModel userLoginModel);
 
   @POST(AppConstants.supervisorRegisterStepOneUri)
-  Future<SupervisorRegisterStepOneModel> supervisorRegisterStepOne(@Body() SupervisorRegisterStepOneModel supervisorRegisterStepOneModel);
+  Future<SupervisorRegisterStepOneModel> supervisorRegisterStepOne(
+      @Body() SupervisorRegisterStepOneModel supervisorRegisterStepOneModel);
 
   @POST(AppConstants.supervisorRegisterStepTwoUri)
-  Future<SupervisorRegisterStepTwoModel> supervisorRegisterStepTwo(@Body() SupervisorRegisterStepTwoModel supervisorRegisterStepTwoModel);
+  Future<SupervisorRegisterStepTwoModel> supervisorRegisterStepTwo(
+      @Body() SupervisorRegisterStepTwoModel supervisorRegisterStepTwoModel);
+
+  @POST(AppConstants.supervisorBasicInfoUri)
+  Future<SupervisorBasicInfoModel> supervisorBasicInfo(
+      @Body() SupervisorBasicInfoModel supervisorBasicInfoModel);
 }

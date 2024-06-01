@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marhom/features/auth/supervisor_basic_info/presentation/pages/supervisor_basic_info_view.dart';
 
 import '../../features/auth/supervisor_register/presentation/pages/supervisor_phone_confirmation_view.dart';
 import '../../features/auth/supervisor_register/presentation/pages/supervisor_phone_register_view.dart';
@@ -54,6 +55,9 @@ class AppRouters {
       case sendMessageView:
         return MaterialPageRoute(
             builder: (BuildContext context) => const SendMessageView());
+      case supervisorBasicInfoView:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const SupervisorBasicInfoView());
 
       default:
         return MaterialPageRoute(
