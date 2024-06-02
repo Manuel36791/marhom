@@ -12,6 +12,7 @@ import 'package:marhom/core/utils/extensions.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../../../core/resources/api/failure_class.dart';
+import '../../../../../core/shared/models/user_data_model_utils.dart';
 import '../../../../../core/shared/widgets/custom_button.dart';
 import '../../../../../core/utils/app_constants.dart';
 import '../../../../../generated/l10n.dart';
@@ -135,64 +136,37 @@ class SupervisorEditProfileCubit extends Cubit<SupervisorEditProfileStates> {
   Stream<String> get emailStream => emailCtrl.stream;
   Stream<String> get snapChatStream => snapChatCtrl.stream;
 
-  validateFirstName(String firstName) async {
-    if (firstName.isEmpty) {
-      firstNameCtrl.sink.addError(S.current.pleaseEnterYourFirstName);
-    } else {
-      firstNameCtrl.sink.add(firstName);
-    }
+  @override
+  Future<void> close() {
+    firstNameCtrl.close();
+    lastNameCtrl.close();
+    phoneCtrl.close();
+    snapChatCtrl.close();
+    return super.close();
   }
 
-  validateLastName(String lastName) async {
-    if (lastName.isEmpty) {
-      lastNameCtrl.sink.addError(S.current.pleaseEnterYourLastName);
-    } else {
-      lastNameCtrl.sink.add(lastName);
-    }
+  changeFirstName(String firstName) {
+    firstNameCtrl.sink.add(firstName);
   }
 
-  validatePhone(String phone) async {
-    if (phone.isEmpty) {
-      phoneCtrl.sink.addError(S.current.pleaseEnterYourPhoneNumber);
-    } else if (!phone.isPhone()) {
+  changeLastName(String lastName) {
+    lastNameCtrl.sink.add(lastName);
+  }
+
+  changeUserName(String userName) {
+    userNameCtrl.sink.add(userName);
+  }
+
+  changePhone(String phone) {
+    if (!phone.isPhone()) {
       phoneCtrl.sink.addError(S.current.pleaseEnterAValidPhoneNumber);
     } else {
       phoneCtrl.sink.add(phone);
     }
   }
 
-  validateUserName(String userName) async {
-    final RegExp regex = RegExp(r'^[a-zA-Z][a-zA-Z0-9._]{2,14}$');
-
-    if (userName.isEmpty) {
-      snapChatCtrl.sink.addError(S.current.pleaseChooseAUniqueUsername);
-    } else if (!regex.hasMatch(userName)) {
-      snapChatCtrl.sink.addError(S.current.pleaseEnterAValidUserName);
-    } else {
-      snapChatCtrl.sink.add(userName);
-    }
-  }
-
-  validateEmail(String email) async {
-    if (email.isEmpty) {
-      emailCtrl.sink.addError(S.current.pleaseEnterYourEmailAddress);
-    } else if (!email.isEmail()) {
-      emailCtrl.sink.addError(S.current.pleaseEnterAValidEmailAddress);
-    } else {
-      emailCtrl.sink.add(email);
-    }
-  }
-
-  validateSnapChatId(String snapchatId) async {
-    final RegExp regex = RegExp(r'^[a-zA-Z][a-zA-Z0-9._]{2,14}$');
-
-    if (snapchatId.isEmpty) {
-      snapChatCtrl.sink.addError(S.current.pleaseEnterYourSnapchatId);
-    } else if (!regex.hasMatch(snapchatId)) {
-      snapChatCtrl.sink.addError(S.current.pleaseEnterAValidSnapchatId);
-    } else {
-      snapChatCtrl.sink.add(snapchatId);
-    }
+  changeSnapchatId(String snapChatId) {
+    snapChatCtrl.sink.add(snapChatId);
   }
 
   Stream<bool> get editProfileBtnStream => Rx.combineLatest(
@@ -206,5 +180,14 @@ class SupervisorEditProfileCubit extends Cubit<SupervisorEditProfileStates> {
     ],
         (value) => true,
   );
+
+  userData() async {
+    firstNameCtrl.sink.add(UserDataUtils.instance!.firstName!);
+    lastNameCtrl.sink.add(UserDataUtils.instance!.lastName!);
+    userNameCtrl.sink.add(UserDataUtils.instance!.userName!);
+    emailCtrl.sink.add(UserDataUtils.instance!.email!);
+    phoneCtrl.sink.add(UserDataUtils.instance!.phone!);
+    snapChatCtrl.sink.add(UserDataUtils.instance!.snapChatId!);
+  }
 
 }

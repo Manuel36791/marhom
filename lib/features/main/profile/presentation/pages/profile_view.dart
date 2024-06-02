@@ -108,9 +108,17 @@ class ProfileView extends StatelessWidget {
                     GestureDetector(
                       onTap: () {
                         if (UserDataUtils.instance!.type == 2) {
-                          const SupervisorDeleteAccountDialog();
+                          showDialog(
+                            context: context,
+                            builder: (context) =>
+                                const SupervisorDeleteAccountDialog(),
+                          );
                         } else {
-                          const UserDeleteAccountDialog();
+                          showDialog(
+                            context: context,
+                            builder: (context) =>
+                            const UserDeleteAccountDialog(),
+                          );
                         }
                       },
                       child: ContentContainer(

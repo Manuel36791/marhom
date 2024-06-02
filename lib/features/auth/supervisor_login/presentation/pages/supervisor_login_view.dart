@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:marhom/core/shared/models/user_data_model_utils.dart';
 import 'package:marhom/core/utils/extensions.dart';
 
 import '../../../../../core/dependency_injection/di.dart' as di;
@@ -22,8 +23,7 @@ class SupervisorLoginView extends StatefulWidget {
   const SupervisorLoginView({super.key});
 
   @override
-  State<SupervisorLoginView> createState() =>
-      _SupervisorLoginViewState();
+  State<SupervisorLoginView> createState() => _SupervisorLoginViewState();
 }
 
 class _SupervisorLoginViewState extends State<SupervisorLoginView> {
@@ -33,8 +33,7 @@ class _SupervisorLoginViewState extends State<SupervisorLoginView> {
       create: (context) => di.di<SupervisorLoginCubit>(),
       child: BlocConsumer<SupervisorLoginCubit, SupervisorLoginStates>(
         listener: (context, state) {
-          SupervisorLoginCubit loginCubit =
-              SupervisorLoginCubit.get(context);
+          SupervisorLoginCubit loginCubit = SupervisorLoginCubit.get(context);
           state.maybeWhen(
             success: (state) async {
               if (state.status == 200) {
@@ -44,6 +43,7 @@ class _SupervisorLoginViewState extends State<SupervisorLoginView> {
                   textColor: AppColors.blackText,
                 );
                 AppConstants.userToken = state.token!;
+                UserDataUtils.setInstance(state.user!);
 
                 CacheHelper.setData("email", loginCubit.userNameCtrl.value);
                 CacheHelper.setData("pass", loginCubit.passCtrl.value);

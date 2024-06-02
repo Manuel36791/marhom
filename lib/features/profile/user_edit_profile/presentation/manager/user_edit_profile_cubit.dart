@@ -8,57 +8,101 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:marhom/core/shared/models/user_data_model_utils.dart';
+import 'package:marhom/core/utils/app_text_styles.dart';
 import 'package:marhom/core/utils/extensions.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:rxdart/rxdart.dart';
 
 import '../../../../../core/resources/api/failure_class.dart';
-import '../../../../../core/shared/widgets/custom_button.dart';
 import '../../../../../core/utils/app_constants.dart';
+import '../../../../../core/utils/dimensions.dart';
 import '../../../../../generated/l10n.dart';
+import '../../../supervisor_edit_profile/presentation/widgets/image_picker_button.dart';
 import '../../data/models/user_edit_profile_model.dart';
 import '../../domain/entities/user_edit_profile_entity.dart';
 import '../../domain/use_cases/user_edit_profile_use_case.dart';
 
 part 'user_edit_profile_states.dart';
+
 part 'user_edit_profile_cubit.freezed.dart';
 
 class UserEditProfileCubit extends Cubit<UserEditProfileStates> {
-  UserEditProfileCubit({required this.userEditProfileUseCase}) : super(const UserEditProfileStates.initial());
+  UserEditProfileCubit({required this.userEditProfileUseCase})
+      : super(const UserEditProfileStates.initial());
 
   static UserEditProfileCubit get(context) => BlocProvider.of(context);
 
   File? img;
   String base64 = "";
 
+  // void pickPhotoDialog(BuildContext context) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+  //         title: const Text("Pick an Option"),
+  //         content: Column(
+  //           mainAxisSize: MainAxisSize.min,
+  //           children: [
+  //             CustomBtn(
+  //               label: "From Gallery",
+  //               onPressed: () {
+  //                 Navigator.pop(context);
+  //                 pickAvatarImage(ImageSource.gallery);
+  //               },
+  //             ),
+  //             Gap(10.h),
+  //             CustomBtn(
+  //               label: "From Camera",
+  //               onPressed: () {
+  //                 Navigator.pop(context);
+  //                 pickAvatarImage(ImageSource.camera);
+  //               },
+  //             ),
+  //           ],
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
+  //
   void pickPhotoDialog(BuildContext context) {
-    showDialog(
+    showModalBottomSheet(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          title: const Text("Pick an Option"),
-          content: Column(
+      builder: (context) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(Dimensions.p16),
+          child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CustomBtn(
+              Text(
+                "Upload Image",
+                style: CustomTextStyle.kTextStyleF16,
+              ),
+              Gap(10.h),
+              ImagePickerBtn(
+                icon: MdiIcons.imageMultiple,
                 label: "From Gallery",
-                onPressed: () {
-                  Navigator.pop(context);
+                onTap: () {
                   pickAvatarImage(ImageSource.gallery);
+                  context.pop();
                 },
               ),
               Gap(10.h),
-              CustomBtn(
+              ImagePickerBtn(
+                icon: MdiIcons.camera,
                 label: "From Camera",
-                onPressed: () {
-                  Navigator.pop(context);
+                onTap: () {
                   pickAvatarImage(ImageSource.camera);
+                  context.pop();
                 },
               ),
             ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 
@@ -68,14 +112,13 @@ class UserEditProfileCubit extends Cubit<UserEditProfileStates> {
       if (avatarImage == null) return;
       img = File(avatarImage.path);
       base64 = base64Encode(img!.readAsBytesSync());
-      // await uploadAvatar(EditProfileEntity(video64: base64,token: AppConstants.userToken));
-      // emit(
-      //   EditProfileStates.uploadSuccess(
-      //     EditProfileEntity(
-      //       avatar: base64,
-      //     ),
-      //   ),
-      // );
+      emit(
+        UserEditProfileStates.uploadSuccess(
+          UserEditProfileEntity(
+            avatar: base64,
+          ),
+        ),
+      );
     } catch (e) {
       return;
     }
@@ -87,7 +130,7 @@ class UserEditProfileCubit extends Cubit<UserEditProfileStates> {
     // Fetch the image bytes from the network
     HttpClient httpClient = HttpClient();
     HttpClientRequest request =
-    await httpClient.getUrl(Uri.parse("${AppConstants.imageUrl}$imageUrl"));
+        await httpClient.getUrl(Uri.parse("${AppConstants.imageUrl}$imageUrl"));
     HttpClientResponse response = await request.close();
     List<int> imageBytes = await consolidateHttpClientResponseBytes(response);
 
@@ -106,12 +149,12 @@ class UserEditProfileCubit extends Cubit<UserEditProfileStates> {
     final send = await userEditProfileUseCase(userEditProfileModel);
 
     send.fold(
-          (l) => {
+      (l) => {
         emit(
           UserEditProfileStates.error(l),
         ),
       },
-          (r) => {
+      (r) => {
         emit(
           UserEditProfileStates.success(r),
         ),
@@ -127,81 +170,56 @@ class UserEditProfileCubit extends Cubit<UserEditProfileStates> {
   final snapChatCtrl = BehaviorSubject<String>();
 
   Stream<String> get firstNameStream => firstNameCtrl.stream;
+
   Stream<String> get lastNameStream => lastNameCtrl.stream;
+
   Stream<String> get phoneStream => phoneCtrl.stream;
-  Stream<String> get userNameStream => userNameCtrl.stream;
-  Stream<String> get emailStream => emailCtrl.stream;
+
   Stream<String> get snapChatStream => snapChatCtrl.stream;
 
-  validateFirstName(String firstName) async {
-    if (firstName.isEmpty) {
-      firstNameCtrl.sink.addError(S.current.pleaseEnterYourFirstName);
-    } else {
-      firstNameCtrl.sink.add(firstName);
-    }
+  userData() async {
+    firstNameCtrl.sink.add(UserDataUtils.instance!.firstName!);
+    lastNameCtrl.sink.add(UserDataUtils.instance!.lastName!);
+    phoneCtrl.sink.add(UserDataUtils.instance!.phone!);
+    snapChatCtrl.sink.add(UserDataUtils.instance!.snapChatId!);
   }
 
-  validateLastName(String lastName) async {
-    if (lastName.isEmpty) {
-      lastNameCtrl.sink.addError(S.current.pleaseEnterYourLastName);
-    } else {
-      lastNameCtrl.sink.add(lastName);
-    }
+  @override
+  Future<void> close() {
+    firstNameCtrl.close();
+    lastNameCtrl.close();
+    phoneCtrl.close();
+    snapChatCtrl.close();
+    return super.close();
   }
 
-  validatePhone(String phone) async {
-    if (phone.isEmpty) {
-      phoneCtrl.sink.addError(S.current.pleaseEnterYourPhoneNumber);
-    } else if (!phone.isPhone()) {
+  changeFirstName(String firstName) {
+    firstNameCtrl.sink.add(firstName);
+  }
+
+  changeLastName(String lastName) {
+    lastNameCtrl.sink.add(lastName);
+  }
+
+  changePhone(String phone) {
+    if (!phone.isPhone()) {
       phoneCtrl.sink.addError(S.current.pleaseEnterAValidPhoneNumber);
     } else {
       phoneCtrl.sink.add(phone);
     }
   }
 
-  validateUserName(String userName) async {
-    final RegExp regex = RegExp(r'^[a-zA-Z][a-zA-Z0-9._]{2,14}$');
-
-    if (userName.isEmpty) {
-      snapChatCtrl.sink.addError(S.current.pleaseChooseAUniqueUsername);
-    } else if (!regex.hasMatch(userName)) {
-      snapChatCtrl.sink.addError(S.current.pleaseEnterAValidUserName);
-    } else {
-      snapChatCtrl.sink.add(userName);
-    }
-  }
-
-  validateEmail(String email) async {
-    if (email.isEmpty) {
-      emailCtrl.sink.addError(S.current.pleaseEnterYourEmailAddress);
-    } else if (!email.isEmail()) {
-      emailCtrl.sink.addError(S.current.pleaseEnterAValidEmailAddress);
-    } else {
-      emailCtrl.sink.add(email);
-    }
-  }
-
-  validateSnapChatId(String snapchatId) async {
-    final RegExp regex = RegExp(r'^[a-zA-Z][a-zA-Z0-9._]{2,14}$');
-
-    if (snapchatId.isEmpty) {
-      snapChatCtrl.sink.addError(S.current.pleaseEnterYourSnapchatId);
-    } else if (!regex.hasMatch(snapchatId)) {
-      snapChatCtrl.sink.addError(S.current.pleaseEnterAValidSnapchatId);
-    } else {
-      snapChatCtrl.sink.add(snapchatId);
-    }
+  changeSnapchatId(String snapChatId) {
+    snapChatCtrl.sink.add(snapChatId);
   }
 
   Stream<bool> get editProfileBtnStream => Rx.combineLatest(
-    [
-      firstNameStream,
-      lastNameStream,
-      userNameCtrl,
-      emailStream,
-      phoneStream,
-      snapChatStream,
-    ],
+        [
+          firstNameStream,
+          lastNameStream,
+          phoneStream,
+          snapChatStream,
+        ],
         (value) => true,
-  );
+      );
 }

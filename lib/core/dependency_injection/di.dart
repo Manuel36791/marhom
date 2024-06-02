@@ -29,6 +29,10 @@ import '../../features/profile/user_delete_account/data/repositories/user_delete
 import '../../features/profile/user_delete_account/domain/repositories/user_delete_account_repo.dart';
 import '../../features/profile/user_delete_account/domain/use_cases/user_delete_account_use_case.dart';
 import '../../features/profile/user_delete_account/presentation/manager/user_delete_account_cubit.dart';
+import '../../features/profile/user_edit_profile/data/repositories/supervisor_edit_profile_repo_impl.dart';
+import '../../features/profile/user_edit_profile/domain/repositories/user_edit_profile_repo.dart';
+import '../../features/profile/user_edit_profile/domain/use_cases/user_edit_profile_use_case.dart';
+import '../../features/profile/user_edit_profile/presentation/manager/user_edit_profile_cubit.dart';
 import '../service/api_client.dart';
 import '../service/dio_factory.dart';
 import '../shared/api/data/repositories/check_phone_repo_impl.dart';
@@ -100,6 +104,14 @@ Future<void> init() async {
       () => UserDeleteAccountUseCase(userDeleteAccountRepo: di()));
   di.registerLazySingleton<UserDeleteAccountRepo>(
       () => UserDeleteAccountRepoImpl(userDeleteAccountService: di()));
+
+  /// <!------ USER EDIT PROFILE ------->
+  di.registerFactory(
+          () => UserEditProfileCubit(userEditProfileUseCase: di()));
+  di.registerLazySingleton(
+          () => UserEditProfileUseCase(userEditProfileRepo: di()));
+  di.registerLazySingleton<UserEditProfileRepo>(
+          () => UserEditProfileRepoImpl(userEditProfileService: di()));
 
   /// <!------ HOME ------->
   di.registerFactory(() => HomeCubit());
