@@ -88,7 +88,13 @@ class ProfileView extends StatelessWidget {
                   title: "Profile settings",
                   children: [
                     GestureDetector(
-                      onTap: () => context.pushNamed(supervisorEditProfileView),
+                      onTap: () {
+                        if (UserDataUtils.instance!.type == 2) {
+                          context.pushNamed(supervisorEditProfileView);
+                        } else {
+                          context.pushNamed(userEditProfileView);
+                        }
+                      },
                       child: ContentContainer(
                         child: Text(
                           "Edit Profile",
