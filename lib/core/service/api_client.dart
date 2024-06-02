@@ -9,6 +9,7 @@ import '../../features/auth/user_register/data/models/user_register_or_login_mod
 import '../../features/profile/supervisor_delete_account/data/models/supervisor_delete_account_model.dart';
 import '../../features/profile/supervisor_edit_profile/data/models/supervisor_edit_profile_model.dart';
 import '../../features/profile/user_delete_account/data/models/user_delete_account_model.dart';
+import '../../features/profile/user_edit_profile/data/models/user_edit_profile_model.dart';
 import '../shared/api/data/models/check_phone_model.dart';
 import '../utils/app_constants.dart';
 
@@ -53,4 +54,8 @@ abstract class ApiClient {
   @DELETE(AppConstants.userDeleteAccountUri)
   Future<UserDeleteAccountModel> userDeleteAccount(
       @Body() UserDeleteAccountModel userDeleteAccountModel);
+
+  @POST(AppConstants.userEditProfileUri)
+  Future<UserEditProfileModel> userEditProfile(
+      @Body() UserEditProfileModel userEditProfileModel);
 }
