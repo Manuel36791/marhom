@@ -339,6 +339,64 @@ class _ApiClient implements ApiClient {
     return value;
   }
 
+  @override
+  Future<VerifyAccountModel> verifyAccount(
+      VerifyAccountModel verifyAccountModel) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(verifyAccountModel.toJson());
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<VerifyAccountModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'auth/account-verification',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = VerifyAccountModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<ResendCodeModel> resendVerificationCode(
+      ResendCodeModel resendCodeModel) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(resendCodeModel.toJson());
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<ResendCodeModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'auth/resend-code',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = ResendCodeModel.fromJson(_result.data!);
+    return value;
+  }
+
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
     if (T != dynamic &&
         !(requestOptions.responseType == ResponseType.bytes ||

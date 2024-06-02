@@ -21,19 +21,22 @@ import '../../data/models/supervisor_register_step_two_model.dart';
 import '../manager/supervisor_register_cubit.dart';
 
 class SupervisorRegisterView extends StatefulWidget {
+  final num accountType;
   final String firstName;
   final String lastName;
   final String phoneNumber;
   final String dialCode;
   final String countryCode;
 
-  const SupervisorRegisterView(
-      {super.key,
-      required this.firstName,
-      required this.lastName,
-      required this.phoneNumber,
-      required this.dialCode,
-      required this.countryCode});
+  const SupervisorRegisterView({
+    super.key,
+    required this.accountType,
+    required this.firstName,
+    required this.lastName,
+    required this.phoneNumber,
+    required this.dialCode,
+    required this.countryCode,
+  });
 
   @override
   State<SupervisorRegisterView> createState() => _SupervisorRegisterViewState();
@@ -52,7 +55,7 @@ class _SupervisorRegisterViewState extends State<SupervisorRegisterView> {
       child: BlocConsumer<SupervisorRegisterCubit, SupervisorRegisterStates>(
         listener: (context, state) {
           SupervisorRegisterCubit registerCubit =
-          SupervisorRegisterCubit.get(context);
+              SupervisorRegisterCubit.get(context);
           state.maybeWhen(
             stepTwoSuccess: (state) {
               if (state.status == 200) {

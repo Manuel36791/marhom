@@ -7,6 +7,8 @@ import '../../features/auth/supervisor_login/data/models/supervisor_login_model.
 import '../../features/auth/supervisor_register/data/models/supervisor_register_step_one_model.dart';
 import '../../features/auth/supervisor_register/data/models/supervisor_register_step_two_model.dart';
 import '../../features/auth/user_register/data/models/user_register_or_login_model.dart';
+import '../../features/auth/verify_account/data/models/resend_code_model.dart';
+import '../../features/auth/verify_account/data/models/verify_account_model.dart';
 import '../../features/profile/supervisor_delete_account/data/models/supervisor_delete_account_model.dart';
 import '../../features/profile/supervisor_edit_profile/data/models/supervisor_edit_profile_model.dart';
 import '../../features/profile/user_delete_account/data/models/user_delete_account_model.dart';
@@ -63,5 +65,13 @@ abstract class ApiClient {
   @POST(AppConstants.supervisorLoginUri)
   Future<SupervisorLoginModel> supervisorLogin(
       @Body() SupervisorLoginModel supervisorLoginModel);
+
+  @POST(AppConstants.verifyAccountUri)
+  Future<VerifyAccountModel> verifyAccount(
+      @Body() VerifyAccountModel verifyAccountModel);
+
+  @POST(AppConstants.resendCodeUri)
+  Future<ResendCodeModel> resendVerificationCode(
+      @Body() ResendCodeModel resendCodeModel);
 
 }

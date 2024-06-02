@@ -8,7 +8,9 @@ import 'package:gap/gap.dart';
 import 'package:marhom/core/utils/extensions.dart';
 
 import '../../../../../core/dependency_injection/di.dart' as di;
+import '../../../../../core/helpers/cache_helper.dart';
 import '../../../../../core/router/router.dart';
+import '../../../../../core/shared/arguments.dart';
 import '../../../../../core/shared/models/user_data_model_utils.dart';
 import '../../../../../core/shared/widgets/custom_button.dart';
 import '../../../../../core/shared/widgets/custom_form_field.dart';
@@ -78,10 +80,10 @@ class _UserRegisterViewState extends State<UserRegisterView> {
                     textColor: AppColors.blackText);
                 AppConstants.userToken = state.token!;
                 UserDataUtils.setInstance(state.userData!);
-                // if (rememberMe == true) {
-                //   CacheHelper.setData("email", loginCubit.emailCtrl.value);
-                //   CacheHelper.setData("pass", loginCubit.passCtrl.value);
-                // }
+
+                // CacheHelper.setData("phone", registerCubit.whatsappCtrl);
+                // CacheHelper.setData("pass", registerCubit..value);
+
                 context.pushNamed(bottomNavbar);
               } else if (state.status == 409) {
                 context.defaultSnackBar(
@@ -94,12 +96,17 @@ class _UserRegisterViewState extends State<UserRegisterView> {
                 //     email: loginCubit.emailCtrl.value,
                 //   ),
                 // );
-                // context.pushNamed(
-                //   verifyAccountPageRoute,
-                //   arguments: AuthArgs(
-                //     email: loginCubit.emailCtrl.value,
-                //   ),
-                // );
+                context.pushNamed(
+                  verifyAccountView,
+                  arguments: SupervisorRegisterArguments(
+                    firstName: registerCubit.firstNameCtrl.value,
+                    lastName: registerCubit.lastNameCtrl.value,
+                    countryCode: "SA",
+                    dialCode: registerCubit.dialCode,
+                    phoneNumber: registerCubit.whatsappCtrl.value,
+                    accountType: 1,
+                  ),
+                );
               } else {
                 context.defaultSnackBar(
                   "Invalid email or password. Please check your credentials and try again",
