@@ -15,6 +15,7 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
 import '../../../../../generated/l10n.dart';
+import '../../data/models/supervisor_register_step_one_model.dart';
 import '../manager/supervisor_register_cubit.dart';
 
 class SupervisorPhoneRegisterView extends StatefulWidget {
@@ -34,7 +35,7 @@ class _SupervisorPhoneRegisterViewState
       child: BlocConsumer<SupervisorRegisterCubit, SupervisorRegisterStates>(
         listener: (context, state) {
           SupervisorRegisterCubit registerCubit =
-          SupervisorRegisterCubit.get(context);
+              SupervisorRegisterCubit.get(context);
           state.maybeWhen(
             checkSuccess: (state) {
               if (state.status == 200) {
@@ -74,7 +75,7 @@ class _SupervisorPhoneRegisterViewState
         },
         builder: (context, state) {
           SupervisorRegisterCubit registerCubit =
-          SupervisorRegisterCubit.get(context);
+              SupervisorRegisterCubit.get(context);
           return Scaffold(
             body: SafeArea(
               child: Padding(
@@ -85,9 +86,7 @@ class _SupervisorPhoneRegisterViewState
                     children: [
                       Gap(50.h),
                       Text(
-                        S
-                            .of(context)
-                            .welcomeToYourCommunications,
+                        S.of(context).welcomeToYourCommunications,
                         style: CustomTextStyle.kTextStyleF26,
                         textAlign: TextAlign.center,
                       ),
@@ -96,16 +95,12 @@ class _SupervisorPhoneRegisterViewState
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: S
-                                  .of(context)
-                                  .createNewAccount,
+                              text: S.of(context).createNewAccount,
                               style: CustomTextStyle.kTextStyleF16,
                             ),
                             const TextSpan(text: " "),
                             TextSpan(
-                              text: S
-                                  .of(context)
-                                  .supervisor,
+                              text: S.of(context).supervisor,
                               style: CustomTextStyle.kTextStyleF16.copyWith(
                                 color: AppColors.redText,
                               ),
@@ -122,9 +117,7 @@ class _SupervisorPhoneRegisterViewState
                               onChanged: (firstName) {
                                 registerCubit.validateFirstName(firstName);
                               },
-                              label: S
-                                  .of(context)
-                                  .firstName,
+                              label: S.of(context).firstName,
                               keyboardType: TextInputType.text,
                               nextAction: TextInputAction.next,
                             ),
@@ -136,9 +129,7 @@ class _SupervisorPhoneRegisterViewState
                               onChanged: (lastName) {
                                 registerCubit.validateLastName(lastName);
                               },
-                              label: S
-                                  .of(context)
-                                  .lastName,
+                              label: S.of(context).lastName,
                               keyboardType: TextInputType.text,
                               nextAction: TextInputAction.next,
                             ),
@@ -163,9 +154,7 @@ class _SupervisorPhoneRegisterViewState
                               onChanged: (phone) {
                                 registerCubit.validatePhone(phone);
                               },
-                              label: S
-                                  .of(context)
-                                  .phone,
+                              label: S.of(context).phone,
                               keyboardType: TextInputType.phone,
                               nextAction: TextInputAction.next,
                             ),
@@ -177,20 +166,16 @@ class _SupervisorPhoneRegisterViewState
                         condition: state is! StepOneLoading,
                         builder: (context) {
                           return CustomBtn(
-                            label: S
-                                .of(context)
-                                .continueBtn,
-                            // onPressed: () {
-                            //   registerCubit.supervisorRegisterStepOne(
-                            //     SupervisorRegisterStepOneModel(
-                            //       firstName: registerCubit.firstNameCtrl.value,
-                            //       lastName: registerCubit.lastNameCtrl.value,
-                            //       phone: registerCubit.phoneCtrl.value,
-                            //     ),
-                            //   );
-                            // },
-                            onPressed: () =>
-                                context.pushNamed(bottomNavbar),
+                            label: S.of(context).continueBtn,
+                            onPressed: () {
+                              registerCubit.supervisorRegisterStepOne(
+                                SupervisorRegisterStepOneModel(
+                                  firstName: registerCubit.firstNameCtrl.value,
+                                  lastName: registerCubit.lastNameCtrl.value,
+                                  phone: registerCubit.phoneCtrl.value,
+                                ),
+                              );
+                            },
                           );
                         },
                         fallback: (context) {
@@ -202,11 +187,30 @@ class _SupervisorPhoneRegisterViewState
                         },
                       ),
                       CustomBtn(
-                        label: S
-                            .of(context)
-                            .goBack,
+                        label: S.of(context).goBack,
                         onPressed: () => context.pop(),
                       ),
+                      Gap(20.h),
+                      Row(
+                        children: [
+                          Text(
+                            S.of(context).alreadyHaveAnAccount,
+                            style: CustomTextStyle.kTextStyleF16.copyWith(
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () =>
+                                context.pushNamed(supervisorLoginView),
+                            child: Text(
+                              S.of(context).login,
+                              style: CustomTextStyle.kTextStyleF16.copyWith(
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          )
+                        ],
+                      )
                     ],
                   ),
                 ),

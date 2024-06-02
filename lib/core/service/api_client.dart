@@ -3,6 +3,7 @@ import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../features/auth/supervisor_basic_info/data/models/supervisor_basic_info_model.dart';
+import '../../features/auth/supervisor_login/data/models/supervisor_login_model.dart';
 import '../../features/auth/supervisor_register/data/models/supervisor_register_step_one_model.dart';
 import '../../features/auth/supervisor_register/data/models/supervisor_register_step_two_model.dart';
 import '../../features/auth/user_register/data/models/user_register_or_login_model.dart';
@@ -58,4 +59,9 @@ abstract class ApiClient {
   @POST(AppConstants.userEditProfileUri)
   Future<UserEditProfileModel> userEditProfile(
       @Body() UserEditProfileModel userEditProfileModel);
+
+  @POST(AppConstants.supervisorLoginUri)
+  Future<SupervisorLoginModel> supervisorLogin(
+      @Body() SupervisorLoginModel supervisorLoginModel);
+
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marhom/features/auth/supervisor_basic_info/presentation/pages/supervisor_basic_info_view.dart';
+import 'package:marhom/features/auth/supervisor_login/presentation/pages/supervisor_login_view.dart';
 import 'package:marhom/features/profile/supervisor_edit_profile/presentation/pages/supervisor_edit_profile_view.dart';
 
 import '../../features/auth/supervisor_register/presentation/pages/supervisor_phone_confirmation_view.dart';
@@ -67,6 +68,10 @@ class AppRouters {
       case userEditProfileView:
         return MaterialPageRoute(
             builder: (BuildContext context) => const UserEditProfileView());
+
+        case supervisorLoginView:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const SupervisorLoginView());
 
       default:
         return MaterialPageRoute(

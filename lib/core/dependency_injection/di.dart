@@ -2,8 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/auth/supervisor_login/data/repositories/supervisor_login_repo_impl.dart';
+import '../../features/auth/supervisor_login/presentation/manager/supervisor_login_cubit.dart';
 import '../../features/auth/supervisor_register/data/repositories/supervisor_register_repo_impl.dart';
+import '../../features/auth/supervisor_login/domain/repositories/supervisor_login_repo.dart';
 import '../../features/auth/supervisor_register/domain/repositories/supervisor_register_repo.dart';
+import '../../features/auth/supervisor_login/domain/use_cases/supervisor_login_use_case.dart';
 import '../../features/auth/supervisor_register/domain/use_cases/supervisor_register_step_one_use_case.dart';
 import '../../features/auth/supervisor_register/domain/use_cases/supervisor_register_step_two_use_case.dart';
 import '../../features/auth/supervisor_register/presentation/manager/supervisor_register_cubit.dart';
@@ -38,15 +42,23 @@ Future<void> init() async {
 
   /// <!------ SUPERVISOR REGISTER ------->
   di.registerFactory(() => SupervisorRegisterCubit(
-      registerStepOneUseCase: di(),
-      registerStepTwoUseCase: di(),
-      checkPhoneUseCase: di()));
+        registerStepOneUseCase: di(),
+        registerStepTwoUseCase: di(),
+        checkPhoneUseCase: di(),
+      ));
   di.registerLazySingleton(
       () => SupervisorRegisterStepOneUseCase(supervisorRegisterRepo: di()));
   di.registerLazySingleton(
       () => SupervisorRegisterStepTwoUseCase(supervisorRegisterRepo: di()));
   di.registerLazySingleton<SupervisorRegisterRepo>(
       () => SupervisorRegisterRepoImpl(supervisorRegisterService: di()));
+
+  /// <!------ SUPERVISOR LOGIN ------->
+  di.registerFactory(() => SupervisorLoginCubit(supervisorLoginUseCase: di()));
+  di.registerLazySingleton(
+      () => SupervisorLoginUseCase(supervisorLoginRepo: di()));
+  di.registerLazySingleton<SupervisorLoginRepo>(
+      () => SupervisorLoginRepoImpl(supervisorLoginService: di()));
 
   /// <!------ CHECK PHONE ------->
   di.registerLazySingleton(() => CheckPhoneUseCase(checkPhoneRepo: di()));
