@@ -73,10 +73,11 @@ class _UserRegisterViewState extends State<UserRegisterView> {
             loginSuccess: (state) {
               if (state.status == 200) {
                 context.defaultSnackBar(
-                  "Logged in successfully, Welcome again ${UserDataUtils.instance!.firstName!}",
+                  "Logged in successfully, Welcome again ${state.userData!.firstName}",
                     color: AppColors.successGreen,
                     textColor: AppColors.blackText);
                 AppConstants.userToken = state.token!;
+                UserDataUtils.setInstance(state.userData!);
                 // if (rememberMe == true) {
                 //   CacheHelper.setData("email", loginCubit.emailCtrl.value);
                 //   CacheHelper.setData("pass", loginCubit.passCtrl.value);

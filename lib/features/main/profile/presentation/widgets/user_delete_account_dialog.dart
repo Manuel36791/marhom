@@ -79,7 +79,7 @@ class _UserDeleteAccountDialogState
                       padding: const EdgeInsets.all(Dimensions.p16),
                       decoration: BoxDecoration(
                         color: AppColors.statusRedLight,
-                        borderRadius: BorderRadius.circular(Dimensions.r24),
+                        borderRadius: BorderRadius.circular(Dimensions.r12),
                       ),
                       child: Center(
                         child: Text(
@@ -99,7 +99,7 @@ class _UserDeleteAccountDialogState
                       padding: const EdgeInsets.all(Dimensions.p16),
                       decoration: BoxDecoration(
                         color: AppColors.infoBlueLight,
-                        borderRadius: BorderRadius.circular(Dimensions.r24),
+                        borderRadius: BorderRadius.circular(Dimensions.r12),
                       ),
                       child: Center(
                         child: Text(

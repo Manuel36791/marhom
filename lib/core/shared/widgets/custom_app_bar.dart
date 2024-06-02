@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:marhom/core/utils/app_constants.dart';
 
 import '../../utils/app_colors.dart';
 import '../../utils/app_images.dart';
@@ -71,7 +72,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(Dimensions.r60),
                         child: CachedNetworkImage(
-                          imageUrl: "${AppImages.placeholderImg}60",
+                          imageUrl: "${AppConstants.imageUrl}${UserDataUtils.instance!.avatar}",
                           fit: BoxFit.cover,
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) =>

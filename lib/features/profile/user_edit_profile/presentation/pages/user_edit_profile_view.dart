@@ -14,7 +14,6 @@ import '../../../../../core/shared/widgets/custom_button.dart';
 import '../../../../../core/shared/widgets/custom_form_field.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_constants.dart';
-import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../data/models/user_edit_profile_model.dart';
 import '../manager/user_edit_profile_cubit.dart';
@@ -23,21 +22,26 @@ class UserEditProfileView extends StatefulWidget {
   const UserEditProfileView({super.key});
 
   @override
-  State<UserEditProfileView> createState() =>
-      _UserEditProfileViewState();
+  State<UserEditProfileView> createState() => _UserEditProfileViewState();
 }
 
 class _UserEditProfileViewState extends State<UserEditProfileView> {
+
+  @override
+  void dispose() {
+    UserEditProfileCubit.get(context).close();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => di.di<UserEditProfileCubit>(),
+          create: (context) => di.di<UserEditProfileCubit>()..userData(),
         ),
       ],
-      child:
-          BlocConsumer<UserEditProfileCubit, UserEditProfileStates>(
+      child: BlocConsumer<UserEditProfileCubit, UserEditProfileStates>(
         listener: (context, state) {
           state.maybeWhen(
             success: (state) {
@@ -94,7 +98,7 @@ class _UserEditProfileViewState extends State<UserEditProfileView> {
                                 image: DecorationImage(
                                   image: editProfileCubit.img == null
                                       ? CachedNetworkImageProvider(
-                                          "${AppImages.placeholderImg}200")
+                                          "${AppConstants.imageUrl}${UserDataUtils.instance!.avatar}")
                                       : FileImage(editProfileCubit.img!)
                                           as ImageProvider,
                                   fit: BoxFit.cover,
@@ -118,7 +122,7 @@ class _UserEditProfileViewState extends State<UserEditProfileView> {
                                 image: DecorationImage(
                                   image: editProfileCubit.img == null
                                       ? CachedNetworkImageProvider(
-                                          "${AppImages.placeholderImg}200")
+                                          "${AppConstants.imageUrl}${UserDataUtils.instance!.avatar}")
                                       : FileImage(editProfileCubit.img!)
                                           as ImageProvider,
                                   fit: BoxFit.cover,
@@ -142,7 +146,7 @@ class _UserEditProfileViewState extends State<UserEditProfileView> {
                                 image: DecorationImage(
                                   image: editProfileCubit.img == null
                                       ? CachedNetworkImageProvider(
-                                          "${AppImages.placeholderImg}200")
+                                          "${AppConstants.imageUrl}${UserDataUtils.instance!.avatar}")
                                       : FileImage(editProfileCubit.img!)
                                           as ImageProvider,
                                   fit: BoxFit.cover,
@@ -166,7 +170,7 @@ class _UserEditProfileViewState extends State<UserEditProfileView> {
                                 image: DecorationImage(
                                   image: editProfileCubit.img == null
                                       ? CachedNetworkImageProvider(
-                                          "${AppImages.placeholderImg}200")
+                                          "${AppConstants.imageUrl}${UserDataUtils.instance!.avatar}")
                                       : FileImage(editProfileCubit.img!)
                                           as ImageProvider,
                                   fit: BoxFit.cover,
@@ -189,7 +193,7 @@ class _UserEditProfileViewState extends State<UserEditProfileView> {
                               decoration: ShapeDecoration(
                                 image: DecorationImage(
                                   image: CachedNetworkImageProvider(
-                                      "${AppImages.placeholderImg}200"),
+                                      "${AppConstants.imageUrl}${UserDataUtils.instance!.avatar}"),
                                   fit: BoxFit.cover,
                                 ),
                                 shape: const OvalBorder(),
@@ -210,7 +214,7 @@ class _UserEditProfileViewState extends State<UserEditProfileView> {
                             initValue: UserDataUtils.instance!.firstName,
                             stream: editProfileCubit.firstNameStream,
                             onChanged: (firstName) {
-                              editProfileCubit.validateFirstName(firstName);
+                              editProfileCubit.changeFirstName(firstName);
                             },
                             label: S.of(context).firstName,
                             nextAction: TextInputAction.next,
@@ -223,7 +227,7 @@ class _UserEditProfileViewState extends State<UserEditProfileView> {
                             initValue: UserDataUtils.instance!.lastName,
                             stream: editProfileCubit.lastNameStream,
                             onChanged: (lastName) {
-                              editProfileCubit.validateLastName(lastName);
+                              editProfileCubit.changeLastName(lastName);
                             },
                             label: S.of(context).lastName,
                             nextAction: TextInputAction.next,
@@ -249,7 +253,7 @@ class _UserEditProfileViewState extends State<UserEditProfileView> {
                             initValue: UserDataUtils.instance!.phone,
                             stream: editProfileCubit.phoneStream,
                             onChanged: (phone) {
-                              editProfileCubit.validatePhone(phone);
+                              editProfileCubit.changePhone(phone);
                             },
                             label: S.of(context).phone,
                             nextAction: TextInputAction.next,
@@ -263,7 +267,7 @@ class _UserEditProfileViewState extends State<UserEditProfileView> {
                       initValue: UserDataUtils.instance!.snapChatId,
                       stream: editProfileCubit.snapChatStream,
                       onChanged: (snapchatId) {
-                        editProfileCubit.validateSnapChatId(snapchatId);
+                        editProfileCubit.changeSnapchatId(snapchatId);
                       },
                       label: "Snapchat Id",
                       nextAction: TextInputAction.next,
@@ -294,6 +298,8 @@ class _UserEditProfileViewState extends State<UserEditProfileView> {
                                                     ""
                                                 ? editProfileCubit.currentAvatar
                                                 : editProfileCubit.base64,
+                                            snapchatId: editProfileCubit
+                                                .snapChatCtrl.value,
                                           ),
                                         );
                                       }

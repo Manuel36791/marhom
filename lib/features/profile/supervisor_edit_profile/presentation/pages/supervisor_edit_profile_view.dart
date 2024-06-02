@@ -15,7 +15,6 @@ import '../../../../../core/shared/widgets/custom_button.dart';
 import '../../../../../core/shared/widgets/custom_form_field.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_constants.dart';
-import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../data/models/supervisor_edit_profile_model.dart';
 import '../manager/supervisor_edit_profile_cubit.dart';
@@ -34,7 +33,7 @@ class _SupervisorEditProfileViewState extends State<SupervisorEditProfileView> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => di.di<SupervisorEditProfileCubit>(),
+          create: (context) => di.di<SupervisorEditProfileCubit>()..userData(),
         ),
       ],
       child:
@@ -95,7 +94,7 @@ class _SupervisorEditProfileViewState extends State<SupervisorEditProfileView> {
                                 image: DecorationImage(
                                   image: editProfileCubit.img == null
                                       ? CachedNetworkImageProvider(
-                                          "${AppImages.placeholderImg}200")
+                                          "${AppConstants.imageUrl}${UserDataUtils.instance!.avatar}")
                                       : FileImage(editProfileCubit.img!)
                                           as ImageProvider,
                                   fit: BoxFit.cover,
@@ -119,7 +118,7 @@ class _SupervisorEditProfileViewState extends State<SupervisorEditProfileView> {
                                 image: DecorationImage(
                                   image: editProfileCubit.img == null
                                       ? CachedNetworkImageProvider(
-                                          "${AppImages.placeholderImg}200")
+                                          "${AppConstants.imageUrl}${UserDataUtils.instance!.avatar}")
                                       : FileImage(editProfileCubit.img!)
                                           as ImageProvider,
                                   fit: BoxFit.cover,
@@ -143,7 +142,7 @@ class _SupervisorEditProfileViewState extends State<SupervisorEditProfileView> {
                                 image: DecorationImage(
                                   image: editProfileCubit.img == null
                                       ? CachedNetworkImageProvider(
-                                          "${AppImages.placeholderImg}200")
+                                          "${AppConstants.imageUrl}${UserDataUtils.instance!.avatar}")
                                       : FileImage(editProfileCubit.img!)
                                           as ImageProvider,
                                   fit: BoxFit.cover,
@@ -167,7 +166,7 @@ class _SupervisorEditProfileViewState extends State<SupervisorEditProfileView> {
                                 image: DecorationImage(
                                   image: editProfileCubit.img == null
                                       ? CachedNetworkImageProvider(
-                                          "${AppImages.placeholderImg}200")
+                                          "${AppConstants.imageUrl}${UserDataUtils.instance!.avatar}")
                                       : FileImage(editProfileCubit.img!)
                                           as ImageProvider,
                                   fit: BoxFit.cover,
@@ -190,7 +189,7 @@ class _SupervisorEditProfileViewState extends State<SupervisorEditProfileView> {
                               decoration: ShapeDecoration(
                                 image: DecorationImage(
                                   image: CachedNetworkImageProvider(
-                                      "${AppImages.placeholderImg}200"),
+                                      "${AppConstants.imageUrl}${UserDataUtils.instance!.avatar}"),
                                   fit: BoxFit.cover,
                                 ),
                                 shape: const OvalBorder(),
@@ -211,7 +210,7 @@ class _SupervisorEditProfileViewState extends State<SupervisorEditProfileView> {
                             initValue: UserDataUtils.instance!.firstName,
                             stream: editProfileCubit.firstNameStream,
                             onChanged: (firstName) {
-                              editProfileCubit.validateFirstName(firstName);
+                              editProfileCubit.changeFirstName(firstName);
                             },
                             label: S.of(context).firstName,
                             nextAction: TextInputAction.next,
@@ -224,7 +223,7 @@ class _SupervisorEditProfileViewState extends State<SupervisorEditProfileView> {
                             initValue: UserDataUtils.instance!.lastName,
                             stream: editProfileCubit.lastNameStream,
                             onChanged: (lastName) {
-                              editProfileCubit.validateLastName(lastName);
+                              editProfileCubit.changeLastName(lastName);
                             },
                             label: S.of(context).lastName,
                             nextAction: TextInputAction.next,
@@ -239,7 +238,7 @@ class _SupervisorEditProfileViewState extends State<SupervisorEditProfileView> {
                       initValue: UserDataUtils.instance!.userName,
                       stream: editProfileCubit.userNameStream,
                       onChanged: (userName) {
-                        editProfileCubit.validateUserName(userName);
+                        editProfileCubit.changeUserName(userName);
                       },
                       label: "User Name",
                       nextAction: TextInputAction.next,
@@ -262,7 +261,7 @@ class _SupervisorEditProfileViewState extends State<SupervisorEditProfileView> {
                             initValue: UserDataUtils.instance!.phone,
                             stream: editProfileCubit.phoneStream,
                             onChanged: (phone) {
-                              editProfileCubit.validatePhone(phone);
+                              editProfileCubit.changePhone(phone);
                             },
                             label: S.of(context).phone,
                             nextAction: TextInputAction.next,
@@ -276,7 +275,7 @@ class _SupervisorEditProfileViewState extends State<SupervisorEditProfileView> {
                       initValue: UserDataUtils.instance!.snapChatId,
                       stream: editProfileCubit.snapChatStream,
                       onChanged: (snapchatId) {
-                        editProfileCubit.validateSnapChatId(snapchatId);
+                        editProfileCubit.changeSnapchatId(snapchatId);
                       },
                       label: "Snapchat Id",
                       nextAction: TextInputAction.next,
