@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:marhom/core/utils/dimensions.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -19,8 +18,6 @@ class ImagePickerBottomSheet extends StatelessWidget {
         SupervisorEditProfileStates>(
       listener: (context, state) {},
       builder: (context, state) {
-        SupervisorEditProfileCubit editProfileCubit =
-            SupervisorEditProfileCubit.get(context);
         return SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(Dimensions.p16),

@@ -38,7 +38,7 @@ class SupervisorEditProfileCubit extends Cubit<SupervisorEditProfileStates> {
       builder: (BuildContext context) {
         return AlertDialog(
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          title: Text("Pick an Option"),
+          title: const Text("Pick an Option"),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
