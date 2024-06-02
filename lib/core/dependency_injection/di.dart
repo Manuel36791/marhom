@@ -13,10 +13,18 @@ import '../../features/auth/user_register/domain/use_cases/user_login_use_case.d
 import '../../features/auth/user_register/domain/use_cases/user_register_use_case.dart';
 import '../../features/auth/user_register/presentation/manager/user_register_cubit.dart';
 import '../../features/main/home/presentation/manager/home_cubit.dart';
+import '../../features/profile/supervisor_delete_account/data/repositories/supervisor_delete_account_repo_impl.dart';
+import '../../features/profile/supervisor_delete_account/domain/repositories/supervisor_delete_account_repo.dart';
+import '../../features/profile/supervisor_delete_account/domain/use_cases/supervisor_delete_account_use_case.dart';
+import '../../features/profile/supervisor_delete_account/presentation/manager/supervisor_delete_account_cubit.dart';
 import '../../features/profile/supervisor_edit_profile/data/repositories/supervisor_edit_profile_repo_impl.dart';
 import '../../features/profile/supervisor_edit_profile/domain/repositories/supervisor_edit_profile_repo.dart';
 import '../../features/profile/supervisor_edit_profile/domain/use_cases/supervisor_edit_profile_use_case.dart';
 import '../../features/profile/supervisor_edit_profile/presentation/manager/supervisor_edit_profile_cubit.dart';
+import '../../features/profile/user_delete_account/data/repositories/user_delete_account_repo_impl.dart';
+import '../../features/profile/user_delete_account/domain/repositories/user_delete_account_repo.dart';
+import '../../features/profile/user_delete_account/domain/use_cases/user_delete_account_use_case.dart';
+import '../../features/profile/user_delete_account/presentation/manager/user_delete_account_cubit.dart';
 import '../service/api_client.dart';
 import '../service/dio_factory.dart';
 import '../shared/api/data/repositories/check_phone_repo_impl.dart';
@@ -64,6 +72,22 @@ Future<void> init() async {
       () => SupervisorEditProfileUseCase(supervisorEditProfileRepo: di()));
   di.registerLazySingleton<SupervisorEditProfileRepo>(
       () => SupervisorEditProfileRepoImpl(supervisorEditProfileService: di()));
+
+  /// <!------ SUPERVISOR DELETE ACCOUNT ------->
+  di.registerFactory(
+      () => SupervisorDeleteAccountCubit(supervisorDeleteAccountUseCase: di()));
+  di.registerLazySingleton(
+      () => SupervisorDeleteAccountUseCase(supervisorDeleteAccountRepo: di()));
+  di.registerLazySingleton<SupervisorDeleteAccountRepo>(() =>
+      SupervisorDeleteAccountRepoImpl(supervisorDeleteAccountService: di()));
+
+  /// <!------ USER DELETE ACCOUNT ------->
+  di.registerFactory(
+      () => UserDeleteAccountCubit(userDeleteAccountUseCase: di()));
+  di.registerLazySingleton(
+      () => UserDeleteAccountUseCase(userDeleteAccountRepo: di()));
+  di.registerLazySingleton<UserDeleteAccountRepo>(
+      () => UserDeleteAccountRepoImpl(userDeleteAccountService: di()));
 
   /// <!------ HOME ------->
   di.registerFactory(() => HomeCubit());

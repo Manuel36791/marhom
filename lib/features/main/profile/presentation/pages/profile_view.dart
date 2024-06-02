@@ -6,7 +6,7 @@ import 'package:marhom/core/router/router.dart';
 import 'package:marhom/core/shared/models/user_data_model_utils.dart';
 import 'package:marhom/core/utils/extensions.dart';
 import 'package:marhom/features/main/profile/presentation/widgets/content_container.dart';
-import 'package:marhom/features/main/profile/presentation/widgets/delete_account_dialog.dart';
+import 'package:marhom/features/main/profile/presentation/widgets/supervisor_delete_account_dialog.dart';
 
 import '../../../../../core/shared/widgets/network_image_error.dart';
 import '../../../../../core/shared/widgets/network_image_progressor.dart';
@@ -17,6 +17,7 @@ import '../../../../../core/utils/dimensions.dart';
 import '../widgets/language_buttom_sheet.dart';
 import '../widgets/menu_container.dart';
 import '../widgets/menu_tile.dart';
+import '../widgets/user_delete_account_dialog.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({super.key});
@@ -103,7 +104,7 @@ class ProfileView extends StatelessWidget {
                         if (UserDataUtils.instance!.type == 2) {
                           const SupervisorDeleteAccountDialog();
                         } else {
-                          const SizedBox.shrink();
+                          const UserDeleteAccountDialog();
                         }
                       },
                       child: ContentContainer(
