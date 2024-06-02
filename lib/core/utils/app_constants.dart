@@ -32,5 +32,6 @@ class AppConstants {
   static const supervisorRegisterStepTwoUri = "auth/supervisors/register/step2";
   static const supervisorBasicInfoUri = "V1/basic-information/store";
   static const supervisorEditProfileUri = "auth/supervisors/update-profile";
+  static const supervisorDeleteAccountUri = "auth/supervisors/destroy";
 
 }

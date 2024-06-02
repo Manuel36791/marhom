@@ -3,8 +3,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:marhom/core/router/router.dart';
+import 'package:marhom/core/shared/models/user_data_model_utils.dart';
 import 'package:marhom/core/utils/extensions.dart';
 import 'package:marhom/features/main/profile/presentation/widgets/content_container.dart';
+import 'package:marhom/features/main/profile/presentation/widgets/delete_account_dialog.dart';
 
 import '../../../../../core/shared/widgets/network_image_error.dart';
 import '../../../../../core/shared/widgets/network_image_progressor.dart';
@@ -97,7 +99,13 @@ class ProfileView extends StatelessWidget {
                     ),
                     Gap(20.h),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        if (UserDataUtils.instance!.type == 2) {
+                          const SupervisorDeleteAccountDialog();
+                        } else {
+                          const SizedBox.shrink();
+                        }
+                      },
                       child: ContentContainer(
                         child: Text(
                           "Delete Account",
