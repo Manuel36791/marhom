@@ -20,6 +20,7 @@ class CustomFormField extends StatefulWidget {
   final Color color;
   final bool floatingLabel;
   final String? initValue;
+  final bool? readOnly;
 
   const CustomFormField({
     super.key,
@@ -38,6 +39,7 @@ class CustomFormField extends StatefulWidget {
     this.color = const Color(0xFF000000),
     this.floatingLabel = false,
     this.initValue,
+    this.readOnly,
   });
 
   @override
@@ -51,6 +53,7 @@ class _CustomFormFieldState extends State<CustomFormField> {
       stream: widget.stream,
       builder: (ctx, snapShot) {
         return TextFormField(
+          readOnly: widget.readOnly ?? false,
           initialValue: widget.initValue,
           onChanged: widget.onChanged,
           obscureText: widget.isPassword,

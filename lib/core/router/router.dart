@@ -7,3 +7,4 @@ const String userRegisterView = '/userRegisterView';
 const String bottomNavbar = '/bottomNavbar';
 const String sendMessageView = '/sendMessageView';
 const String supervisorBasicInfoView = '/supervisorBasicInfoView';
+const String supervisorEditProfileView = '/supervisorEditProfileView';

@@ -181,7 +181,7 @@ class _ApiClient implements ApiClient {
     )
             .compose(
               _dio.options,
-              'api/V1/basic-information/store',
+              'V1/basic-information/store',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -191,6 +191,35 @@ class _ApiClient implements ApiClient {
               baseUrl,
             ))));
     final value = SupervisorBasicInfoModel.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<SupervisorEditProfileModel> supervisorEditProfile(
+      SupervisorEditProfileModel supervisorEditProfileModel) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(supervisorEditProfileModel.toJson());
+    final _result = await _dio.fetch<Map<String, dynamic>>(
+        _setStreamType<SupervisorEditProfileModel>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'auth/supervisors/update-profile',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(
+                baseUrl: _combineBaseUrls(
+              _dio.options.baseUrl,
+              baseUrl,
+            ))));
+    final value = SupervisorEditProfileModel.fromJson(_result.data!);
     return value;
   }
 

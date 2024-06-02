@@ -190,7 +190,7 @@ class _SupervisorPhoneRegisterViewState
                             //   );
                             // },
                             onPressed: () =>
-                                context.pushNamed(supervisorBasicInfoView),
+                                context.pushNamed(bottomNavbar),
                           );
                         },
                         fallback: (context) {

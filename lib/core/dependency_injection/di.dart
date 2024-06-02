@@ -13,6 +13,10 @@ import '../../features/auth/user_register/domain/use_cases/user_login_use_case.d
 import '../../features/auth/user_register/domain/use_cases/user_register_use_case.dart';
 import '../../features/auth/user_register/presentation/manager/user_register_cubit.dart';
 import '../../features/main/home/presentation/manager/home_cubit.dart';
+import '../../features/profile/supervisor_edit_profile/data/repositories/supervisor_edit_profile_repo_impl.dart';
+import '../../features/profile/supervisor_edit_profile/domain/repositories/supervisor_edit_profile_repo.dart';
+import '../../features/profile/supervisor_edit_profile/domain/use_cases/supervisor_edit_profile_use_case.dart';
+import '../../features/profile/supervisor_edit_profile/presentation/manager/supervisor_edit_profile_cubit.dart';
 import '../service/api_client.dart';
 import '../service/dio_factory.dart';
 import '../shared/api/data/repositories/check_phone_repo_impl.dart';
@@ -25,11 +29,16 @@ Future<void> init() async {
   /// Cubits -> useCases -> Repos -> Services
 
   /// <!------ SUPERVISOR REGISTER ------->
-  di.registerFactory(() => SupervisorRegisterCubit(registerStepOneUseCase: di(), registerStepTwoUseCase: di(), checkPhoneUseCase: di()));
-  di.registerLazySingleton(() => SupervisorRegisterStepOneUseCase(supervisorRegisterRepo: di()));
-  di.registerLazySingleton(() => SupervisorRegisterStepTwoUseCase(supervisorRegisterRepo: di()));
+  di.registerFactory(() => SupervisorRegisterCubit(
+      registerStepOneUseCase: di(),
+      registerStepTwoUseCase: di(),
+      checkPhoneUseCase: di()));
+  di.registerLazySingleton(
+      () => SupervisorRegisterStepOneUseCase(supervisorRegisterRepo: di()));
+  di.registerLazySingleton(
+      () => SupervisorRegisterStepTwoUseCase(supervisorRegisterRepo: di()));
   di.registerLazySingleton<SupervisorRegisterRepo>(
-          () => SupervisorRegisterRepoImpl(supervisorRegisterService: di()));
+      () => SupervisorRegisterRepoImpl(supervisorRegisterService: di()));
 
   /// <!------ CHECK PHONE ------->
   di.registerLazySingleton(() => CheckPhoneUseCase(checkPhoneRepo: di()));
@@ -37,11 +46,24 @@ Future<void> init() async {
       () => CheckPhoneRepoImpl(checkPhoneService: di()));
 
   /// <!------ USER REGISTER ------->
-  di.registerFactory(() => UserRegisterCubit(userRegisterUseCase: di(), checkPhoneUseCase: di(), userLoginUseCase: di()));
-  di.registerLazySingleton(() => UserRegisterUseCase(userRegisterOrLoginRepo: di()));
-  di.registerLazySingleton(() => UserLoginUseCase(userRegisterOrLoginRepo: di()));
+  di.registerFactory(() => UserRegisterCubit(
+      userRegisterUseCase: di(),
+      checkPhoneUseCase: di(),
+      userLoginUseCase: di()));
+  di.registerLazySingleton(
+      () => UserRegisterUseCase(userRegisterOrLoginRepo: di()));
+  di.registerLazySingleton(
+      () => UserLoginUseCase(userRegisterOrLoginRepo: di()));
   di.registerLazySingleton<UserRegisterOrLoginRepo>(
       () => UserRegisterOrLoginRepoImpl(userRegisterService: di()));
+
+  /// <!------ SUPERVISOR EDIT PROFILE ------->
+  di.registerFactory(
+      () => SupervisorEditProfileCubit(supervisorEditProfileUseCase: di()));
+  di.registerLazySingleton(
+      () => SupervisorEditProfileUseCase(supervisorEditProfileRepo: di()));
+  di.registerLazySingleton<SupervisorEditProfileRepo>(
+      () => SupervisorEditProfileRepoImpl(supervisorEditProfileService: di()));
 
   /// <!------ HOME ------->
   di.registerFactory(() => HomeCubit());
