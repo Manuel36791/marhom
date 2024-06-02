@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:marhom/core/utils/extensions.dart';
 
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/dimensions.dart';
@@ -12,6 +13,7 @@ class ContentContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: context.queryWidth.w,
       padding: const EdgeInsets.all(Dimensions.p8),
       decoration: BoxDecoration(
         color: AppColors.tertiaryBeige,

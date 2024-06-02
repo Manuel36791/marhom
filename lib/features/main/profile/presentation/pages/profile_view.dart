@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:marhom/core/router/router.dart';
 import 'package:marhom/core/utils/extensions.dart';
+import 'package:marhom/features/main/profile/presentation/widgets/content_container.dart';
 
 import '../../../../../core/shared/widgets/network_image_error.dart';
 import '../../../../../core/shared/widgets/network_image_progressor.dart';
@@ -80,9 +81,33 @@ class ProfileView extends StatelessWidget {
                   children: [],
                 ),
                 Gap(15.h),
-                const MenuTile(
+                MenuTile(
                   title: "Profile settings",
-                  children: [],
+                  children: [
+                    GestureDetector(
+                      onTap: () => context.pushNamed(supervisorEditProfileView),
+                      child: ContentContainer(
+                        child: Text(
+                          "Edit Profile",
+                          style: CustomTextStyle.kTextStyleF12.copyWith(
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Gap(20.h),
+                    GestureDetector(
+                      onTap: () {},
+                      child: ContentContainer(
+                        child: Text(
+                          "Delete Account",
+                          style: CustomTextStyle.kTextStyleF12.copyWith(
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
                 Gap(15.h),
                 ClickableMenuTile(
