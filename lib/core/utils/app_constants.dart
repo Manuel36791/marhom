@@ -36,5 +36,7 @@ class AppConstants {
   static const userDeleteAccountUri = "auth/users/destroy";
   static const userEditProfileUri = "api/auth/users/update-profile";
   static const supervisorLoginUri = "auth/login";
+  static const verifyAccountUri = "auth/account-verification";
+  static const resendCodeUri = "auth/resend-code";
 
 }

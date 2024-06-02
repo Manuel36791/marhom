@@ -55,6 +55,7 @@ class _SupervisorPhoneRegisterViewState
                 context.pushNamed(
                   supervisorPhoneConfView,
                   arguments: SupervisorRegisterArguments(
+                    accountType: 2,
                     firstName: state.user!.firstName!,
                     lastName: state.user!.firstName!,
                     dialCode: registerCubit.dialCode,

@@ -10,3 +10,4 @@ const String supervisorBasicInfoView = '/supervisorBasicInfoView';
 const String supervisorEditProfileView = '/supervisorEditProfileView';
 const String userEditProfileView = '/userEditProfileView';
 const String supervisorLoginView = '/supervisorLoginView';
+const String verifyAccountView = '/verifyAccountView';

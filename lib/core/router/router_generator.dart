@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:marhom/features/auth/supervisor_basic_info/presentation/pages/supervisor_basic_info_view.dart';
 import 'package:marhom/features/auth/supervisor_login/presentation/pages/supervisor_login_view.dart';
+import 'package:marhom/features/auth/verify_account/presentation/pages/verify_view.dart';
 import 'package:marhom/features/profile/supervisor_edit_profile/presentation/pages/supervisor_edit_profile_view.dart';
 
-import '../../features/auth/supervisor_register/presentation/pages/supervisor_phone_confirmation_view.dart';
 import '../../features/auth/supervisor_register/presentation/pages/supervisor_phone_register_view.dart';
 import '../../features/auth/supervisor_register/presentation/pages/supervisor_register_view.dart';
 import '../../features/auth/user_register/presentation/pages/user_register_view.dart';
@@ -27,10 +27,11 @@ class AppRouters {
           builder: (BuildContext context) =>
               const SupervisorPhoneRegisterView(),
         );
-      case supervisorPhoneConfView:
+      case verifyAccountView:
         final args = settings.arguments as SupervisorRegisterArguments;
         return MaterialPageRoute(
-          builder: (BuildContext context) => SupervisorPhoneConfView(
+          builder: (BuildContext context) => VerifyAccountView(
+            accountType: args.accountType,
             firstName: args.firstName,
             lastName: args.lastName,
             dialCode: args.dialCode,
@@ -42,6 +43,7 @@ class AppRouters {
         final args = settings.arguments as SupervisorRegisterArguments;
         return MaterialPageRoute(
           builder: (BuildContext context) => SupervisorRegisterView(
+            accountType: args.accountType,
             firstName: args.firstName,
             lastName: args.lastName,
             dialCode: args.dialCode,

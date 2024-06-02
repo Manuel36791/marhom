@@ -3,6 +3,7 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:marhom/features/auth/supervisor_basic_info/presentation/pages/supervisor_basic_info_view.dart';
 
 import 'core/dependency_injection/di.dart' as di;
 import 'core/helpers/cache_helper.dart';
@@ -114,7 +115,7 @@ class _MyAppState extends State<MyApp> {
           home: child,
         );
       },
-      child: const MainView(),
+      child: const SupervisorBasicInfoView(),
     );
   }
 }
