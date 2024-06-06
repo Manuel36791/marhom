@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marhom/features/main/profile/presentation/pages/profile_view.dart';
 
+import '../../core/shared/models/user_data_model_utils.dart';
 import '../../core/utils/app_images.dart';
 import '../../generated/l10n.dart';
 import '../main/home/presentation/pages/home_view.dart';
+import '../main/supervisor_home/presentation/pages/supervisor_home.dart';
 
 class BottomNavBar extends StatefulWidget {
   const BottomNavBar({super.key});
@@ -44,7 +46,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
   }
 
   final _views = [
-    const HomeView(),
+    UserDataUtils.instance!.type == 1
+        ? const HomeView()
+        : const SupervisorHome(),
     const ProfileView(),
   ];
 

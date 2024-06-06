@@ -14,3 +14,4 @@ const String verifyAccountView = '/verifyAccountView';
 const String mapView = '/mapView';
 const String contactGroupsView = '/contactGroupsView';
 const String groupView = '/groupView';
+const String mortalityDetailsView = '/mortalityDetailsView';
