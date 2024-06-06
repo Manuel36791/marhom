@@ -115,7 +115,7 @@ class _MyAppState extends State<MyApp> {
           home: child,
         );
       },
-      child: const SupervisorBasicInfoView(),
+      child: const MainView(),
     );
   }
 }

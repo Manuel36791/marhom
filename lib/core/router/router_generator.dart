@@ -9,6 +9,7 @@ import '../../features/auth/supervisor_register/presentation/pages/supervisor_re
 import '../../features/auth/user_register/presentation/pages/user_register_view.dart';
 import '../../features/bottom_nav_bar/bottom_nav_bar.dart';
 import '../../features/onboarding/presentation/pages/onboarding_view.dart';
+import '../../features/profile/map/presentation/pages/map_view.dart';
 import '../../features/profile/send_message/presentation/pages/send_message_view.dart';
 import '../../features/profile/user_edit_profile/presentation/pages/user_edit_profile_view.dart';
 import '../../main_view.dart';
@@ -58,8 +59,12 @@ class AppRouters {
         return MaterialPageRoute(
             builder: (BuildContext context) => const BottomNavBar());
       case sendMessageView:
+
         return MaterialPageRoute(
-            builder: (BuildContext context) => const SendMessageView());
+          builder: (BuildContext context) => const SendMessageView(
+
+          ),
+        );
       case supervisorBasicInfoView:
         return MaterialPageRoute(
             builder: (BuildContext context) => const SupervisorBasicInfoView());
@@ -71,9 +76,16 @@ class AppRouters {
         return MaterialPageRoute(
             builder: (BuildContext context) => const UserEditProfileView());
 
-        case supervisorLoginView:
+      case supervisorLoginView:
         return MaterialPageRoute(
             builder: (BuildContext context) => const SupervisorLoginView());
+
+      case mapView:
+        final args = settings.arguments as MapArgs;
+        return MaterialPageRoute(
+            builder: (BuildContext context) => MapView(
+              location: args.location,
+            ));
 
       default:
         return MaterialPageRoute(

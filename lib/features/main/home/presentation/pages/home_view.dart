@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import '../../../../../core/dependency_injection/di.dart' as di;
 import '../../../../../core/shared/widgets/custom_app_bar.dart';
 import '../../../../../core/shared/widgets/state_loading_widget.dart';
+import '../../../../../core/utils/app_constants.dart';
 import '../../../../../core/utils/dimensions.dart';
 import '../../../../../generated/l10n.dart';
 import '../manager/home_cubit.dart';
@@ -24,7 +25,14 @@ class _HomeViewState extends State<HomeView> {
     return BlocProvider(
       create: (context) => di.di<HomeCubit>()..getPrayerTimes(),
       child: BlocConsumer<HomeCubit, HomeStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          state.maybeWhen(
+            success: (state) {
+              AppConstants.prayerTimes = state;
+            },
+            orElse: () {},
+          );
+        },
         builder: (context, state) {
           HomeCubit homeCubit = HomeCubit.get(context);
           return Scaffold(

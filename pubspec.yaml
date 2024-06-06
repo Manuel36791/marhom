@@ -47,6 +47,7 @@ dependencies:
   drop_down_search_field: ^1.0.4 # Customizable DropdownSearchField extending features DropdownButton, TextFormField and Autocomplete.
   image_picker: ^1.1.2 # Flutter plugin for selecting images from the Android and iOS image library, and taking new pictures with the camera.
   google_maps_flutter: ^2.6.1 # A Flutter plugin for integrating Google Maps in iOS and Android applications.
+  geocoding: ^3.0.0
 
 dev_dependencies:
   flutter_test:

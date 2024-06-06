@@ -132,10 +132,14 @@ class ProfileView extends StatelessWidget {
                     )
                   ],
                 ),
-                Gap(15.h),
-                ClickableMenuTile(
-                  onClick: () => context.pushNamed(sendMessageView),
-                  title: "Message to supervisor",
+                UserDataUtils.instance!.type == 2 ? const SizedBox.shrink() : Column(
+                  children: [
+                    Gap(15.h),
+                    ClickableMenuTile(
+                      onClick: () => context.pushNamed(sendMessageView),
+                      title: "Message to supervisor",
+                    ),
+                  ],
                 ),
                 Gap(15.h),
                 const MenuTile(

@@ -17,6 +17,11 @@ import '../../features/auth/user_register/domain/use_cases/user_login_use_case.d
 import '../../features/auth/user_register/domain/use_cases/user_register_use_case.dart';
 import '../../features/auth/user_register/presentation/manager/user_register_cubit.dart';
 import '../../features/main/home/presentation/manager/home_cubit.dart';
+import '../../features/profile/map/presentation/manager/maps_cubit.dart';
+import '../../features/profile/send_message/data/repositories/send_message_repo_impl.dart';
+import '../../features/profile/send_message/domain/repositories/send_message_repo.dart';
+import '../../features/profile/send_message/domain/use_cases/send_message_use_case.dart';
+import '../../features/profile/send_message/presentation/manager/send_message_cubit.dart';
 import '../../features/profile/supervisor_delete_account/data/repositories/supervisor_delete_account_repo_impl.dart';
 import '../../features/profile/supervisor_delete_account/domain/repositories/supervisor_delete_account_repo.dart';
 import '../../features/profile/supervisor_delete_account/domain/use_cases/supervisor_delete_account_use_case.dart';
@@ -115,6 +120,17 @@ Future<void> init() async {
 
   /// <!------ HOME ------->
   di.registerFactory(() => HomeCubit());
+
+  /// <!------ MAPS ------->
+  di.registerFactory(() => MapsCubit());
+
+  /// <!------ SEND MESSAGE ------->
+  di.registerFactory(
+          () => SendMessageCubit(sendMessageUseCase: di()));
+  di.registerLazySingleton(
+          () => SendMessageUseCase(sendMessageRepo: di()));
+  di.registerLazySingleton<SendMessageRepo>(
+          () => SendMessageRepoImpl(sendMessageService: di()));
 
   /// <!------ API CLIENT ------->
   Dio dio = await DioFactory.getDio();
