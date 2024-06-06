@@ -69,9 +69,9 @@ class ProfileView extends StatelessWidget {
                   children: [],
                 ),
                 Gap(15.h),
-                const MenuTile(
-                  title: "Numbers",
-                  children: [],
+                ClickableMenuTile(
+                  onClick: () => context.pushNamed(contactGroupsView),
+                  title: "Contacts",
                 ),
                 Gap(15.h),
                 const MenuTile(
@@ -117,7 +117,7 @@ class ProfileView extends StatelessWidget {
                           showDialog(
                             context: context,
                             builder: (context) =>
-                            const UserDeleteAccountDialog(),
+                                const UserDeleteAccountDialog(),
                           );
                         }
                       },
@@ -132,15 +132,17 @@ class ProfileView extends StatelessWidget {
                     )
                   ],
                 ),
-                UserDataUtils.instance!.type == 2 ? const SizedBox.shrink() : Column(
-                  children: [
-                    Gap(15.h),
-                    ClickableMenuTile(
-                      onClick: () => context.pushNamed(sendMessageView),
-                      title: "Message to supervisor",
-                    ),
-                  ],
-                ),
+                UserDataUtils.instance!.type == 2
+                    ? const SizedBox.shrink()
+                    : Column(
+                        children: [
+                          Gap(15.h),
+                          ClickableMenuTile(
+                            onClick: () => context.pushNamed(sendMessageView),
+                            title: "Message to supervisor",
+                          ),
+                        ],
+                      ),
                 Gap(15.h),
                 const MenuTile(
                   title: "Contact us",

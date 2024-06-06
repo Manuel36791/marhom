@@ -1,3 +1,5 @@
+import 'package:flutter_contacts/flutter_contacts.dart';
+
 class SupervisorRegisterArguments {
   final num accountType;
   final String firstName;
@@ -13,4 +15,12 @@ class MapArgs {
   final num location;
 
   MapArgs({required this.location});
+}
+
+class GroupArgs {
+  final List<Contact> contacts;
+
+  GroupArgs({required this.contacts});
+
+
 }
