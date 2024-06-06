@@ -17,6 +17,10 @@ import '../../features/auth/user_register/domain/use_cases/user_login_use_case.d
 import '../../features/auth/user_register/domain/use_cases/user_register_use_case.dart';
 import '../../features/auth/user_register/presentation/manager/user_register_cubit.dart';
 import '../../features/main/home/presentation/manager/home_cubit.dart';
+import '../../features/main/supervisor_home/data/repositories/view_messages_repo_impl.dart';
+import '../../features/main/supervisor_home/domain/repositories/view_messages_repo.dart';
+import '../../features/main/supervisor_home/domain/use_cases/view_messages_use_case.dart';
+import '../../features/main/supervisor_home/presentation/manager/view_messages_cubit.dart';
 import '../../features/profile/map/presentation/manager/maps_cubit.dart';
 import '../../features/profile/send_message/data/repositories/send_message_repo_impl.dart';
 import '../../features/profile/send_message/domain/repositories/send_message_repo.dart';
@@ -111,12 +115,11 @@ Future<void> init() async {
       () => UserDeleteAccountRepoImpl(userDeleteAccountService: di()));
 
   /// <!------ USER EDIT PROFILE ------->
-  di.registerFactory(
-          () => UserEditProfileCubit(userEditProfileUseCase: di()));
+  di.registerFactory(() => UserEditProfileCubit(userEditProfileUseCase: di()));
   di.registerLazySingleton(
-          () => UserEditProfileUseCase(userEditProfileRepo: di()));
+      () => UserEditProfileUseCase(userEditProfileRepo: di()));
   di.registerLazySingleton<UserEditProfileRepo>(
-          () => UserEditProfileRepoImpl(userEditProfileService: di()));
+      () => UserEditProfileRepoImpl(userEditProfileService: di()));
 
   /// <!------ HOME ------->
   di.registerFactory(() => HomeCubit());
@@ -125,12 +128,16 @@ Future<void> init() async {
   di.registerFactory(() => MapsCubit());
 
   /// <!------ SEND MESSAGE ------->
-  di.registerFactory(
-          () => SendMessageCubit(sendMessageUseCase: di()));
-  di.registerLazySingleton(
-          () => SendMessageUseCase(sendMessageRepo: di()));
+  di.registerFactory(() => SendMessageCubit(sendMessageUseCase: di()));
+  di.registerLazySingleton(() => SendMessageUseCase(sendMessageRepo: di()));
   di.registerLazySingleton<SendMessageRepo>(
-          () => SendMessageRepoImpl(sendMessageService: di()));
+      () => SendMessageRepoImpl(sendMessageService: di()));
+
+  /// <!------ VIEW MESSAGES ------->
+  di.registerFactory(() => ViewMessagesCubit(viewMessagesUseCase: di()));
+  di.registerLazySingleton(() => ViewMessagesUseCase(viewMessagesRepo: di()));
+  di.registerLazySingleton<ViewMessagesRepo>(
+      () => ViewMessagesRepoImpl(viewMessagesService: di()));
 
   /// <!------ API CLIENT ------->
   Dio dio = await DioFactory.getDio();

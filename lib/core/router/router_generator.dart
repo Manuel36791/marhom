@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:marhom/features/auth/supervisor_basic_info/presentation/pages/supervisor_basic_info_view.dart';
 import 'package:marhom/features/auth/supervisor_login/presentation/pages/supervisor_login_view.dart';
 import 'package:marhom/features/auth/verify_account/presentation/pages/verify_view.dart';
+import 'package:marhom/features/main/supervisor_home/presentation/pages/mortality_details_view.dart';
 import 'package:marhom/features/profile/contacts/presentation/pages/group_view.dart';
 import 'package:marhom/features/profile/contacts/presentation/pages/contact_groups_view.dart';
 import 'package:marhom/features/profile/supervisor_edit_profile/presentation/pages/supervisor_edit_profile_view.dart';
@@ -93,6 +94,14 @@ class AppRouters {
         return MaterialPageRoute(
           builder: (BuildContext context) => GroupView(
             groupContacts: args.contacts,
+          ),
+        );
+
+        case mortalityDetailsView:
+        final args = settings.arguments as MortalityDetailsArgs;
+        return MaterialPageRoute(
+          builder: (BuildContext context) => MortalityDetailsView(
+            message: args.message,
           ),
         );
 

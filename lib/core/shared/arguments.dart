@@ -1,4 +1,5 @@
 import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:marhom/features/main/supervisor_home/domain/entities/view_messages_entity.dart';
 
 class SupervisorRegisterArguments {
   final num accountType;
@@ -23,4 +24,10 @@ class GroupArgs {
   GroupArgs({required this.contacts});
 
 
+}
+
+class MortalityDetailsArgs {
+  final ViewMessagesEntity message;
+
+  MortalityDetailsArgs({required this.message});
 }
