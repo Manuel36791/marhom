@@ -9,6 +9,7 @@ import '../../features/auth/supervisor_register/data/models/supervisor_register_
 import '../../features/auth/user_register/data/models/user_register_or_login_model.dart';
 import '../../features/auth/verify_account/data/models/resend_code_model.dart';
 import '../../features/auth/verify_account/data/models/verify_account_model.dart';
+import '../../features/profile/send_message/data/models/send_message_model.dart';
 import '../../features/profile/supervisor_delete_account/data/models/supervisor_delete_account_model.dart';
 import '../../features/profile/supervisor_edit_profile/data/models/supervisor_edit_profile_model.dart';
 import '../../features/profile/user_delete_account/data/models/user_delete_account_model.dart';
@@ -74,4 +75,7 @@ abstract class ApiClient {
   Future<ResendCodeModel> resendVerificationCode(
       @Body() ResendCodeModel resendCodeModel);
 
+  @POST(AppConstants.userSendMessageUri)
+  Future<SendMessageModel> userSendMessageToSupervisor(
+      @Body() SendMessageModel sendMessageModel);
 }

@@ -1,3 +1,7 @@
+import 'package:prayers_times/prayers_times.dart';
+
+import '../shared/models/location_model.dart';
+
 class AppConstants {
   static RegExp emailRegExp = RegExp(r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?");
   static RegExp passRegExp = RegExp(r"(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\\$&*~]).{8,}");
@@ -13,6 +17,13 @@ class AppConstants {
   static const subFontFamily = "";
   static const unknownStringValue = "UNKNOWN STRING VALUE";
   static const unknownNumValue = 2077;
+
+  // Map Constants
+  static String mosqueAddress = "";
+  static LocationModel mosqueLocation = const LocationModel();
+  static String burialAddress = "";
+  static LocationModel burialLocation = const LocationModel();
+  static PrayerTimes? prayerTimes;
 
   //! API headers
   static const String applicationJson = "application/json";
@@ -38,5 +49,6 @@ class AppConstants {
   static const supervisorLoginUri = "auth/login";
   static const verifyAccountUri = "auth/account-verification";
   static const resendCodeUri = "auth/resend-code";
+  static const userSendMessageUri = "V1/messages/send";
 
 }

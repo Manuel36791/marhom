@@ -3,9 +3,17 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
+import 'package:marhom/core/router/router.dart';
+import 'package:marhom/core/shared/arguments.dart';
+import 'package:marhom/core/shared/models/location_model.dart';
+import 'package:marhom/core/shared/widgets/custom_button.dart';
+import 'package:marhom/core/utils/app_constants.dart';
 import 'package:marhom/core/utils/extensions.dart';
+import 'package:marhom/features/profile/send_message/data/models/send_message_model.dart';
+import 'package:marhom/features/profile/send_message/presentation/widgets/message_preview.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
+import '../../../../../core/dependency_injection/di.dart' as di;
 import '../../../../../core/shared/widgets/custom_form_field.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_images.dart';
@@ -16,6 +24,7 @@ import '../manager/send_message_cubit.dart';
 import '../widgets/day_selection_container.dart';
 import '../widgets/gender_selection_row.dart';
 import '../widgets/location_container.dart';
+import '../widgets/prayers_dropdown_menu.dart';
 
 class SendMessageView extends StatefulWidget {
   const SendMessageView({super.key});
@@ -25,6 +34,8 @@ class SendMessageView extends StatefulWidget {
 }
 
 class _SendMessageViewState extends State<SendMessageView> {
+  bool isPreviewVisible = true;
+
   @override
   void dispose() {
     SendMessageCubit.get(context).disposeCtrl();
@@ -34,7 +45,7 @@ class _SendMessageViewState extends State<SendMessageView> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SendMessageCubit(),
+      create: (context) => di.di<SendMessageCubit>(),
       child: BlocConsumer<SendMessageCubit, SendMessageStates>(
         listener: (context, state) {
           state.maybeWhen(
@@ -43,6 +54,22 @@ class _SendMessageViewState extends State<SendMessageView> {
                 "Maximum number of family members reached",
                 color: AppColors.warningYellow,
                 textColor: AppColors.blackText,
+              );
+            },
+            success: (state) {
+              context.defaultSnackBar(
+                "Message sent successfully",
+                color: AppColors.successGreen,
+                textColor: AppColors.blackText,
+              );
+            },
+            error: (failure) {
+              context.defaultSnackBar(
+                S.of(context).error(
+                      failure.code.toString(),
+                      failure.message,
+                    ),
+                color: AppColors.errorRed,
               );
             },
             orElse: () {},
@@ -107,11 +134,35 @@ class _SendMessageViewState extends State<SendMessageView> {
                       Gap(10.h),
                       const DaySelectionContainer(),
                       Gap(20.h),
-                      const LocationContainer(title: " prayer"),
+                      const PrayersDropdownMenu(),
                       Gap(20.h),
-                      const LocationContainer(title: "Choose Mosque"),
+                      GestureDetector(
+                        onTap: () => context.pushNamed(
+                          mapView,
+                          arguments: MapArgs(
+                            location: 1,
+                          ),
+                        ),
+                        child: LocationContainer(
+                          title: AppConstants.mosqueAddress != ""
+                              ? "Mosque at ${AppConstants.mosqueAddress}"
+                              : "Choose Mosque",
+                        ),
+                      ),
                       Gap(20.h),
-                      const LocationContainer(title: "Burial Location"),
+                      GestureDetector(
+                        onTap: () => context.pushNamed(
+                          mapView,
+                          arguments: MapArgs(
+                            location: 2,
+                          ),
+                        ),
+                        child: LocationContainer(
+                          title: AppConstants.burialAddress != ""
+                              ? "Burial at ${AppConstants.burialAddress}"
+                              : "Burial Location",
+                        ),
+                      ),
                       Gap(20.h),
                       Text(
                         "Funeral Location",
@@ -120,64 +171,29 @@ class _SendMessageViewState extends State<SendMessageView> {
                         ),
                       ),
                       Gap(10.h),
-                      CustomFormField(
-                        stream: const Stream.empty(),
-                        onChanged: (value) {},
-                        label: "Funeral Location",
-                      ),
-                      Gap(10.h),
-                      CustomFormField(
-                        stream: const Stream.empty(),
-                        onChanged: (value) {},
-                        label: "Paste Location",
-                      ),
-                      Gap(10.h),
-                      Container(
-                        padding: const EdgeInsets.all(Dimensions.p16),
-                        decoration: BoxDecoration(
-                          color: AppColors.primaryGold,
-                          borderRadius: BorderRadius.circular(Dimensions.r12),
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              "Add",
-                              style: CustomTextStyle.kTextStyleF16.copyWith(
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ),
-                            Icon(
-                              MdiIcons.plus,
-                              size: 20.sp,
-                            )
-                          ],
-                        ),
-                      ),
-                      Gap(20.h),
-                      Text(
-                        "Decedent Family",
-                        style: CustomTextStyle.kTextStyleF16.copyWith(
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                      Gap(10.h),
-                      ...List.generate(sendMessageCubit.index, (index) {
-                        sendMessageCubit.increaseCtrl();
+                      ...List.generate(sendMessageCubit.funeralIndex, (index) {
+                        sendMessageCubit.increaseFuneralCtrl();
                         return Column(
                           children: [
                             CustomFormField(
                               stream: sendMessageCubit
-                                  .nameControllers[index].stream,
-                              onChanged: (value) {},
-                              label: "Name ${index + 1}",
+                                  .funeralControllers[index].stream,
+                              onChanged: (value) {
+                                sendMessageCubit
+                                    .funeralControllers[index].value = value;
+                              },
+                              label: "Funeral Location ${index + 1}",
                             ),
                             Gap(10.h),
                             CustomFormField(
                               stream: sendMessageCubit
-                                  .phoneControllers[index].stream,
-                              onChanged: (value) {},
-                              label: "Phone ${index + 1}",
+                                  .funeralLocationControllers[index].stream,
+                              onChanged: (value) {
+                                sendMessageCubit
+                                    .funeralLocationControllers[index]
+                                    .value = value;
+                              },
+                              label: "Paste Location ${index + 1}",
                             ),
                           ],
                         );
@@ -185,7 +201,7 @@ class _SendMessageViewState extends State<SendMessageView> {
                       Gap(10.h),
                       GestureDetector(
                         onTap: () {
-                          sendMessageCubit.increaseIndex();
+                          sendMessageCubit.increaseFuneralIndex();
                         },
                         child: Container(
                           padding: const EdgeInsets.all(Dimensions.p16),
@@ -211,86 +227,132 @@ class _SendMessageViewState extends State<SendMessageView> {
                         ),
                       ),
                       Gap(20.h),
-                      Container(
-                        padding: const EdgeInsets.all(Dimensions.p16),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(Dimensions.r12),
-                            border: Border.all(
-                              color: Colors.black,
-                            )),
-                        child: Column(
-                          children: [
-                            Text(
-                              "Indeed, we belong to Allah, and indeed to Him we shall return",
-                              style: CustomTextStyle.kTextStyleF12.copyWith(
-                                fontWeight: FontWeight.w300,
-                              ),
-                            ),
-                            SizedBox(
-                              width: context.queryWidth.w,
-                              child: Wrap(
-                                alignment: WrapAlignment.start,
-                                crossAxisAlignment: WrapCrossAlignment.center,
-                                runSpacing: context.queryHeight.h * 0.01,
-                                children: [
-                                  Text(
-                                    "Has moved to the mercy of Allah Almighty ",
-                                    style:
-                                        CustomTextStyle.kTextStyleF12.copyWith(
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                                  ),
-                                  Container(
-                                    padding:
-                                        const EdgeInsets.all(Dimensions.p5),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    child: Text(
-                                      sendMessageCubit.deceasedNameCtrl.hasValue
-                                          ? " ${sendMessageCubit.deceasedNameCtrl.value}"
-                                          : "Deceased Name",
-                                      style: CustomTextStyle.kTextStyleF12
-                                          .copyWith(
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ),
-                                  Gap(10.w),
-                                  Text(
-                                    "And the funeral prayer will be performed for him on",
-                                    style:
-                                        CustomTextStyle.kTextStyleF12.copyWith(
-                                      fontWeight: FontWeight.w300,
-                                    ),
-                                  ),
-                                  Container(
-                                    padding:
-                                    const EdgeInsets.all(Dimensions.p5),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    child: Text(
-                                      sendMessageCubit.weekDay.title.isNotEmpty
-                                          ? " ${sendMessageCubit.weekDay.title}"
-                                          : "Deceased Name",
-                                      style: CustomTextStyle.kTextStyleF12
-                                          .copyWith(
-                                        fontWeight: FontWeight.w300,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            )
-                          ],
+                      Text(
+                        "Decedent Family",
+                        style: CustomTextStyle.kTextStyleF16.copyWith(
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
+                      Gap(10.h),
+                      ...List.generate(sendMessageCubit.familyIndex, (index) {
+                        sendMessageCubit.increaseFamilyCtrl();
+                        return Column(
+                          children: [
+                            CustomFormField(
+                              stream: sendMessageCubit
+                                  .nameControllers[index].stream,
+                              onChanged: (value) {
+                                sendMessageCubit.nameControllers[index].value =
+                                    value;
+                              },
+                              label: "Name ${index + 1}",
+                            ),
+                            Gap(10.h),
+                            CustomFormField(
+                              stream: sendMessageCubit
+                                  .phoneControllers[index].stream,
+                              onChanged: (value) {
+                                sendMessageCubit.phoneControllers[index].value =
+                                    value;
+                              },
+                              label: "Phone ${index + 1}",
+                            ),
+                          ],
+                        );
+                      }),
+                      Gap(10.h),
+                      GestureDetector(
+                        onTap: () {
+                          sendMessageCubit.increaseFamilyIndex();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(Dimensions.p16),
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryGold,
+                            borderRadius: BorderRadius.circular(Dimensions.r12),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                "Add",
+                                style: CustomTextStyle.kTextStyleF16.copyWith(
+                                  fontWeight: FontWeight.w300,
+                                ),
+                              ),
+                              Icon(
+                                MdiIcons.plus,
+                                size: 20.sp,
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                      Gap(20.h),
+                      isPreviewVisible
+                          ? const MessagePreview()
+                          : const SizedBox.shrink(),
+                      Gap(10.h),
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isPreviewVisible = !isPreviewVisible;
+                          });
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(Dimensions.p16),
+                          decoration: BoxDecoration(
+                            color: AppColors.primaryGold,
+                            borderRadius: BorderRadius.circular(Dimensions.r12),
+                          ),
+                          child: Icon(
+                            isPreviewVisible ? MdiIcons.eyeOff : MdiIcons.eye,
+                            size: 20.sp,
+                          ),
+                        ),
+                      ),
+                      Gap(20.h),
+                      CustomBtn(
+                        label: "Send",
+                        onPressed: () {
+                          sendMessageCubit.userSendMessage(
+                            SendMessageModel(
+                              token: AppConstants.userToken,
+                              name: sendMessageCubit.deceasedNameCtrl.value,
+                              gender: sendMessageCubit.gender.title,
+                              day: sendMessageCubit.weekDay.title,
+                              prayer: "${DateTime.now()}",
+                              mosqueLocation: AppConstants.mosqueLocation,
+                              burialLocation: AppConstants.burialLocation,
+                              funeralHqs: <FuneralHqModel>[
+                                for (int i = 0;
+                                    i < sendMessageCubit.funeralIndex;
+                                    i++)
+                                  FuneralHqModel(
+                                    name: sendMessageCubit
+                                        .funeralControllers[i].value,
+                                    funeralLocation: const LocationModel(
+                                      lat: 0,
+                                      lng: 0,
+                                    ),
+                                  ),
+                              ],
+                              condolences: <CondolencesModel>[
+                                for (int i = 0;
+                                    i < sendMessageCubit.familyIndex;
+                                    i++)
+                                  CondolencesModel(
+                                    name: sendMessageCubit
+                                        .nameControllers[i].value,
+                                    phone: sendMessageCubit
+                                        .phoneControllers[i].value,
+                                  ),
+                              ],
+                              supervisorId: 2,
+                            ),
+                          );
+                        },
+                      )
                     ],
                   ),
                 ),

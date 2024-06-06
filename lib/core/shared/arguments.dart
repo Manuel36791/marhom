@@ -7,6 +7,10 @@ class SupervisorRegisterArguments {
   final String countryCode;
 
   SupervisorRegisterArguments({required this.accountType, required this.firstName, required this.lastName, required this.phoneNumber, required this.dialCode, required this.countryCode});
+}
 
+class MapArgs {
+  final num location;
 
+  MapArgs({required this.location});
 }
