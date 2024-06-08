@@ -27,15 +27,13 @@ Map<String, dynamic> _$SendMessageModelToJson(SendMessageModel instance) =>
     };
 
 FuneralHqModel _$FuneralHqModelFromJson(Map<String, dynamic> json) =>
-    FuneralHqModel(
-      name: json['place'] as String?,
-      funeralLocation: json['location'] == null
-          ? null
-          : LocationModel.fromJson(json['location'] as Map<String, dynamic>),
-    );
+    FuneralHqModel();
 
 Map<String, dynamic> _$FuneralHqModelToJson(FuneralHqModel instance) =>
-    <String, dynamic>{};
+    <String, dynamic>{
+      'place': instance.name,
+      'location': instance.funeralLocation,
+    };
 
 CondolencesModel _$CondolencesModelFromJson(Map<String, dynamic> json) =>
     CondolencesModel(

@@ -20,13 +20,13 @@ class SendMessageModel extends SendMessageEntity {
   @JsonKey(name: "prayer_appointment", includeFromJson: false, includeToJson: true)
   final String? prayer;
   @JsonKey(name: "mosque",includeFromJson: false, includeToJson: true)
-  final LocationModel? mosqueLocation;
+  final dynamic mosqueLocation;
   @JsonKey(name: "burial_location",includeFromJson: false, includeToJson: true)
-  final LocationModel? burialLocation;
+  final dynamic burialLocation;
   @JsonKey(name: "funeral_headquarters",includeFromJson: false, includeToJson: true)
-  final List<FuneralHqModel>? funeralHqs;
+  final dynamic funeralHqs;
   @JsonKey(includeFromJson: false, includeToJson: true)
-  final List<CondolencesModel>? condolences;
+  final dynamic condolences;
   @JsonKey(name: "supervisor_id",includeFromJson: false, includeToJson: true)
   final num? supervisorId;
   @JsonKey(includeFromJson: true, includeToJson: false)
@@ -69,9 +69,9 @@ class SendMessageModel extends SendMessageEntity {
 
 @JsonSerializable()
 class FuneralHqModel extends FuneralHqEntity {
-@JsonKey(name: "place", includeFromJson: true, includeToJson: false)
+@JsonKey(name: "place", includeFromJson: false, includeToJson: true)
   final String? name;
-@JsonKey(name: "location", includeFromJson: true, includeToJson: false)
+@JsonKey(name: "location", includeFromJson: false, includeToJson: true)
 
   final LocationModel? funeralLocation;
 

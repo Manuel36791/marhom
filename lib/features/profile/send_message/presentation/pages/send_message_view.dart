@@ -1,29 +1,31 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:marhom/core/router/router.dart';
-import 'package:marhom/core/shared/arguments.dart';
-import 'package:marhom/core/shared/models/location_model.dart';
-import 'package:marhom/core/shared/widgets/custom_button.dart';
-import 'package:marhom/core/utils/app_constants.dart';
 import 'package:marhom/core/utils/extensions.dart';
-import 'package:marhom/features/profile/send_message/data/models/send_message_model.dart';
-import 'package:marhom/features/profile/send_message/presentation/widgets/message_preview.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../../../../../core/dependency_injection/di.dart' as di;
+import '../../../../../core/router/router.dart';
+import '../../../../../core/shared/arguments.dart';
+import '../../../../../core/shared/models/location_model.dart';
+import '../../../../../core/shared/widgets/custom_button.dart';
 import '../../../../../core/shared/widgets/custom_form_field.dart';
 import '../../../../../core/utils/app_colors.dart';
+import '../../../../../core/utils/app_constants.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
 import '../../../../../generated/l10n.dart';
+import '../../data/models/send_message_model.dart';
 import '../manager/send_message_cubit.dart';
 import '../widgets/day_selection_container.dart';
 import '../widgets/gender_selection_row.dart';
 import '../widgets/location_container.dart';
+import '../widgets/message_preview.dart';
 import '../widgets/prayers_dropdown_menu.dart';
 
 class SendMessageView extends StatefulWidget {
@@ -315,39 +317,47 @@ class _SendMessageViewState extends State<SendMessageView> {
                       CustomBtn(
                         label: "Send",
                         onPressed: () {
+                          Map funeralHQ = {};
+                          Map condolences = {};
+
+                          for(int i = 0; i < sendMessageCubit.funeralIndex; i++) {
+                            funeralHQ = {
+
+                              "$i" : FuneralHqModel(
+                                name: sendMessageCubit
+                                    .funeralControllers[i].value,
+                                funeralLocation: const LocationModel(
+                                  lat: 0,
+                                  lng: 0,
+                                ),
+                              ),
+                            };
+                          }
+
+                          for(int i = 0; i < sendMessageCubit.familyIndex; i++) {
+                            condolences = {
+                              "$i" : CondolencesModel(
+                                name: sendMessageCubit
+                                    .nameControllers[i].value,
+                                phone: sendMessageCubit
+                                    .phoneControllers[i].value,
+                              ),
+                            };
+                          }
+
+
+
                           sendMessageCubit.userSendMessage(
                             SendMessageModel(
                               token: AppConstants.userToken,
                               name: sendMessageCubit.deceasedNameCtrl.value,
                               gender: sendMessageCubit.gender.title,
                               day: sendMessageCubit.weekDay.title,
-                              prayer: "${DateTime.now()}",
-                              mosqueLocation: AppConstants.mosqueLocation,
-                              burialLocation: AppConstants.burialLocation,
-                              funeralHqs: <FuneralHqModel>[
-                                for (int i = 0;
-                                    i < sendMessageCubit.funeralIndex;
-                                    i++)
-                                  FuneralHqModel(
-                                    name: sendMessageCubit
-                                        .funeralControllers[i].value,
-                                    funeralLocation: const LocationModel(
-                                      lat: 0,
-                                      lng: 0,
-                                    ),
-                                  ),
-                              ],
-                              condolences: <CondolencesModel>[
-                                for (int i = 0;
-                                    i < sendMessageCubit.familyIndex;
-                                    i++)
-                                  CondolencesModel(
-                                    name: sendMessageCubit
-                                        .nameControllers[i].value,
-                                    phone: sendMessageCubit
-                                        .phoneControllers[i].value,
-                                  ),
-                              ],
+                              prayer: "${sendMessageCubit.date} ${sendMessageCubit.time}",
+                              mosqueLocation: jsonEncode(AppConstants.mosqueLocation),
+                              burialLocation: jsonEncode(AppConstants.burialLocation),
+                              funeralHqs:funeralHQ,
+                              condolences: condolences,
                               supervisorId: 2,
                             ),
                           );

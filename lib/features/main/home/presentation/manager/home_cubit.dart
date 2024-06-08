@@ -37,6 +37,7 @@ class HomeCubit extends Cubit<HomeStates> {
     }
 
     locationData = await location.getLocation();
+
     // emit(HomeStates.userLocation(locationData!));
 
   }
