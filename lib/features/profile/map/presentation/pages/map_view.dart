@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:marhom/core/router/router.dart';
 import 'package:marhom/core/utils/app_constants.dart';
 import 'package:marhom/core/utils/extensions.dart';
 
@@ -94,9 +93,7 @@ class _MapViewState extends State<MapView> {
                             );
                           }
 
-                          context.pushNamed(
-                            sendMessageView,
-                          );
+                          context.pop();
                         },
                       ),
                     ),

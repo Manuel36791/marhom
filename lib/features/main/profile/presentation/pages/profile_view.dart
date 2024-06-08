@@ -160,7 +160,7 @@ class ProfileView extends StatelessWidget {
                 ),
                 Gap(20.h),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () => context.pushNamed(onboardingView),
                   child: Container(
                     padding: EdgeInsets.symmetric(
                         horizontal: Dimensions.p36.h,

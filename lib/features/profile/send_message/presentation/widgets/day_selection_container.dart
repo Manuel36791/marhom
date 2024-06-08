@@ -45,6 +45,7 @@ class _DaySelectionContainerState extends State<DaySelectionContainer> {
                   setState(() {
                     selectedDay = index;
                     sendMessageCubit.weekDay = WeekDays.values[index];
+                    sendMessageCubit.chooseDate(sendMessageCubit.weekDay);
                   });
                 },
                 child: Container(

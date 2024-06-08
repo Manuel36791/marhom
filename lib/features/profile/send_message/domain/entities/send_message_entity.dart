@@ -8,10 +8,10 @@ class SendMessageEntity extends Equatable {
   final String? gender;
   final String? day;
   final String? prayer;
-  final LocationEntity? mosqueLocation;
-  final LocationEntity? burialLocation;
-  final List<FuneralHqEntity>? funeralHqs;
-  final List<CondolencesEntity>? condolences;
+  final dynamic mosqueLocation;
+  final dynamic burialLocation;
+  final dynamic funeralHqs;
+  final dynamic condolences;
   final num? supervisorId;
   final num? status;
   final String? message;

@@ -6,6 +6,7 @@ import 'package:marhom/core/utils/extensions.dart';
 import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
+import '../../../../../core/utils/logger.dart';
 import '../manager/send_message_cubit.dart';
 
 class PrayersDropdownMenu extends StatelessWidget {
@@ -63,6 +64,8 @@ class PrayersDropdownMenu extends StatelessWidget {
               ],
               onChanged: (newValue) {
                 sendMessageCubit.prayer = newValue!;
+                sendMessageCubit.chooseTime(sendMessageCubit.prayer);
+                logger.i(sendMessageCubit.time);
               },
               underline: const SizedBox.shrink(),
               isDense: true,

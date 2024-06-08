@@ -8,7 +8,9 @@ part 'location_model.g.dart';
 
 @JsonSerializable()
 class LocationModel extends LocationEntity {
+  @JsonKey(name: 'latitude')
   final double? lat;
+  @JsonKey(name: 'longitude')
   final double? lng;
 
   const LocationModel({
