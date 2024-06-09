@@ -13,7 +13,6 @@ import 'core/utils/app_images.dart';
 import 'core/utils/app_strings.dart';
 import 'core/utils/cubit_observer.dart';
 import 'generated/l10n.dart';
-import 'main_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -115,7 +114,7 @@ class _MyAppState extends State<MyApp> {
           home: child,
         );
       },
-      child: const MainView(),
+      child: const SupervisorBasicInfoView(),
     );
   }
 }

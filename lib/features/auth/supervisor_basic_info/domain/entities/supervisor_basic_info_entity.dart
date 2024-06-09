@@ -1,16 +1,12 @@
 import 'package:equatable/equatable.dart';
 
-import 'burial_locations_entity.dart';
-import 'mosques_entity.dart';
-import 'phones_model.dart';
-
 class SupervisorBasicInfoEntity extends Equatable {
   final String? token;
   final String? city;
-  final List<PhonesEntity>? phones;
-  final List<MosquesEntity>? mosques;
-  final List<BurialLocationsEntity>? burialLocations;
-  final List<num>? helpers;
+  final dynamic phones;
+  final dynamic mosques;
+  final dynamic burialLocations;
+  final Map<String, int>? helpers;
   final num? supervisorId;
 
   const SupervisorBasicInfoEntity({

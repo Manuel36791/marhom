@@ -10,7 +10,7 @@ class SupervisorBasicInfoUseCase {
 
   SupervisorBasicInfoUseCase({required this.supervisorBasicInfoRepo});
 
-  Future<Either<Failure, SupervisorBasicInfoEntity>> supervisorAddBasicInfo(
+  Future<Either<Failure, SupervisorBasicInfoEntity>> call(
       SupervisorBasicInfoModel supervisorBasicInfoModel) async {
     return await supervisorBasicInfoRepo
         .supervisorAddBasicInfo(supervisorBasicInfoModel);

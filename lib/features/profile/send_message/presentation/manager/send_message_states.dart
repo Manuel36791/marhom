@@ -8,4 +8,5 @@ class SendMessageStates with _$SendMessageStates {
   const factory SendMessageStates.loading() = Loading;
   const factory SendMessageStates.success(final SendMessageEntity message) = Success;
   const factory SendMessageStates.error(final Failure failure) = Error;
+
 }
