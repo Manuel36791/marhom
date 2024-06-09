@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
@@ -79,17 +80,31 @@ class _MapViewState extends State<MapView> {
 
                           if (widget.location == 1) {
                             AppConstants.mosqueAddress =
-                            "${address!.street}, ${address!.locality}, ${address!.subAdministrativeArea},  ${address!.administrativeArea}, ${address!.country}";
+                                "${address!.street}, ${address!.locality}, ${address!.subAdministrativeArea},  ${address!.administrativeArea}, ${address!.country}";
                             AppConstants.mosqueLocation = LocationModel(
                               lat: marker!.position.latitude,
                               lng: marker!.position.longitude,
                             );
-                          } else {
+                          } else if (widget.location == 2) {
                             AppConstants.burialAddress =
-                            "${address!.street}, ${address!.locality}, ${address!.subAdministrativeArea},  ${address!.administrativeArea}, ${address!.country}";
+                                "${address!.street}, ${address!.locality}, ${address!.subAdministrativeArea},  ${address!.administrativeArea}, ${address!.country}";
                             AppConstants.burialLocation = LocationModel(
                               lat: marker!.position.latitude,
                               lng: marker!.position.longitude,
+                            );
+                          } else if (widget.location == 3) {
+                            AppConstants.mosqueLatLng.add(
+                              LatLng(
+                                marker!.position.latitude,
+                                marker!.position.longitude,
+                              ),
+                            );
+                          } else {
+                            AppConstants.burialLatLng.add(
+                              LatLng(
+                                marker!.position.latitude,
+                                marker!.position.longitude,
+                              ),
                             );
                           }
 

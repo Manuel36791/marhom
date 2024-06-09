@@ -1,16 +1,15 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'phones_model.dart';
+part of 'helpers_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-PhonesModel _$PhonesModelFromJson(Map<String, dynamic> json) => PhonesModel(
-      phones: json['phones'] as String?,
-    );
+HelpersModel _$HelpersModelFromJson(Map<String, dynamic> json) =>
+    HelpersModel();
 
-Map<String, dynamic> _$PhonesModelToJson(PhonesModel instance) =>
+Map<String, dynamic> _$HelpersModelToJson(HelpersModel instance) =>
     <String, dynamic>{
-      'phones': instance.phones,
+      'token': instance.token,
     };

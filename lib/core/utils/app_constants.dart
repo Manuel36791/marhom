@@ -1,3 +1,4 @@
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:prayers_times/prayers_times.dart';
 
 import '../shared/models/location_model.dart';
@@ -24,6 +25,8 @@ class AppConstants {
   static String burialAddress = "";
   static LocationModel burialLocation = const LocationModel();
   static PrayerTimes? prayerTimes;
+  static List<LatLng> mosqueLatLng = [];
+  static List<LatLng> burialLatLng = [];
 
   //! API headers
   static const String applicationJson = "application/json";
@@ -51,5 +54,6 @@ class AppConstants {
   static const resendCodeUri = "auth/resend-code";
   static const userSendMessageUri = "V1/messages/send";
   static const supervisorGetMessages = "V1/messages";
+  static const getHelpersInfo = "V1/supervisor/all-user";
 
 }

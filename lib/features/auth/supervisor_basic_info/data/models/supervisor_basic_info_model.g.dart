@@ -11,17 +11,12 @@ SupervisorBasicInfoModel _$SupervisorBasicInfoModelFromJson(
     SupervisorBasicInfoModel(
       token: json['token'] as String?,
       city: json['city'] as String?,
-      phones: (json['phones'] as List<dynamic>?)
-          ?.map((e) => PhonesModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      mosques: (json['mosques'] as List<dynamic>?)
-          ?.map((e) => MosquesModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      burialLocations: (json['burial_locations'] as List<dynamic>?)
-          ?.map((e) => BurialLocationsModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      helpers:
-          (json['helpers'] as List<dynamic>?)?.map((e) => e as num).toList(),
+      phones: json['phones'],
+      mosques: json['mosques'],
+      burialLocations: json['burial_locations'],
+      helpers: (json['helpers'] as Map<String, dynamic>?)?.map(
+        (k, e) => MapEntry(k, (e as num).toInt()),
+      ),
       supervisorId: json['supervisor_id'] as num?,
     );
 

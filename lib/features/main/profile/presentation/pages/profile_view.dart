@@ -144,6 +144,18 @@ class ProfileView extends StatelessWidget {
                         ],
                       ),
                 Gap(15.h),
+                UserDataUtils.instance!.type == 2
+                    ? Column(
+                        children: [
+                          Gap(15.h),
+                          ClickableMenuTile(
+                            onClick: () => context.pushNamed(supervisorBasicInfoView),
+                            title: "Basic Info",
+                          ),
+                        ],
+                      )
+                    : const SizedBox.shrink(),
+                Gap(15.h),
                 const MenuTile(
                   title: "Contact us",
                   children: [],

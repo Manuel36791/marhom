@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
 
+import '../../features/auth/supervisor_basic_info/data/models/helpers_model.dart';
 import '../../features/auth/supervisor_basic_info/data/models/supervisor_basic_info_model.dart';
 import '../../features/auth/supervisor_login/data/models/supervisor_login_model.dart';
 import '../../features/auth/supervisor_register/data/models/supervisor_register_step_one_model.dart';
@@ -16,6 +17,7 @@ import '../../features/profile/supervisor_edit_profile/data/models/supervisor_ed
 import '../../features/profile/user_delete_account/data/models/user_delete_account_model.dart';
 import '../../features/profile/user_edit_profile/data/models/user_edit_profile_model.dart';
 import '../shared/api/data/models/check_phone_model.dart';
+import '../shared/models/user_data_model.dart';
 import '../utils/app_constants.dart';
 
 part 'api_client.g.dart';
@@ -83,4 +85,8 @@ abstract class ApiClient {
   @GET(AppConstants.supervisorGetMessages)
   Future<List<ViewMessagesModel>> supervisorGetMessages(
       @Queries() ViewMessagesModel viewMessagesModel);
+
+  @GET(AppConstants.getHelpersInfo)
+  Future<List<UserData>> getHelpersInfo(
+      @Queries() HelpersModel helpersModel);
 }

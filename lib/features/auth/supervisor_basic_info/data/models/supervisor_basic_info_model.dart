@@ -3,9 +3,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../domain/entities/supervisor_basic_info_entity.dart';
-import 'burial_locations_model.dart';
-import 'mosques_model.dart';
-import 'phones_model.dart';
 
 part 'supervisor_basic_info_model.g.dart';
 
@@ -13,11 +10,11 @@ part 'supervisor_basic_info_model.g.dart';
 class SupervisorBasicInfoModel extends SupervisorBasicInfoEntity {
   final String? token;
   final String? city;
-  final List<PhonesModel>? phones;
-  final List<MosquesModel>? mosques;
+  final dynamic phones;
+  final dynamic mosques;
   @JsonKey(name: 'burial_locations')
-  final List<BurialLocationsModel>? burialLocations;
-  final List<num>? helpers;
+  final dynamic burialLocations;
+  final Map<String, int>? helpers;
   @JsonKey(name: 'supervisor_id')
   final num? supervisorId;
 

@@ -1,7 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:marhom/features/auth/supervisor_basic_info/domain/use_cases/helpers_use_case.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../features/auth/supervisor_basic_info/data/repositories/supervisor_basic_info_repo_impl.dart';
+import '../../features/auth/supervisor_basic_info/domain/repositories/supervisor_basic_info_repo.dart';
+import '../../features/auth/supervisor_basic_info/domain/use_cases/supervisor_basic_info_use_class.dart';
+import '../../features/auth/supervisor_basic_info/presentation/manager/supervisor_basic_info_cubit.dart';
 import '../../features/auth/supervisor_login/data/repositories/supervisor_login_repo_impl.dart';
 import '../../features/auth/supervisor_login/presentation/manager/supervisor_login_cubit.dart';
 import '../../features/auth/supervisor_register/data/repositories/supervisor_register_repo_impl.dart';
@@ -138,6 +143,15 @@ Future<void> init() async {
   di.registerLazySingleton(() => ViewMessagesUseCase(viewMessagesRepo: di()));
   di.registerLazySingleton<ViewMessagesRepo>(
       () => ViewMessagesRepoImpl(viewMessagesService: di()));
+
+  /// <!------ VIEW MESSAGES ------->
+  di.registerFactory(() =>
+      SupervisorBasicInfoCubit(helpersUseCase: di(), basicInfoUseCase: di()));
+  di.registerLazySingleton(() => HelpersUseCase(supervisorBasicInfoRepo: di()));
+  di.registerLazySingleton(
+      () => SupervisorBasicInfoUseCase(supervisorBasicInfoRepo: di()));
+  di.registerLazySingleton<SupervisorBasicInfoRepo>(
+      () => SupervisorBasicInfoRepoImpl(supervisorBasicInfoService: di()));
 
   /// <!------ API CLIENT ------->
   Dio dio = await DioFactory.getDio();
