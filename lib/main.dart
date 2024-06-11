@@ -3,7 +3,6 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:marhom/features/auth/supervisor_basic_info/presentation/pages/supervisor_basic_info_view.dart';
 
 import 'core/dependency_injection/di.dart' as di;
 import 'core/helpers/cache_helper.dart';
@@ -13,6 +12,7 @@ import 'core/utils/app_images.dart';
 import 'core/utils/app_strings.dart';
 import 'core/utils/cubit_observer.dart';
 import 'generated/l10n.dart';
+import 'main_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -114,7 +114,7 @@ class _MyAppState extends State<MyApp> {
           home: child,
         );
       },
-      child: const SupervisorBasicInfoView(),
+      child: const MainView(),
     );
   }
 }

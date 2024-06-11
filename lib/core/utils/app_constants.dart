@@ -53,7 +53,8 @@ class AppConstants {
   static const verifyAccountUri = "auth/account-verification";
   static const resendCodeUri = "auth/resend-code";
   static const userSendMessageUri = "V1/messages/send";
-  static const supervisorGetMessages = "V1/messages";
-  static const getHelpersInfo = "V1/supervisor/all-user";
+  static const supervisorGetMessagesUri = "V1/messages";
+  static const getHelpersInfoUri = "V1/supervisor/all-user";
+  static const contactUsUri = "V1/pages/setting";
 
 }

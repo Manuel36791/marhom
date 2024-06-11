@@ -26,6 +26,10 @@ import '../../features/main/supervisor_home/data/repositories/view_messages_repo
 import '../../features/main/supervisor_home/domain/repositories/view_messages_repo.dart';
 import '../../features/main/supervisor_home/domain/use_cases/view_messages_use_case.dart';
 import '../../features/main/supervisor_home/presentation/manager/view_messages_cubit.dart';
+import '../../features/profile/contact_us/data/repositories/contact_us_repo_impl.dart';
+import '../../features/profile/contact_us/domain/repositories/contact_us_repo.dart';
+import '../../features/profile/contact_us/domain/use_cases/contact_us_use_case.dart';
+import '../../features/profile/contact_us/presentation/manager/contact_us_cubit.dart';
 import '../../features/profile/map/presentation/manager/maps_cubit.dart';
 import '../../features/profile/send_message/data/repositories/send_message_repo_impl.dart';
 import '../../features/profile/send_message/domain/repositories/send_message_repo.dart';
@@ -152,6 +156,14 @@ Future<void> init() async {
       () => SupervisorBasicInfoUseCase(supervisorBasicInfoRepo: di()));
   di.registerLazySingleton<SupervisorBasicInfoRepo>(
       () => SupervisorBasicInfoRepoImpl(supervisorBasicInfoService: di()));
+
+  /// <!------ CONTACT US ------->
+  di.registerFactory(() =>
+      ContactUsCubit(contactUsUseCase: di()));
+  di.registerLazySingleton(
+      () => ContactUsUseCase(contactUsRepo: di()));
+  di.registerLazySingleton<ContactUsRepo>(
+      () => ContactUsRepoImpl(contactUsService: di()));
 
   /// <!------ API CLIENT ------->
   Dio dio = await DioFactory.getDio();
