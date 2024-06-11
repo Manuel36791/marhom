@@ -26,6 +26,10 @@ import '../../features/main/supervisor_home/data/repositories/view_messages_repo
 import '../../features/main/supervisor_home/domain/repositories/view_messages_repo.dart';
 import '../../features/main/supervisor_home/domain/use_cases/view_messages_use_case.dart';
 import '../../features/main/supervisor_home/presentation/manager/view_messages_cubit.dart';
+import '../../features/profile/about_us/data/repositories/about_us_repo_impl.dart';
+import '../../features/profile/about_us/domain/repositories/about_us_repo.dart';
+import '../../features/profile/about_us/domain/use_cases/about_us_use_case.dart';
+import '../../features/profile/about_us/presentation/manager/about_us_cubit.dart';
 import '../../features/profile/contact_us/data/repositories/contact_us_repo_impl.dart';
 import '../../features/profile/contact_us/domain/repositories/contact_us_repo.dart';
 import '../../features/profile/contact_us/domain/use_cases/contact_us_use_case.dart';
@@ -164,6 +168,14 @@ Future<void> init() async {
       () => ContactUsUseCase(contactUsRepo: di()));
   di.registerLazySingleton<ContactUsRepo>(
       () => ContactUsRepoImpl(contactUsService: di()));
+
+  /// <!------ ABOUT US ------->
+  di.registerFactory(() =>
+      AboutUsCubit(aboutUsUseCase: di()));
+  di.registerLazySingleton(
+      () => AboutUsUseCase(aboutUsRepo: di()));
+  di.registerLazySingleton<AboutUsRepo>(
+      () => AboutUsRepoImpl(aboutUsService: di()));
 
   /// <!------ API CLIENT ------->
   Dio dio = await DioFactory.getDio();

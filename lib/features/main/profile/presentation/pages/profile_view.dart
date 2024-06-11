@@ -3,12 +3,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:intl/intl.dart';
 import 'package:marhom/core/router/router.dart';
 import 'package:marhom/core/shared/models/user_data_model_utils.dart';
 import 'package:marhom/core/shared/widgets/state_loading_widget.dart';
 import 'package:marhom/core/utils/extensions.dart';
 import 'package:marhom/features/main/profile/presentation/widgets/content_container.dart';
 import 'package:marhom/features/main/profile/presentation/widgets/supervisor_delete_account_dialog.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 import '../../../../../core/dependency_injection/di.dart' as di;
 import '../../../../../core/shared/widgets/network_image_error.dart';
@@ -18,6 +20,7 @@ import '../../../../../core/utils/app_colors.dart';
 import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
+import '../../../../profile/about_us/presentation/manager/about_us_cubit.dart';
 import '../../../../profile/contact_us/presentation/manager/contact_us_cubit.dart';
 import '../widgets/language_buttom_sheet.dart';
 import '../widgets/menu_container.dart';
@@ -33,6 +36,9 @@ class ProfileView extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => di.di<ContactUsCubit>()..getContact(),
+        ),
+        BlocProvider(
+          create: (context) => di.di<AboutUsCubit>()..getAboutUs(),
         ),
       ],
       child: Scaffold(
@@ -197,9 +203,31 @@ class ProfileView extends StatelessWidget {
                     children: [],
                   ),
                   Gap(15.h),
-                  const MenuTile(
-                    title: "About us",
-                    children: [],
+                  BlocBuilder<AboutUsCubit, AboutUsStates>(
+                    builder: (context, state) {
+                      return MenuTile(
+                        title: "About us",
+                        children: [
+                          state.maybeWhen(
+                            loading: () => const StateLoadingWidget(),
+                            success: (state) {
+                              return ContentContainer(
+                                child: Html(
+                                  data: Intl.getCurrentLocale() == "en"
+                                      ? state.aboutEn!
+                                      : state.aboutAr,
+                                ),
+                              );
+                            },
+                            error: (failure) => StateErrorWidget(
+                              errCode: failure.code.toString(),
+                              err: failure.message,
+                            ),
+                            orElse: () => const SizedBox.shrink(),
+                          ),
+                        ],
+                      );
+                    },
                   ),
                   Gap(20.h),
                   GestureDetector(
