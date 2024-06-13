@@ -12,6 +12,7 @@ import '../../features/auth/supervisor_register/presentation/pages/supervisor_re
 import '../../features/auth/user_register/presentation/pages/user_register_view.dart';
 import '../../features/bottom_nav_bar/bottom_nav_bar.dart';
 import '../../features/onboarding/presentation/pages/onboarding_view.dart';
+import '../../features/profile/fatwas_and_faqs/presentation/pages/fatwas_and_faqs_view.dart';
 import '../../features/profile/map/presentation/pages/map_view.dart';
 import '../../features/profile/send_message/presentation/pages/send_message_view.dart';
 import '../../features/profile/user_edit_profile/presentation/pages/user_edit_profile_view.dart';
@@ -104,6 +105,10 @@ class AppRouters {
             message: args.message,
           ),
         );
+
+      case fatwasAndFaqsView:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => const FatwasAndFaqsView());
 
       default:
         return MaterialPageRoute(

@@ -13,6 +13,7 @@ import '../../features/auth/verify_account/data/models/verify_account_model.dart
 import '../../features/main/supervisor_home/data/models/view_message_model.dart';
 import '../../features/profile/about_us/data/models/about_us_model.dart';
 import '../../features/profile/contact_us/data/models/contact_us_model.dart';
+import '../../features/profile/fatwas_and_faqs/data/models/qa_model.dart';
 import '../../features/profile/send_message/data/models/send_message_model.dart';
 import '../../features/profile/supervisor_delete_account/data/models/supervisor_delete_account_model.dart';
 import '../../features/profile/supervisor_edit_profile/data/models/supervisor_edit_profile_model.dart';
@@ -97,4 +98,10 @@ abstract class ApiClient {
 
   @GET(AppConstants.aboutUsUri)
   Future<AboutUsModel> aboutUs();
+
+  @GET(AppConstants.faqsUri)
+  Future<QADataModel> getFaqs(@Queries() QAModel qAModel);
+
+  @GET(AppConstants.getFatwasUri)
+  Future<QADataModel> getFatwas();
 }
