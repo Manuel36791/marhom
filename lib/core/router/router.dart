@@ -15,3 +15,5 @@ const String mapView = '/mapView';
 const String contactGroupsView = '/contactGroupsView';
 const String groupView = '/groupView';
 const String mortalityDetailsView = '/mortalityDetailsView';
+const String fatwasAndFaqsView = '/fatwasAndFaqsView';
+const String condolenceMessagesView = '/condolenceMessagesView';

@@ -57,5 +57,8 @@ class AppConstants {
   static const getHelpersInfoUri = "V1/supervisor/all-user";
   static const contactUsUri = "V1/pages/setting";
   static const aboutUsUri = "V1/pages/about";
+  static const getFatwasUri = "V1/pages/fatawy";
+  static const faqsUri = "V1/pages/common-questions";
+  static const getCondolenceMessagesUri = "V1/pages/condlence-messages";
 
 }
