@@ -9,6 +9,12 @@ class AppImages {
   // static String placeholder200 = "https://placehold.co/200";
   static String placeholder = "https://via.placeholder.com/";
   static String bgImg = "$imagePath/background.jpg";
+  static String fajrPng = "$imagePath/fajr.png";
+  static String sunrisePng = "$imagePath/sunrise.png";
+  static String dhuhrPng = "$imagePath/dhuhr.png";
+  static String asrPng = "$imagePath/asr.png";
+  static String sunsetPng = "$imagePath/sunsets.png";
+  static String ishaPng = "$imagePath/isha.png";
 
   //? SVG Paths
   static String wifiSvg = "$svgPath/wifi.svg";

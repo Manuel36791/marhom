@@ -49,7 +49,7 @@ class QAModel extends QAEntity {
 @JsonSerializable()
 class QADataModel extends QADataEntity {
   @JsonKey(name: "data", includeFromJson: true, includeToJson: false)
-  final List<dynamic>? qaData;
+  final List<QAModel>? qaData;
 
   const QADataModel({
     this.qaData,

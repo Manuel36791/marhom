@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
@@ -11,13 +10,11 @@ import 'package:marhom/core/utils/extensions.dart';
 import 'package:marhom/features/main/profile/presentation/widgets/content_container.dart';
 import 'package:marhom/features/main/profile/presentation/widgets/supervisor_delete_account_dialog.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../../../core/dependency_injection/di.dart' as di;
-import '../../../../../core/shared/widgets/network_image_error.dart';
-import '../../../../../core/shared/widgets/network_image_progressor.dart';
 import '../../../../../core/shared/widgets/state_error_widget.dart';
 import '../../../../../core/utils/app_colors.dart';
-import '../../../../../core/utils/app_images.dart';
 import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
 import '../../../../profile/about_us/presentation/manager/about_us_cubit.dart';
@@ -48,22 +45,22 @@ class ProfileView extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(Dimensions.r12),
-                    child: CachedNetworkImage(
-                      imageUrl: "${AppImages.placeholder}314x127",
-                      height: 160.h,
-                      width: context.queryWidth.w,
-                      fit: BoxFit.cover,
-                      progressIndicatorBuilder:
-                          (context, url, downloadProgress) =>
-                              NetworkImageProgress(
-                                  downloadProgress: downloadProgress),
-                      errorWidget: (context, url, error) =>
-                          const NetworkImageError(),
-                    ),
-                  ),
-                  Gap(30.h),
+                  // ClipRRect(
+                  //   borderRadius: BorderRadius.circular(Dimensions.r12),
+                  //   child: CachedNetworkImage(
+                  //     imageUrl: "${AppImages.placeholder}314x127",
+                  //     height: 160.h,
+                  //     width: context.queryWidth.w,
+                  //     fit: BoxFit.cover,
+                  //     progressIndicatorBuilder:
+                  //         (context, url, downloadProgress) =>
+                  //             NetworkImageProgress(
+                  //                 downloadProgress: downloadProgress),
+                  //     errorWidget: (context, url, error) =>
+                  //         const NetworkImageError(),
+                  //   ),
+                  // ),
+                  // Gap(30.h),
                   Text(
                     "Menu",
                     style: CustomTextStyle.kTextStyleF20,
@@ -75,26 +72,26 @@ class ProfileView extends StatelessWidget {
                       LanguageBottomSheet(),
                     ],
                   ),
+                  // Gap(15.h),
+                  // const MenuTile(
+                  //   title: "Description of funeral prayers",
+                  //   children: [],
+                  // ),
                   Gap(15.h),
-                  const MenuTile(
-                    title: "Description of funeral prayers",
-                    children: [],
-                  ),
-                  Gap(15.h),
-                  ClickableMenuTile(
+                  UserDataUtils.instance!.type == 2 ? ClickableMenuTile(
                     onClick: () => context.pushNamed(condolenceMessagesView),
                     title: "Condolence messages",
-                  ),
+                  ): const SizedBox.shrink(),
                   Gap(15.h),
-                  ClickableMenuTile(
+                  UserDataUtils.instance!.type == 2 ? ClickableMenuTile(
                     onClick: () => context.pushNamed(contactGroupsView),
                     title: "Contacts",
-                  ),
-                  Gap(15.h),
-                  const MenuTile(
-                    title: "Mortality",
-                    children: [],
-                  ),
+                  ) : const SizedBox.shrink(),
+                  // Gap(15.h),
+                  // const MenuTile(
+                  //   title: "Mortality",
+                  //   children: [],
+                  // ),
                   Gap(15.h),
                   ClickableMenuTile(
                     onClick: () => context.pushNamed(fatwasAndFaqsView),
@@ -160,7 +157,6 @@ class ProfileView extends StatelessWidget {
                             ),
                           ],
                         ),
-                  Gap(15.h),
                   UserDataUtils.instance!.type == 2
                       ? Column(
                           children: [
@@ -173,6 +169,7 @@ class ProfileView extends StatelessWidget {
                           ],
                         )
                       : const SizedBox.shrink(),
+                  Gap(15.h),
                   BlocBuilder<ContactUsCubit, ContactUsState>(
                     builder: (context, state) {
                       return MenuTile(
@@ -198,9 +195,24 @@ class ProfileView extends StatelessWidget {
                     },
                   ),
                   Gap(15.h),
-                  const MenuTile(
+                  ClickableMenuTile(
+                    onClick: () async {
+                      final result = await Share.share(
+                        "It’s been really helpful for me. Give it a try: https://example.com",
+                        subject:
+                            "Hi! I've been using this fantastic app and thought you'd love it too",
+                      );
+                      if (result.status == ShareResultStatus.success) {
+                        if(context.mounted) {
+                          context.defaultSnackBar(
+                            "Message shared successfully",
+                            color: AppColors.successGreen,
+                            textColor: AppColors.blackText,
+                          );
+                        }
+                      }
+                    },
                     title: "Share app",
-                    children: [],
                   ),
                   Gap(15.h),
                   BlocBuilder<AboutUsCubit, AboutUsStates>(
