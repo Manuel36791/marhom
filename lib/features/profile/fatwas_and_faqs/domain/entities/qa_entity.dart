@@ -33,7 +33,7 @@ class QAEntity extends Equatable {
 }
 
 class QADataEntity extends Equatable {
-  final List<dynamic>? qaData;
+  final List<QAEntity>? qaData;
 
   const QADataEntity({
     this.qaData,

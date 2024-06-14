@@ -20,7 +20,9 @@ Map<String, dynamic> _$QAModelToJson(QAModel instance) => <String, dynamic>{
     };
 
 QADataModel _$QADataModelFromJson(Map<String, dynamic> json) => QADataModel(
-      qaData: json['data'] as List<dynamic>?,
+      qaData: (json['data'] as List<dynamic>?)
+          ?.map((e) => QAModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$QADataModelToJson(QADataModel instance) =>
