@@ -1,24 +1,39 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:marhom/features/main/home/domain/entities/slider_entity.dart';
 import 'package:prayers_times/prayers_times.dart';
 import 'package:location/location.dart';
 
+import '../../../../../core/resources/api/failure_class.dart';
+import '../../domain/use_cases/sliders_use_case.dart';
+
 part 'home_states.dart';
+
 part 'home_cubit.freezed.dart';
 
 class HomeCubit extends Cubit<HomeStates> {
-  HomeCubit() : super(const HomeStates.initial());
+  HomeCubit({required this.slidersUseCase}) : super(const HomeStates.initial());
 
   static HomeCubit get(context) => BlocProvider.of<HomeCubit>(context);
+
+  final SlidersUseCase slidersUseCase;
+
+  getSliders() async {
+    emit(const HomeStates.loading());
+
+    final response = await slidersUseCase();
+    response.fold(
+      (l) => emit(HomeStates.slidersError(l)),
+      (r) => emit(HomeStates.slidersSuccess(r)),
+    );
+  }
 
   Location location = Location();
   late LocationData locationData;
 
   Future getCurrentLocation() async {
-
     bool serviceEnabled;
     PermissionStatus permissionGranted;
-
 
     serviceEnabled = await location.serviceEnabled();
     if (!serviceEnabled) {
@@ -39,7 +54,6 @@ class HomeCubit extends Cubit<HomeStates> {
     locationData = await location.getLocation();
 
     // emit(HomeStates.userLocation(locationData!));
-
   }
 
   PrayerTimes? prayerTimes;
@@ -65,7 +79,6 @@ class HomeCubit extends Cubit<HomeStates> {
       locationName: 'Asia/Kolkata',
     );
 
-    emit(HomeStates.success(prayerTimes!));
+    emit(HomeStates.prayerSuccess(prayerTimes!));
   }
-
 }

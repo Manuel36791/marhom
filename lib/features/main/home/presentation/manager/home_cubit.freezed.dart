@@ -20,21 +20,27 @@ mixin _$HomeStates {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PrayerTimes prayerTimes) success,
+    required TResult Function(PrayerTimes prayerTimes) prayerSuccess,
+    required TResult Function(SlidersResponseEntity sliders) slidersSuccess,
+    required TResult Function(Failure failure) slidersError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PrayerTimes prayerTimes)? success,
+    TResult? Function(PrayerTimes prayerTimes)? prayerSuccess,
+    TResult? Function(SlidersResponseEntity sliders)? slidersSuccess,
+    TResult? Function(Failure failure)? slidersError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PrayerTimes prayerTimes)? success,
+    TResult Function(PrayerTimes prayerTimes)? prayerSuccess,
+    TResult Function(SlidersResponseEntity sliders)? slidersSuccess,
+    TResult Function(Failure failure)? slidersError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -42,21 +48,27 @@ mixin _$HomeStates {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(Success value) prayerSuccess,
+    required TResult Function(SlidersSuccess value) slidersSuccess,
+    required TResult Function(SlidersError value) slidersError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(Success value)? success,
+    TResult? Function(Success value)? prayerSuccess,
+    TResult? Function(SlidersSuccess value)? slidersSuccess,
+    TResult? Function(SlidersError value)? slidersError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(Success value)? prayerSuccess,
+    TResult Function(SlidersSuccess value)? slidersSuccess,
+    TResult Function(SlidersError value)? slidersError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -120,7 +132,9 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PrayerTimes prayerTimes) success,
+    required TResult Function(PrayerTimes prayerTimes) prayerSuccess,
+    required TResult Function(SlidersResponseEntity sliders) slidersSuccess,
+    required TResult Function(Failure failure) slidersError,
   }) {
     return initial();
   }
@@ -130,7 +144,9 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PrayerTimes prayerTimes)? success,
+    TResult? Function(PrayerTimes prayerTimes)? prayerSuccess,
+    TResult? Function(SlidersResponseEntity sliders)? slidersSuccess,
+    TResult? Function(Failure failure)? slidersError,
   }) {
     return initial?.call();
   }
@@ -140,7 +156,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PrayerTimes prayerTimes)? success,
+    TResult Function(PrayerTimes prayerTimes)? prayerSuccess,
+    TResult Function(SlidersResponseEntity sliders)? slidersSuccess,
+    TResult Function(Failure failure)? slidersError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -154,7 +172,9 @@ class _$InitialImpl implements _Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(Success value) prayerSuccess,
+    required TResult Function(SlidersSuccess value) slidersSuccess,
+    required TResult Function(SlidersError value) slidersError,
   }) {
     return initial(this);
   }
@@ -164,7 +184,9 @@ class _$InitialImpl implements _Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(Success value)? success,
+    TResult? Function(Success value)? prayerSuccess,
+    TResult? Function(SlidersSuccess value)? slidersSuccess,
+    TResult? Function(SlidersError value)? slidersError,
   }) {
     return initial?.call(this);
   }
@@ -174,7 +196,9 @@ class _$InitialImpl implements _Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(Success value)? prayerSuccess,
+    TResult Function(SlidersSuccess value)? slidersSuccess,
+    TResult Function(SlidersError value)? slidersError,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -228,7 +252,9 @@ class _$LoadingImpl implements Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PrayerTimes prayerTimes) success,
+    required TResult Function(PrayerTimes prayerTimes) prayerSuccess,
+    required TResult Function(SlidersResponseEntity sliders) slidersSuccess,
+    required TResult Function(Failure failure) slidersError,
   }) {
     return loading();
   }
@@ -238,7 +264,9 @@ class _$LoadingImpl implements Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PrayerTimes prayerTimes)? success,
+    TResult? Function(PrayerTimes prayerTimes)? prayerSuccess,
+    TResult? Function(SlidersResponseEntity sliders)? slidersSuccess,
+    TResult? Function(Failure failure)? slidersError,
   }) {
     return loading?.call();
   }
@@ -248,7 +276,9 @@ class _$LoadingImpl implements Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PrayerTimes prayerTimes)? success,
+    TResult Function(PrayerTimes prayerTimes)? prayerSuccess,
+    TResult Function(SlidersResponseEntity sliders)? slidersSuccess,
+    TResult Function(Failure failure)? slidersError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -262,7 +292,9 @@ class _$LoadingImpl implements Loading {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(Success value) prayerSuccess,
+    required TResult Function(SlidersSuccess value) slidersSuccess,
+    required TResult Function(SlidersError value) slidersError,
   }) {
     return loading(this);
   }
@@ -272,7 +304,9 @@ class _$LoadingImpl implements Loading {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(Success value)? success,
+    TResult? Function(Success value)? prayerSuccess,
+    TResult? Function(SlidersSuccess value)? slidersSuccess,
+    TResult? Function(SlidersError value)? slidersError,
   }) {
     return loading?.call(this);
   }
@@ -282,7 +316,9 @@ class _$LoadingImpl implements Loading {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(Success value)? prayerSuccess,
+    TResult Function(SlidersSuccess value)? slidersSuccess,
+    TResult Function(SlidersError value)? slidersError,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -337,7 +373,7 @@ class _$SuccessImpl implements Success {
 
   @override
   String toString() {
-    return 'HomeStates.success(prayerTimes: $prayerTimes)';
+    return 'HomeStates.prayerSuccess(prayerTimes: $prayerTimes)';
   }
 
   @override
@@ -363,9 +399,11 @@ class _$SuccessImpl implements Success {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PrayerTimes prayerTimes) success,
+    required TResult Function(PrayerTimes prayerTimes) prayerSuccess,
+    required TResult Function(SlidersResponseEntity sliders) slidersSuccess,
+    required TResult Function(Failure failure) slidersError,
   }) {
-    return success(prayerTimes);
+    return prayerSuccess(prayerTimes);
   }
 
   @override
@@ -373,9 +411,11 @@ class _$SuccessImpl implements Success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PrayerTimes prayerTimes)? success,
+    TResult? Function(PrayerTimes prayerTimes)? prayerSuccess,
+    TResult? Function(SlidersResponseEntity sliders)? slidersSuccess,
+    TResult? Function(Failure failure)? slidersError,
   }) {
-    return success?.call(prayerTimes);
+    return prayerSuccess?.call(prayerTimes);
   }
 
   @override
@@ -383,11 +423,13 @@ class _$SuccessImpl implements Success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PrayerTimes prayerTimes)? success,
+    TResult Function(PrayerTimes prayerTimes)? prayerSuccess,
+    TResult Function(SlidersResponseEntity sliders)? slidersSuccess,
+    TResult Function(Failure failure)? slidersError,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(prayerTimes);
+    if (prayerSuccess != null) {
+      return prayerSuccess(prayerTimes);
     }
     return orElse();
   }
@@ -397,9 +439,11 @@ class _$SuccessImpl implements Success {
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
     required TResult Function(Loading value) loading,
-    required TResult Function(Success value) success,
+    required TResult Function(Success value) prayerSuccess,
+    required TResult Function(SlidersSuccess value) slidersSuccess,
+    required TResult Function(SlidersError value) slidersError,
   }) {
-    return success(this);
+    return prayerSuccess(this);
   }
 
   @override
@@ -407,9 +451,11 @@ class _$SuccessImpl implements Success {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
     TResult? Function(Loading value)? loading,
-    TResult? Function(Success value)? success,
+    TResult? Function(Success value)? prayerSuccess,
+    TResult? Function(SlidersSuccess value)? slidersSuccess,
+    TResult? Function(SlidersError value)? slidersError,
   }) {
-    return success?.call(this);
+    return prayerSuccess?.call(this);
   }
 
   @override
@@ -417,11 +463,13 @@ class _$SuccessImpl implements Success {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
     TResult Function(Loading value)? loading,
-    TResult Function(Success value)? success,
+    TResult Function(Success value)? prayerSuccess,
+    TResult Function(SlidersSuccess value)? slidersSuccess,
+    TResult Function(SlidersError value)? slidersError,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    if (prayerSuccess != null) {
+      return prayerSuccess(this);
     }
     return orElse();
   }
@@ -433,5 +481,309 @@ abstract class Success implements HomeStates {
   PrayerTimes get prayerTimes;
   @JsonKey(ignore: true)
   _$$SuccessImplCopyWith<_$SuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SlidersSuccessImplCopyWith<$Res> {
+  factory _$$SlidersSuccessImplCopyWith(_$SlidersSuccessImpl value,
+          $Res Function(_$SlidersSuccessImpl) then) =
+      __$$SlidersSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({SlidersResponseEntity sliders});
+}
+
+/// @nodoc
+class __$$SlidersSuccessImplCopyWithImpl<$Res>
+    extends _$HomeStatesCopyWithImpl<$Res, _$SlidersSuccessImpl>
+    implements _$$SlidersSuccessImplCopyWith<$Res> {
+  __$$SlidersSuccessImplCopyWithImpl(
+      _$SlidersSuccessImpl _value, $Res Function(_$SlidersSuccessImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? sliders = null,
+  }) {
+    return _then(_$SlidersSuccessImpl(
+      null == sliders
+          ? _value.sliders
+          : sliders // ignore: cast_nullable_to_non_nullable
+              as SlidersResponseEntity,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SlidersSuccessImpl implements SlidersSuccess {
+  const _$SlidersSuccessImpl(this.sliders);
+
+  @override
+  final SlidersResponseEntity sliders;
+
+  @override
+  String toString() {
+    return 'HomeStates.slidersSuccess(sliders: $sliders)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SlidersSuccessImpl &&
+            (identical(other.sliders, sliders) || other.sliders == sliders));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, sliders);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SlidersSuccessImplCopyWith<_$SlidersSuccessImpl> get copyWith =>
+      __$$SlidersSuccessImplCopyWithImpl<_$SlidersSuccessImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(PrayerTimes prayerTimes) prayerSuccess,
+    required TResult Function(SlidersResponseEntity sliders) slidersSuccess,
+    required TResult Function(Failure failure) slidersError,
+  }) {
+    return slidersSuccess(sliders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(PrayerTimes prayerTimes)? prayerSuccess,
+    TResult? Function(SlidersResponseEntity sliders)? slidersSuccess,
+    TResult? Function(Failure failure)? slidersError,
+  }) {
+    return slidersSuccess?.call(sliders);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(PrayerTimes prayerTimes)? prayerSuccess,
+    TResult Function(SlidersResponseEntity sliders)? slidersSuccess,
+    TResult Function(Failure failure)? slidersError,
+    required TResult orElse(),
+  }) {
+    if (slidersSuccess != null) {
+      return slidersSuccess(sliders);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) prayerSuccess,
+    required TResult Function(SlidersSuccess value) slidersSuccess,
+    required TResult Function(SlidersError value) slidersError,
+  }) {
+    return slidersSuccess(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? prayerSuccess,
+    TResult? Function(SlidersSuccess value)? slidersSuccess,
+    TResult? Function(SlidersError value)? slidersError,
+  }) {
+    return slidersSuccess?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? prayerSuccess,
+    TResult Function(SlidersSuccess value)? slidersSuccess,
+    TResult Function(SlidersError value)? slidersError,
+    required TResult orElse(),
+  }) {
+    if (slidersSuccess != null) {
+      return slidersSuccess(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SlidersSuccess implements HomeStates {
+  const factory SlidersSuccess(final SlidersResponseEntity sliders) =
+      _$SlidersSuccessImpl;
+
+  SlidersResponseEntity get sliders;
+  @JsonKey(ignore: true)
+  _$$SlidersSuccessImplCopyWith<_$SlidersSuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$SlidersErrorImplCopyWith<$Res> {
+  factory _$$SlidersErrorImplCopyWith(
+          _$SlidersErrorImpl value, $Res Function(_$SlidersErrorImpl) then) =
+      __$$SlidersErrorImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Failure failure});
+}
+
+/// @nodoc
+class __$$SlidersErrorImplCopyWithImpl<$Res>
+    extends _$HomeStatesCopyWithImpl<$Res, _$SlidersErrorImpl>
+    implements _$$SlidersErrorImplCopyWith<$Res> {
+  __$$SlidersErrorImplCopyWithImpl(
+      _$SlidersErrorImpl _value, $Res Function(_$SlidersErrorImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? failure = null,
+  }) {
+    return _then(_$SlidersErrorImpl(
+      null == failure
+          ? _value.failure
+          : failure // ignore: cast_nullable_to_non_nullable
+              as Failure,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SlidersErrorImpl implements SlidersError {
+  const _$SlidersErrorImpl(this.failure);
+
+  @override
+  final Failure failure;
+
+  @override
+  String toString() {
+    return 'HomeStates.slidersError(failure: $failure)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SlidersErrorImpl &&
+            (identical(other.failure, failure) || other.failure == failure));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, failure);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SlidersErrorImplCopyWith<_$SlidersErrorImpl> get copyWith =>
+      __$$SlidersErrorImplCopyWithImpl<_$SlidersErrorImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loading,
+    required TResult Function(PrayerTimes prayerTimes) prayerSuccess,
+    required TResult Function(SlidersResponseEntity sliders) slidersSuccess,
+    required TResult Function(Failure failure) slidersError,
+  }) {
+    return slidersError(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? initial,
+    TResult? Function()? loading,
+    TResult? Function(PrayerTimes prayerTimes)? prayerSuccess,
+    TResult? Function(SlidersResponseEntity sliders)? slidersSuccess,
+    TResult? Function(Failure failure)? slidersError,
+  }) {
+    return slidersError?.call(failure);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loading,
+    TResult Function(PrayerTimes prayerTimes)? prayerSuccess,
+    TResult Function(SlidersResponseEntity sliders)? slidersSuccess,
+    TResult Function(Failure failure)? slidersError,
+    required TResult orElse(),
+  }) {
+    if (slidersError != null) {
+      return slidersError(failure);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Initial value) initial,
+    required TResult Function(Loading value) loading,
+    required TResult Function(Success value) prayerSuccess,
+    required TResult Function(SlidersSuccess value) slidersSuccess,
+    required TResult Function(SlidersError value) slidersError,
+  }) {
+    return slidersError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Initial value)? initial,
+    TResult? Function(Loading value)? loading,
+    TResult? Function(Success value)? prayerSuccess,
+    TResult? Function(SlidersSuccess value)? slidersSuccess,
+    TResult? Function(SlidersError value)? slidersError,
+  }) {
+    return slidersError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Initial value)? initial,
+    TResult Function(Loading value)? loading,
+    TResult Function(Success value)? prayerSuccess,
+    TResult Function(SlidersSuccess value)? slidersSuccess,
+    TResult Function(SlidersError value)? slidersError,
+    required TResult orElse(),
+  }) {
+    if (slidersError != null) {
+      return slidersError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SlidersError implements HomeStates {
+  const factory SlidersError(final Failure failure) = _$SlidersErrorImpl;
+
+  Failure get failure;
+  @JsonKey(ignore: true)
+  _$$SlidersErrorImplCopyWith<_$SlidersErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -60,5 +60,6 @@ class AppConstants {
   static const getFatwasUri = "V1/pages/fatawy";
   static const faqsUri = "V1/pages/common-questions";
   static const getCondolenceMessagesUri = "V1/pages/condlence-messages";
+  static const getSlidersUri = "V1/pages/sliders";
 
 }

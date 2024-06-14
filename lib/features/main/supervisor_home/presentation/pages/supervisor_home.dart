@@ -7,11 +7,11 @@ import 'package:marhom/core/shared/widgets/state_loading_widget.dart';
 import 'package:marhom/core/utils/app_colors.dart';
 import 'package:marhom/core/utils/extensions.dart';
 import 'package:marhom/features/main/supervisor_home/data/models/view_message_model.dart';
-import 'package:marhom/features/main/supervisor_home/presentation/pages/mortality_details_view.dart';
 
 import '../../../../../core/dependency_injection/di.dart' as di;
 import '../../../../../core/shared/arguments.dart';
 import '../../../../../core/utils/app_constants.dart';
+import '../../../../../core/utils/app_text_styles.dart';
 import '../../../../../core/utils/dimensions.dart';
 import '../manager/view_messages_cubit.dart';
 
@@ -42,29 +42,37 @@ class _SupervisorHomeState extends State<SupervisorHome> {
                 padding: const EdgeInsets.all(Dimensions.p16),
                 child: state.maybeWhen(
                   loading: () => const StateLoadingWidget(),
-                  success: (state) => ListView.builder(
-                    itemCount: state.length,
-                    itemBuilder: (context, index) {
-                      return GestureDetector(
-                        onTap: () => context.pushNamed(
-                          mortalityDetailsView,
-                          arguments: MortalityDetailsArgs(
-                            message: state[index],
+                  success: (state) => state.isNotEmpty
+                      ? ListView.builder(
+                          itemCount: state.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () => context.pushNamed(
+                                mortalityDetailsView,
+                                arguments: MortalityDetailsArgs(
+                                  message: state[index],
+                                ),
+                              ),
+                              child: Container(
+                                padding: const EdgeInsets.all(Dimensions.p16),
+                                decoration: BoxDecoration(
+                                  color: AppColors.primaryGold,
+                                  borderRadius:
+                                      BorderRadius.circular(Dimensions.r50),
+                                ),
+                                child: Center(
+                                  child: Text(state[index].name!),
+                                ),
+                              ),
+                            );
+                          },
+                        )
+                      : Center(
+                          child: Text(
+                            "You have no messages yet",
+                            style: CustomTextStyle.kTextStyleF16,
                           ),
                         ),
-                        child: Container(
-                          padding: const EdgeInsets.all(Dimensions.p16),
-                          decoration: BoxDecoration(
-                            color: AppColors.primaryGold,
-                            borderRadius: BorderRadius.circular(Dimensions.r50),
-                          ),
-                          child: Center(
-                            child: Text(state[index].name!),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
                   error: (failure) => StateErrorWidget(
                       errCode: failure.code.toString(), err: failure.message),
                   orElse: () => const SizedBox.shrink(),

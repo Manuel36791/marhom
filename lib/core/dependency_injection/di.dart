@@ -21,6 +21,9 @@ import '../../features/auth/user_register/domain/repositories/user_register_or_l
 import '../../features/auth/user_register/domain/use_cases/user_login_use_case.dart';
 import '../../features/auth/user_register/domain/use_cases/user_register_use_case.dart';
 import '../../features/auth/user_register/presentation/manager/user_register_cubit.dart';
+import '../../features/main/home/data/repositories/sliders_repo_impl.dart';
+import '../../features/main/home/domain/repositories/slieder_repo.dart';
+import '../../features/main/home/domain/use_cases/sliders_use_case.dart';
 import '../../features/main/home/presentation/manager/home_cubit.dart';
 import '../../features/main/supervisor_home/data/repositories/view_messages_repo_impl.dart';
 import '../../features/main/supervisor_home/domain/repositories/view_messages_repo.dart';
@@ -144,7 +147,11 @@ Future<void> init() async {
       () => UserEditProfileRepoImpl(userEditProfileService: di()));
 
   /// <!------ HOME ------->
-  di.registerFactory(() => HomeCubit());
+  di.registerFactory(() => HomeCubit(slidersUseCase: di()));
+  di.registerLazySingleton(
+          () => SlidersUseCase(slidersRepo: di()));
+  di.registerLazySingleton<SlidersRepo>(
+          () => SlidersRepoImpl(slidersService: di()));
 
   /// <!------ MAPS ------->
   di.registerFactory(() => MapsCubit());

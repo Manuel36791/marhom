@@ -11,6 +11,7 @@ import '../../features/auth/supervisor_register/data/models/supervisor_register_
 import '../../features/auth/user_register/data/models/user_register_or_login_model.dart';
 import '../../features/auth/verify_account/data/models/resend_code_model.dart';
 import '../../features/auth/verify_account/data/models/verify_account_model.dart';
+import '../../features/main/home/data/models/slider_model.dart';
 import '../../features/main/supervisor_home/data/models/view_message_model.dart';
 import '../../features/profile/about_us/data/models/about_us_model.dart';
 import '../../features/profile/contact_us/data/models/contact_us_model.dart';
@@ -108,4 +109,7 @@ abstract class ApiClient {
 
   @GET(AppConstants.getCondolenceMessagesUri)
   Future<CondolenceMessagesResponseModel> getCondolenceMessages();
+
+  @GET(AppConstants.getSlidersUri)
+  Future<SlidersResponseModel> getSliders();
 }
