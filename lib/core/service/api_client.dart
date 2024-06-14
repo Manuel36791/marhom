@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:marhom/features/profile/condolence_messages/data/models/condolence_messages_model.dart';
 import 'package:retrofit/http.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -104,4 +105,7 @@ abstract class ApiClient {
 
   @GET(AppConstants.getFatwasUri)
   Future<QADataModel> getFatwas();
+
+  @GET(AppConstants.getCondolenceMessagesUri)
+  Future<CondolenceMessagesResponseModel> getCondolenceMessages();
 }

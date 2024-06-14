@@ -30,6 +30,10 @@ import '../../features/profile/about_us/data/repositories/about_us_repo_impl.dar
 import '../../features/profile/about_us/domain/repositories/about_us_repo.dart';
 import '../../features/profile/about_us/domain/use_cases/about_us_use_case.dart';
 import '../../features/profile/about_us/presentation/manager/about_us_cubit.dart';
+import '../../features/profile/condolence_messages/data/repositories/condolence_messages_repo_impl.dart';
+import '../../features/profile/condolence_messages/domain/repositories/codolence_messages_repo.dart';
+import '../../features/profile/condolence_messages/domain/use_cases/condolence_messages_use_case.dart';
+import '../../features/profile/condolence_messages/presentation/manager/condolence_messages_cubit.dart';
 import '../../features/profile/contact_us/data/repositories/contact_us_repo_impl.dart';
 import '../../features/profile/contact_us/domain/repositories/contact_us_repo.dart';
 import '../../features/profile/contact_us/domain/use_cases/contact_us_use_case.dart';
@@ -191,6 +195,14 @@ Future<void> init() async {
       () => FatwasUseCase(qaRepo: di()));
   di.registerLazySingleton<QARepo>(
       () => QARepoImpl(qaService: di()));
+
+  /// <!------ CONDOLENCE MESSAGES ------->
+  di.registerFactory(() =>
+      CondolenceMessagesCubit(messagesUseCase: di()));
+  di.registerLazySingleton(
+      () => CondolenceMessagesUseCase(condolenceMessagesRepo: di()));
+  di.registerLazySingleton<CondolenceMessagesRepo>(
+      () => CondolenceMessagesRepoImpl(condolenceMessagesService: di()));
 
   /// <!------ API CLIENT ------->
   Dio dio = await DioFactory.getDio();

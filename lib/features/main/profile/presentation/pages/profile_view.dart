@@ -81,9 +81,9 @@ class ProfileView extends StatelessWidget {
                     children: [],
                   ),
                   Gap(15.h),
-                  const MenuTile(
+                  ClickableMenuTile(
+                    onClick: () => context.pushNamed(condolenceMessagesView),
                     title: "Condolence messages",
-                    children: [],
                   ),
                   Gap(15.h),
                   ClickableMenuTile(
